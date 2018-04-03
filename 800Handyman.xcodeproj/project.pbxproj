@@ -8,20 +8,44 @@
 
 /* Begin PBXBuildFile section */
 		776588DF2073823C00876E3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588DE2073823C00876E3E /* AppDelegate.swift */; };
-		776588E12073823C00876E3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588E02073823C00876E3E /* ViewController.swift */; };
-		776588E42073823C00876E3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776588E22073823C00876E3E /* Main.storyboard */; };
+		776588E12073823C00876E3E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588E02073823C00876E3E /* HomeViewController.swift */; };
 		776588E62073823C00876E3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776588E52073823C00876E3E /* Assets.xcassets */; };
 		776588E92073823C00876E3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776588E72073823C00876E3E /* LaunchScreen.storyboard */; };
+		776588F6207385A900876E3E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588F5207385A900876E3E /* CustomTabBarController.swift */; };
+		776588F820738CE800876E3E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588F720738CE800876E3E /* NotificationViewController.swift */; };
+		776588FA2073921600876E3E /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588F92073921600876E3E /* ContactsViewController.swift */; };
+		776588FC2073924300876E3E /* PhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588FB2073924300876E3E /* PhoneViewController.swift */; };
+		776588FE2073926C00876E3E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588FD2073926C00876E3E /* ChatViewController.swift */; };
+		77658900207393B800876E3E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588FF207393B800876E3E /* Extensions.swift */; };
+		776589022073945000876E3E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776589012073945000876E3E /* Config.swift */; };
+		77658904207394E500876E3E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77658903207394E500876E3E /* Helper.swift */; };
+		776589062073984300876E3E /* LanguageSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776589052073984300876E3E /* LanguageSelectViewController.swift */; };
+		7765890A20739D7700876E3E /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7765890820739D7700876E3E /* OpenSans-SemiBold.ttf */; };
+		7765890B20739D7700876E3E /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7765890920739D7700876E3E /* OpenSans-Regular.ttf */; };
+		7765890F2073A31000876E3E /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765890E2073A31000876E3E /* Slider.swift */; };
+		776589112073A40E00876E3E /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776589102073A40E00876E3E /* SliderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		776588DB2073823C00876E3E /* 800Handyman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 800Handyman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		776588DE2073823C00876E3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		776588E02073823C00876E3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		776588E32073823C00876E3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		776588E02073823C00876E3E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		776588E52073823C00876E3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		776588E82073823C00876E3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		776588EA2073823C00876E3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		776588F5207385A900876E3E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		776588F720738CE800876E3E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		776588F92073921600876E3E /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		776588FB2073924300876E3E /* PhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewController.swift; sourceTree = "<group>"; };
+		776588FD2073926C00876E3E /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		776588FF207393B800876E3E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		776589012073945000876E3E /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		77658903207394E500876E3E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		776589052073984300876E3E /* LanguageSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectViewController.swift; sourceTree = "<group>"; };
+		7765890820739D7700876E3E /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		7765890920739D7700876E3E /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		7765890E2073A31000876E3E /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
+		776589102073A40E00876E3E /* SliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +78,90 @@
 		776588DD2073823C00876E3E /* 800Handyman */ = {
 			isa = PBXGroup;
 			children = (
+				776588F42073858800876E3E /* Utility */,
+				776588F32073857F00876E3E /* Resources */,
+				776588F22073857900876E3E /* Models */,
+				776588F12073857400876E3E /* Views */,
+				776588F02073856A00876E3E /* Controllers */,
 				776588DE2073823C00876E3E /* AppDelegate.swift */,
-				776588E02073823C00876E3E /* ViewController.swift */,
-				776588E22073823C00876E3E /* Main.storyboard */,
 				776588E52073823C00876E3E /* Assets.xcassets */,
 				776588E72073823C00876E3E /* LaunchScreen.storyboard */,
 				776588EA2073823C00876E3E /* Info.plist */,
 			);
 			path = 800Handyman;
+			sourceTree = "<group>";
+		};
+		776588F02073856A00876E3E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				776588F5207385A900876E3E /* CustomTabBarController.swift */,
+				776588E02073823C00876E3E /* HomeViewController.swift */,
+				776588F720738CE800876E3E /* NotificationViewController.swift */,
+				776588F92073921600876E3E /* ContactsViewController.swift */,
+				776588FB2073924300876E3E /* PhoneViewController.swift */,
+				776588FD2073926C00876E3E /* ChatViewController.swift */,
+				776589052073984300876E3E /* LanguageSelectViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		776588F12073857400876E3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7765890D2073A2FF00876E3E /* CollectionViewCells */,
+				7765890C2073A2F600876E3E /* TableViewCells */,
+				7765890E2073A31000876E3E /* Slider.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		776588F22073857900876E3E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		776588F32073857F00876E3E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7765890720739D0300876E3E /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		776588F42073858800876E3E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				776588FF207393B800876E3E /* Extensions.swift */,
+				776589012073945000876E3E /* Config.swift */,
+				77658903207394E500876E3E /* Helper.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		7765890720739D0300876E3E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7765890920739D7700876E3E /* OpenSans-Regular.ttf */,
+				7765890820739D7700876E3E /* OpenSans-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		7765890C2073A2F600876E3E /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		7765890D2073A2FF00876E3E /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				776589102073A40E00876E3E /* SliderCell.swift */,
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,8 +224,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				776588E92073823C00876E3E /* LaunchScreen.storyboard in Resources */,
+				7765890A20739D7700876E3E /* OpenSans-SemiBold.ttf in Resources */,
+				7765890B20739D7700876E3E /* OpenSans-Regular.ttf in Resources */,
 				776588E62073823C00876E3E /* Assets.xcassets in Resources */,
-				776588E42073823C00876E3E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,22 +237,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				776588E12073823C00876E3E /* ViewController.swift in Sources */,
+				776588E12073823C00876E3E /* HomeViewController.swift in Sources */,
 				776588DF2073823C00876E3E /* AppDelegate.swift in Sources */,
+				776589022073945000876E3E /* Config.swift in Sources */,
+				776588F820738CE800876E3E /* NotificationViewController.swift in Sources */,
+				77658900207393B800876E3E /* Extensions.swift in Sources */,
+				776588FE2073926C00876E3E /* ChatViewController.swift in Sources */,
+				776589062073984300876E3E /* LanguageSelectViewController.swift in Sources */,
+				776588FC2073924300876E3E /* PhoneViewController.swift in Sources */,
+				77658904207394E500876E3E /* Helper.swift in Sources */,
+				776589112073A40E00876E3E /* SliderCell.swift in Sources */,
+				776588F6207385A900876E3E /* CustomTabBarController.swift in Sources */,
+				7765890F2073A31000876E3E /* Slider.swift in Sources */,
+				776588FA2073921600876E3E /* ContactsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		776588E22073823C00876E3E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				776588E32073823C00876E3E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		776588E72073823C00876E3E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -281,7 +385,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.creativeitem.-00Handyman";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -296,7 +400,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.creativeitem.-00Handyman";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
