@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        //window?.rootViewController = CustomTabBarController()
-        window?.rootViewController = LanguageSelectViewController()
+        window?.rootViewController = CustomTabBarController()
+        //window?.rootViewController = LanguageSelectViewController()
         window?.makeKeyAndVisible()
         
         return true

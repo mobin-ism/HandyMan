@@ -12,6 +12,12 @@ class CustomTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tabBar.layer.borderWidth = 0
+        tabBar.clipsToBounds = true
+        tabBar.backgroundColor = UIColor.white
+        tabBar.isTranslucent = false
+        
         let homeController = createController(viewController: HomeViewController(), imageName: "home", selectedImageName: "home")
         let notificationController = createController(viewController: NotificationViewController(), imageName: "notification", selectedImageName: "notification")
         let contactsController = createController(viewController: ContactsViewController(), imageName: "users", selectedImageName: "users")

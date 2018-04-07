@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		775F079E20761D67006E563F /* SliderImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F079D20761D67006E563F /* SliderImages.swift */; };
+		775F07A02076286A006E563F /* MasterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F079F2076286A006E563F /* MasterCollectionViewCell.swift */; };
+		775F07A220762B84006E563F /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F07A120762B84006E563F /* ServiceCell.swift */; };
+		775F07A420764487006E563F /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F07A320764487006E563F /* ServiceViewController.swift */; };
+		775F07A620764547006E563F /* ServiceMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F07A520764547006E563F /* ServiceMenu.swift */; };
+		775F07A820764642006E563F /* ServiceMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F07A720764642006E563F /* ServiceMenuCell.swift */; };
+		775F07AA2076521C006E563F /* ServiceChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F07A92076521C006E563F /* ServiceChildCell.swift */; };
+		775F07AC207803C1006E563F /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F07AB207803C1006E563F /* NotificationCell.swift */; };
+		775F07AE20793E84006E563F /* JobListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F07AD20793E84006E563F /* JobListViewController.swift */; };
+		775F07B020793FB6006E563F /* JobListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F07AF20793FB6006E563F /* JobListCell.swift */; };
+		775F07B220795459006E563F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F07B120795459006E563F /* ProfileViewController.swift */; };
+		775F07B42079640E006E563F /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F07B32079640E006E563F /* ProfileInfoCell.swift */; };
 		776588DF2073823C00876E3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588DE2073823C00876E3E /* AppDelegate.swift */; };
 		776588E12073823C00876E3E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776588E02073823C00876E3E /* HomeViewController.swift */; };
 		776588E62073823C00876E3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776588E52073823C00876E3E /* Assets.xcassets */; };
@@ -27,6 +39,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		775F079D20761D67006E563F /* SliderImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderImages.swift; sourceTree = "<group>"; };
+		775F079F2076286A006E563F /* MasterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterCollectionViewCell.swift; sourceTree = "<group>"; };
+		775F07A120762B84006E563F /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
+		775F07A320764487006E563F /* ServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
+		775F07A520764547006E563F /* ServiceMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMenu.swift; sourceTree = "<group>"; };
+		775F07A720764642006E563F /* ServiceMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMenuCell.swift; sourceTree = "<group>"; };
+		775F07A92076521C006E563F /* ServiceChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceChildCell.swift; sourceTree = "<group>"; };
+		775F07AB207803C1006E563F /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		775F07AD20793E84006E563F /* JobListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListViewController.swift; sourceTree = "<group>"; };
+		775F07AF20793FB6006E563F /* JobListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListCell.swift; sourceTree = "<group>"; };
+		775F07B120795459006E563F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		775F07B32079640E006E563F /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
 		776588DB2073823C00876E3E /* 800Handyman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 800Handyman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		776588DE2073823C00876E3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		776588E02073823C00876E3E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +125,9 @@
 				776588FB2073924300876E3E /* PhoneViewController.swift */,
 				776588FD2073926C00876E3E /* ChatViewController.swift */,
 				776589052073984300876E3E /* LanguageSelectViewController.swift */,
+				775F07A320764487006E563F /* ServiceViewController.swift */,
+				775F07AD20793E84006E563F /* JobListViewController.swift */,
+				775F07B120795459006E563F /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -111,6 +138,7 @@
 				7765890D2073A2FF00876E3E /* CollectionViewCells */,
 				7765890C2073A2F600876E3E /* TableViewCells */,
 				7765890E2073A31000876E3E /* Slider.swift */,
+				775F07A520764547006E563F /* ServiceMenu.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +146,7 @@
 		776588F22073857900876E3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				775F079D20761D67006E563F /* SliderImages.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -160,6 +189,13 @@
 			isa = PBXGroup;
 			children = (
 				776589102073A40E00876E3E /* SliderCell.swift */,
+				775F079F2076286A006E563F /* MasterCollectionViewCell.swift */,
+				775F07A120762B84006E563F /* ServiceCell.swift */,
+				775F07A720764642006E563F /* ServiceMenuCell.swift */,
+				775F07A92076521C006E563F /* ServiceChildCell.swift */,
+				775F07AB207803C1006E563F /* NotificationCell.swift */,
+				775F07AF20793FB6006E563F /* JobListCell.swift */,
+				775F07B32079640E006E563F /* ProfileInfoCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -237,17 +273,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				775F07A620764547006E563F /* ServiceMenu.swift in Sources */,
 				776588E12073823C00876E3E /* HomeViewController.swift in Sources */,
 				776588DF2073823C00876E3E /* AppDelegate.swift in Sources */,
 				776589022073945000876E3E /* Config.swift in Sources */,
 				776588F820738CE800876E3E /* NotificationViewController.swift in Sources */,
+				775F079E20761D67006E563F /* SliderImages.swift in Sources */,
+				775F07B220795459006E563F /* ProfileViewController.swift in Sources */,
+				775F07B020793FB6006E563F /* JobListCell.swift in Sources */,
 				77658900207393B800876E3E /* Extensions.swift in Sources */,
 				776588FE2073926C00876E3E /* ChatViewController.swift in Sources */,
 				776589062073984300876E3E /* LanguageSelectViewController.swift in Sources */,
 				776588FC2073924300876E3E /* PhoneViewController.swift in Sources */,
+				775F07A820764642006E563F /* ServiceMenuCell.swift in Sources */,
+				775F07A02076286A006E563F /* MasterCollectionViewCell.swift in Sources */,
+				775F07B42079640E006E563F /* ProfileInfoCell.swift in Sources */,
 				77658904207394E500876E3E /* Helper.swift in Sources */,
+				775F07AC207803C1006E563F /* NotificationCell.swift in Sources */,
 				776589112073A40E00876E3E /* SliderCell.swift in Sources */,
+				775F07AA2076521C006E563F /* ServiceChildCell.swift in Sources */,
+				775F07A420764487006E563F /* ServiceViewController.swift in Sources */,
 				776588F6207385A900876E3E /* CustomTabBarController.swift in Sources */,
+				775F07AE20793E84006E563F /* JobListViewController.swift in Sources */,
+				775F07A220762B84006E563F /* ServiceCell.swift in Sources */,
 				7765890F2073A31000876E3E /* Slider.swift in Sources */,
 				776588FA2073921600876E3E /* ContactsViewController.swift in Sources */,
 			);

@@ -1,22 +1,21 @@
 //
-//  Slider.swift
+//  ServiceMenu.swift
 //  800Handyman
 //
-//  Created by Tanvir Hasan Piash on 3/4/18.
+//  Created by Tanvir Hasan Piash on 5/4/18.
 //  Copyright © 2018 Tanvir Hasan Piash. All rights reserved.
 //
 
 import UIKit
 
-class Slider: UIView {
+class ServiceMenu: UIView {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collectionView.isPagingEnabled = true
         collectionView.backgroundColor = UIColor.clear
-        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.clipsToBounds = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
@@ -24,20 +23,14 @@ class Slider: UIView {
         return collectionView
     }()
     
-    let sliderCellId = "SliderCell"
-    var dataSource: [NSObject]? = [NSObject]() {
-        didSet {
-            self.collectionView.reloadData()
-        }
-    }
+    let serviceMenuCellId = "ServiceMenuCell"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.clear
+        backgroundColor = SERVICE_MENU_BG_COLOR
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
-        
-        collectionView.register(SliderCell.self, forCellWithReuseIdentifier: sliderCellId)
+        collectionView.register(ServiceMenuCell.self, forCellWithReuseIdentifier: serviceMenuCellId)
         
         layout()
     }
@@ -47,50 +40,45 @@ class Slider: UIView {
     }
     
     private func layout() {
-        setCollectionView()
-    }
-    
-    private func setCollectionView() {
-        self.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        addSubview(collectionView)
+        collectionView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        collectionView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        collectionView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        collectionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
     }
     
 }
 
-extension Slider: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ServiceMenu: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let dataSource = dataSource else { return 0 }
-        return dataSource.count
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sliderCellId, for: indexPath) as? SliderCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: serviceMenuCellId, for: indexPath) as? ServiceMenuCell else {
             let cell = collectionView.cellForItem(at: indexPath)!
             return cell
         }
-        guard let dataSource = dataSource as? [SliderImages] else {
-            cell.image = UIImage()
-            return cell
-        }
-        cell.image = UIImage(named: dataSource[indexPath.item].image)
+        cell.mainImage = #imageLiteral(resourceName: "dummy1")
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.item)
     }
     
 }
 
-extension Slider: UICollectionViewDelegateFlowLayout {
+extension ServiceMenu: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = self.frame.width * 0.9
-        let height: CGFloat = self.frame.height
+        let width: CGFloat = collectionView.frame.width
+        let height: CGFloat = width
         return CGSize(width: width, height: height)
     }
     
@@ -100,6 +88,10 @@ extension Slider: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(40, 0, 40, 0)
     }
     
 }

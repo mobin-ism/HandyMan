@@ -10,5 +10,16 @@ import UIKit
 
 class Helper {
     
+    public static var isIphoneX: Bool {
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 2436:
+                return true
+            default:
+                return false
+            }
+        }
+        return false
+    }
     
 }

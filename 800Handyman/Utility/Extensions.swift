@@ -38,11 +38,25 @@ extension CAGradientLayer {
 extension UINavigationBar {
     
     func setGradientBackground(colors: [UIColor]) {
-        
         var updatedFrame = bounds
         updatedFrame.size.height += self.frame.origin.y
         let gradientLayer = CAGradientLayer(frame: updatedFrame, colors: colors)
         
         setBackgroundImage(gradientLayer.creatGradientImage(), for: UIBarMetrics.default)
     }
+}
+
+extension UIView {
+    
+    func setGradientLayer(colors: [UIColor]) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.bounds
+        var cgColors = [CGColor]()
+        for color in colors {
+            cgColors.append(color.cgColor)
+        }
+        gradientLayer.colors = cgColors
+        self.layer.addSublayer(gradientLayer)
+    }
+    
 }

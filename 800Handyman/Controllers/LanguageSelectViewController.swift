@@ -19,7 +19,7 @@ class LanguageSelectViewController: UIViewController {
     }()
     
     let logoImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "lang_logo"))
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "langLogo"))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +48,7 @@ class LanguageSelectViewController: UIViewController {
         button.layer.borderWidth = 1
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(englishButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -62,6 +63,7 @@ class LanguageSelectViewController: UIViewController {
         button.layer.borderWidth = 1
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(arabicButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -121,6 +123,14 @@ class LanguageSelectViewController: UIViewController {
         arabicButton.topAnchor.constraint(equalTo: englishButton.topAnchor).isActive = true
         arabicButton.widthAnchor.constraint(equalTo: englishButton.widthAnchor).isActive = true
         arabicButton.heightAnchor.constraint(equalTo: englishButton.heightAnchor).isActive = true
+    }
+    
+    @objc private func englishButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func arabicButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
 }
