@@ -16,3 +16,7 @@ let YELLOW_ACCENT = UIColor(red:1.00, green:0.73, blue:0.00, alpha:1.0)
 
 let OPENSANS_REGULAR = "OpenSans-Regular"
 let OPENSANS_SEMIBOLD = "OpenSans-SemiBold"
+let OPENSANS_BOLD = "OpenSans-Bold"
+let OPENSANS_LIGHTITALIC = "OpenSans-LightItalic"
+
+let GOOGLE_MAP_API_KEY = "AIzaSyDsxM23M3gVnUvd46zxl1d9BgiIcHJ3dqg"

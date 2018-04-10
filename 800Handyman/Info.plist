@@ -41,6 +41,15 @@
 	<array>
 		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-SemiBold.ttf</string>
+		<string>OpenSans-Bold.ttf</string>
+		<string>OpenSans-LightItalic.ttf</string>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>By accessing your location, this app will automatically trace your address if required</string>
 </dict>
 </plist>

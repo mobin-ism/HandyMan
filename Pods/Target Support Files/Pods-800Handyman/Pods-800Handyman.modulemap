@@ -1,0 +1,6 @@
+framework module Pods_800Handyman {
+  umbrella header "Pods-800Handyman-umbrella.h"
+
+  export *
+  module * { export * }
+}

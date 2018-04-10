@@ -140,7 +140,7 @@ class JobListCell: MasterCollectionViewCell {
     
     private func setScheduleDateLabel() {
         addSubview(scheduleLabel)
-        scheduleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
+        scheduleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
         scheduleLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
         scheduleLabel.rightAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
     }
