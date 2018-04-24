@@ -8,6 +8,13 @@
 
 import UIKit
 
+let IS_LOGGED_IN = "is_logged_in"
+let API_URL = "http://handyman.r-y-x.com/"
+let AUTH_KEY = "Basic YWRtaW46MTIzNA=="
+let MEMBER_ID = "Member_Id"
+let SERVICE_REQUEST_MASTER_ID = "Service_Request_Master_Id"
+let IS_ANOTHER_SERVICE_REQUEST = "is_another_service_request"
+
 let NAV_GRADIENT_TOP = UIColor(red:1.00, green:0.92, blue:0.00, alpha:1.0)
 let NAV_GRADIENT_BOTTOM = UIColor(red:1.00, green:0.77, blue:0.00, alpha:1.0)
 let BACKGROUND_COLOR = UIColor(red:0.89, green:0.89, blue:0.89, alpha:1.0)
@@ -20,3 +27,6 @@ let OPENSANS_BOLD = "OpenSans-Bold"
 let OPENSANS_LIGHTITALIC = "OpenSans-LightItalic"
 
 let GOOGLE_MAP_API_KEY = "AIzaSyDsxM23M3gVnUvd46zxl1d9BgiIcHJ3dqg"
+
+let SELECTED_LANGUAGE = "Selected_Language"
+let DEVICE_ID = "Device_Id"

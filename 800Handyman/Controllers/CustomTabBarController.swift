@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+import Alamofire
+import SDWebImage
+typealias JSON = [String : Any]
 class CustomTabBarController: UITabBarController {
     
     override func viewDidLoad() {
@@ -21,9 +23,17 @@ class CustomTabBarController: UITabBarController {
         let homeController = createController(viewController: HomeViewController(), imageName: "home", selectedImageName: "home")
         let notificationController = createController(viewController: NotificationViewController(), imageName: "notification", selectedImageName: "notification")
         let contactsController = createController(viewController: ContactsViewController(), imageName: "users", selectedImageName: "users")
-        let phoneController = createController(viewController: PhoneViewController(), imageName: "phone", selectedImageName: "phone")
+        let phoneController = createController(viewController: LocationSecondViewController(), imageName: "phone", selectedImageName: "phone")
         let chatController = createController(viewController: ChatViewController(), imageName: "chat", selectedImageName: "chat")
         viewControllers = [homeController, notificationController, contactsController, phoneController, chatController]
+        
+        // Clearing the Cahced Images
+        self.clearCachedImages()
+        
+        // Modal for changing the Language view
+        DispatchQueue.main.async {
+            self.present(LanguageSelectViewController(), animated: true, completion: nil)
+        }
     }
     
     private func createController(viewController: UIViewController, imageName: String, selectedImageName: String) -> UINavigationController {
@@ -33,6 +43,11 @@ class CustomTabBarController: UITabBarController {
         navigationController.tabBarItem.image = UIImage(named: imageName)
         navigationController.tabBarItem.selectedImage = UIImage(named: selectedImageName)
         return navigationController
+    }
+    
+    func clearCachedImages(){
+        SDImageCache.shared().clearMemory()
+        SDImageCache.shared().clearDisk(onCompletion: nil)
     }
     
 }

@@ -8,8 +8,27 @@
 
 import UIKit
 import GoogleMaps
+import Alamofire
 
-class LocationFirstViewController: UIViewController {
+class LocationFirstViewController: UIViewController{
+    
+    var areaNSObject = [AreaNSObject]()
+    var selectedAreaID : Int?
+    
+    var markedLatitude : Double?
+    var markedLongitude : Double?
+    
+    var latitude: Double? = 0.0 {
+        didSet {
+            self.markedLatitude = latitude!
+        }
+    }
+    
+    var longitude: Double? = 0.0 {
+        didSet {
+            self.markedLongitude = longitude!
+        }
+    }
     
     lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView(frame: .zero)
@@ -24,6 +43,7 @@ class LocationFirstViewController: UIViewController {
         let view = GMSMapView()
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -100,6 +120,7 @@ class LocationFirstViewController: UIViewController {
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isUserInteractionEnabled = true
         return label
     }()
     
@@ -174,7 +195,24 @@ class LocationFirstViewController: UIViewController {
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleNextButton), for: .touchUpInside)
         return button
+    }()
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = .gray
+        indicator.clipsToBounds = true
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
+    lazy var areaSelector: Selector = {
+        
+        let selector = Selector()
+        selector.locationVC = self
+        return selector
     }()
     
     private let locationManager = CLLocationManager()
@@ -187,7 +225,26 @@ class LocationFirstViewController: UIViewController {
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        
+        self.mapView.delegate = self
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.touchTapped(_:)))
+        
+        self.areaHolder.addGestureRecognizer(tap)
+        self.downArrowIcon.addGestureRecognizer(tap)
+        self.areaNameLabel.addGestureRecognizer(tap)
+        
+        self.addressNameTextField.delegate = self
+        self.addressTypeTextField.delegate = self
+        self.streetTextField.delegate = self
+        self.villaTextField.delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -209,8 +266,8 @@ class LocationFirstViewController: UIViewController {
         setScrollView()
         setAreaLabel()
         setAreaHolder()
-        setAreaNameLabel()
         setDownArrowIcon()
+        setAreaNameLabel()
         setAddressNameLabel()
         setAddressNameTextField()
         setAddressTypeLabel()
@@ -220,6 +277,8 @@ class LocationFirstViewController: UIViewController {
         setVillaLabel()
         setVillaTextField()
         setNextButton()
+        
+        setupActivityIndicator()
     }
     
     private func setMapView() {
@@ -256,18 +315,20 @@ class LocationFirstViewController: UIViewController {
         areaHolder.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
-    private func setAreaNameLabel() {
-        areaHolder.addSubview(areaNameLabel)
-        areaNameLabel.centerYAnchor.constraint(equalTo: areaHolder.centerYAnchor).isActive = true
-        areaNameLabel.leftAnchor.constraint(equalTo: areaHolder.leftAnchor, constant: 16).isActive = true
-    }
-    
     private func setDownArrowIcon() {
         areaHolder.addSubview(downArrowIcon)
         downArrowIcon.centerYAnchor.constraint(equalTo: areaHolder.centerYAnchor).isActive = true
         downArrowIcon.rightAnchor.constraint(equalTo: areaHolder.rightAnchor, constant: -16).isActive = true
         downArrowIcon.widthAnchor.constraint(equalToConstant: 11).isActive = true
         downArrowIcon.heightAnchor.constraint(equalToConstant: 11 * 0.6).isActive = true
+    }
+    
+    private func setAreaNameLabel() {
+        areaHolder.addSubview(areaNameLabel)
+        areaNameLabel.centerYAnchor.constraint(equalTo: areaHolder.centerYAnchor).isActive = true
+        areaNameLabel.leftAnchor.constraint(equalTo: areaHolder.leftAnchor, constant: 16).isActive = true
+        areaNameLabel.rightAnchor.constraint(equalTo: downArrowIcon.leftAnchor).isActive = true
+        areaNameLabel.heightAnchor.constraint(equalTo: areaHolder.heightAnchor).isActive = true
     }
     
     private func setAddressNameLabel() {
@@ -334,6 +395,48 @@ class LocationFirstViewController: UIViewController {
         nextButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
+    private func setupActivityIndicator(){
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    
+    func changeSelectorTitle(withString title: String) {
+        self.areaNameLabel.text = title
+    }
+    
+    
+    @objc func touchTapped(_ sender: UITapGestureRecognizer) {
+        
+        self.getAreaList()
+    }
+    
+    //if user is logged in check
+    func isKeyPresentInUserDefaults(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
+    
+    @objc func handleNextButton() {
+        
+        self.addAddressOfServiceRequest()
+        
+        if isKeyPresentInUserDefaults(key: IS_LOGGED_IN) {
+            
+            if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
+                
+                self.navigationController?.pushViewController(JobListViewController(), animated: true)
+            }
+            else {
+                
+                self.navigationController?.pushViewController(LoginViewController(), animated: true)
+            }
+        }
+        else {
+            
+            self.navigationController?.pushViewController(LoginViewController(), animated: true)
+        }
+    }
 }
 
 extension LocationFirstViewController: UIScrollViewDelegate {
@@ -349,9 +452,186 @@ extension LocationFirstViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+        guard let location = locations.last else { return }
+        
+        /*This If block will be executed after picking the specific point from LocationSecondViewController*/
+        if let markedLatitude = self.markedLatitude, let markedLongitude = self.markedLongitude {
+            let camera = GMSCameraPosition.camera(withLatitude: markedLatitude, longitude: markedLongitude, zoom: 16)
+            
+            let currentLocation = CLLocationCoordinate2DMake(markedLatitude, markedLongitude)
+            let marker = GMSMarker(position: currentLocation)
+            mapView.camera = camera
+            marker.map = mapView
+        }
+        else {
+            //mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
+            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 16)
+            mapView.camera = camera
+            
+        }
+        
         locationManager.stopUpdatingLocation()
+    }
+}
+
+
+extension LocationFirstViewController : GMSMapViewDelegate {
+    
+    // MARK: GMSMapViewDelegate
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        
+        self.navigationController?.pushViewController(LocationSecondViewController(), animated: true)
+        
+        //self.present(LocationSecondViewController(), animated: true, completion: nil)
     }
     
 }
+
+// API Functions
+extension LocationFirstViewController {
+    
+    func showEmptyAlert(){
+        let alert = UIAlertController(title: "Ooops!!", message: "Fields can not be empty", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlertForEmptyCoordinate(){
+        let alert = UIAlertController(title: "Ooops!!", message: "You have to pick a specific address from the map", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // get the area list for the selector
+    func getAreaList(){
+        
+        self.activityIndicator.startAnimating()
+        guard let url = URL(string: "\(API_URL)api/v1/general/get/areas") else { return }
+        Alamofire.request(url,method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            if !self.areaNSObject.isEmpty {
+                self.areaNSObject.removeAll()
+            }
+            
+            if let json = response.data {
+                
+                let decoder = JSONDecoder()
+                do {
+                    let areaList = try decoder.decode(AddressResponse.self, from: json)
+                    
+                    for eachArea in areaList.data.areas{
+                        
+                        let areaID   = eachArea.areaId
+                        let areaName = eachArea.name
+                        
+                        let areaObj = AreaNSObject(areaId: areaID, areaName: areaName)
+                        self.areaNSObject.append(areaObj)
+                    }
+                    
+                    // show selector
+                    self.areaSelector.show(withData: self.areaNSObject)
+                    self.activityIndicator.stopAnimating()
+                    
+                    
+                } catch let err {
+                    print(err)
+                }
+            }
+        })
+    }
+    
+    // posting an address for service request
+    func addAddressOfServiceRequest() {
+        
+        guard let selectedAreaID = self.selectedAreaID else {
+            
+            self.showEmptyAlert()
+            return
+            
+        }
+        guard let areaName       = self.areaNameLabel.text else { return }
+        guard let addressName    = self.addressNameTextField.text else { return }
+        guard let addressType    = self.addressTypeTextField.text else { return }
+        guard let street         = self.streetTextField.text else { return }
+        guard let apartmentNo    = self.villaTextField.text else { return }
+        
+        guard let markedLatitude = self.markedLatitude, let markedLongitude = self.markedLongitude else {
+            
+            self.showAlertForEmptyCoordinate()
+            return
+        }
+        
+        if selectedAreaID == 0 || areaName == "" || addressName == "" || addressType == "" || street == "" || apartmentNo == "" {
+            
+            self.showEmptyAlert()
+            return
+        }
+        
+        print("Master Service Id is: \(UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int)") 
+        self.activityIndicator.startAnimating()
+        guard let url = URL(string: "\(API_URL)api/v1/member/service/request/area/update") else { return }
+        let params = ["ServiceRequestMasterId": UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int,
+                      "MemberId" : UserDefaults.standard.value(forKey: MEMBER_ID) as! Int,
+                      "AddressName" : addressName,
+                      "AddressType" : addressType,
+                      "Street" : street,
+                      "ApartmentNo" : apartmentNo,
+                      "Location" : areaName,
+                      "AreaId" : selectedAreaID,
+                      "Latitude" : markedLatitude,
+                      "Longitude" : markedLongitude
+                      ] as [String : Any]
+        Alamofire.request(url,method: .post, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type": "application/x-www-form-urlencoded", "Authorization" : AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            print(response)
+            print(params)
+            
+            self.activityIndicator.stopAnimating()
+        })
+        
+    }
+}
+
+extension LocationFirstViewController : UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if textField == self.addressNameTextField {
+            
+            scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+        }
+        else if textField == self.addressTypeTextField {
+            
+            scrollView.setContentOffset(CGPoint(x: 0, y: 120), animated: true)
+        }
+        else {
+            
+          scrollView.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+}
+

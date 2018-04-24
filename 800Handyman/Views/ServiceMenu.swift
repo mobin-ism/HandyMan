@@ -10,6 +10,12 @@ import UIKit
 
 class ServiceMenu: UIView {
     
+    // The arry values will come from Service Controller
+    var servicesIcons = [String]()
+    var servicesId    = [Int]()
+    
+    var serviceVC = ServiceViewController()
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -31,6 +37,7 @@ class ServiceMenu: UIView {
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(ServiceMenuCell.self, forCellWithReuseIdentifier: serviceMenuCellId)
+        serviceVC.serviceMenu = self
         
         layout()
     }
@@ -46,7 +53,6 @@ class ServiceMenu: UIView {
         collectionView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         collectionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
     }
-    
 }
 
 extension ServiceMenu: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -56,7 +62,7 @@ extension ServiceMenu: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.servicesIcons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -64,12 +70,14 @@ extension ServiceMenu: UICollectionViewDelegate, UICollectionViewDataSource {
             let cell = collectionView.cellForItem(at: indexPath)!
             return cell
         }
-        cell.mainImage = #imageLiteral(resourceName: "dummy1")
+        cell.imageView.sd_setImage(with: URL(string: self.servicesIcons[indexPath.row]))
+
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        
+        serviceVC.selectedRow = indexPath.row
     }
     
 }
@@ -93,5 +101,4 @@ extension ServiceMenu: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(40, 0, 40, 0)
     }
-    
 }

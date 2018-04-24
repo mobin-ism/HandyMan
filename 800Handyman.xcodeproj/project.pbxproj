@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08076A9B208E06AF001A9082 /* ReceiverMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */; };
+		0838CB552088A0060073C6D4 /* LoginAuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838CB542088A0060073C6D4 /* LoginAuthorizationModel.swift */; };
+		08390B6F2085D95400321735 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B6E2085D95400321735 /* Selector.swift */; };
+		08390B752085DB0B00321735 /* SelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B742085DB0B00321735 /* SelectorCell.swift */; };
+		08390B772085F94F00321735 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B762085F94F00321735 /* AddressModel.swift */; };
+		0840BD65208F0DC6000FC497 /* SenderMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */; };
+		0840BD67208F338F000FC497 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840BD66208F338F000FC497 /* ChatModel.swift */; };
+		0851166A208C830400E81C61 /* JobListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08511669208C830400E81C61 /* JobListModel.swift */; };
+		0855D62E20849032002BB7A7 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62D20849032002BB7A7 /* DeviceModel.swift */; };
+		0855D6302084BEA0002BB7A7 /* AddingServiceRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */; };
+		08591E4620835A7B00391BB0 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08591E4520835A7B00391BB0 /* ServiceDetailsViewController.swift */; };
+		088387D7208765B8003DAC2C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088387D6208765B8003DAC2C /* LoginViewController.swift */; };
+		1D38A8B920829C01001C8887 /* SubServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D38A8B820829C01001C8887 /* SubServiceModel.swift */; };
+		1DEAC1CE207E88400062F333 /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEAC1CD207E88400062F333 /* ServiceModel.swift */; };
 		77185420207A889A0006BEEC /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718541F207A889A0006BEEC /* ThankYouViewController.swift */; };
 		77185422207A89160006BEEC /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77185421207A89160006BEEC /* OpenSans-Bold.ttf */; };
 		77185424207A89270006BEEC /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77185423207A89270006BEEC /* OpenSans-LightItalic.ttf */; };
@@ -51,7 +65,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCell.swift; sourceTree = "<group>"; };
+		0838CB542088A0060073C6D4 /* LoginAuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAuthorizationModel.swift; sourceTree = "<group>"; };
+		08390B6E2085D95400321735 /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
+		08390B742085DB0B00321735 /* SelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorCell.swift; sourceTree = "<group>"; };
+		08390B762085F94F00321735 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
+		0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageCell.swift; sourceTree = "<group>"; };
+		0840BD66208F338F000FC497 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		08511669208C830400E81C61 /* JobListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListModel.swift; sourceTree = "<group>"; };
+		0855D62D20849032002BB7A7 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
+		0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingServiceRequestModel.swift; sourceTree = "<group>"; };
+		0857BD08207DFB50009AB8BF /* 800Handyman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "800Handyman-Bridging-Header.h"; sourceTree = "<group>"; };
+		08591E4520835A7B00391BB0 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
+		088387D6208765B8003DAC2C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		16F163B31311BB0F944D8E23 /* Pods_800Handyman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_800Handyman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D38A8B820829C01001C8887 /* SubServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubServiceModel.swift; sourceTree = "<group>"; };
+		1DEAC1CD207E88400062F333 /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
 		4314F82EFCAAFFC7515B8F7B /* Pods-800Handyman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-800Handyman.release.xcconfig"; path = "Pods/Target Support Files/Pods-800Handyman/Pods-800Handyman.release.xcconfig"; sourceTree = "<group>"; };
 		4ED4D1BA778EB8C21F3C31FA /* Pods-800Handyman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-800Handyman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-800Handyman/Pods-800Handyman.debug.xcconfig"; sourceTree = "<group>"; };
 		7718541E207A87830006BEEC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -111,6 +140,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08390B732085DAE900321735 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				08390B742085DB0B00321735 /* SelectorCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		482F37F64B8E5B352C625262 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +186,7 @@
 				776588E52073823C00876E3E /* Assets.xcassets */,
 				776588E72073823C00876E3E /* LaunchScreen.storyboard */,
 				776588EA2073823C00876E3E /* Info.plist */,
+				0857BD08207DFB50009AB8BF /* 800Handyman-Bridging-Header.h */,
 			);
 			path = 800Handyman;
 			sourceTree = "<group>";
@@ -172,6 +210,8 @@
 				771E678A207B5C3D00800C0B /* LocationSecondViewController.swift */,
 				771E678C207B630300800C0B /* LetUsKnowDetailsViewController.swift */,
 				771E678E207B8C5C00800C0B /* JobDetailsViewController.swift */,
+				08591E4520835A7B00391BB0 /* ServiceDetailsViewController.swift */,
+				088387D6208765B8003DAC2C /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -179,10 +219,11 @@
 		776588F12073857400876E3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				08390B732085DAE900321735 /* TableViewCell */,
 				7765890D2073A2FF00876E3E /* CollectionViewCells */,
-				7765890C2073A2F600876E3E /* TableViewCells */,
 				7765890E2073A31000876E3E /* Slider.swift */,
 				775F07A520764547006E563F /* ServiceMenu.swift */,
+				08390B6E2085D95400321735 /* Selector.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +232,14 @@
 			isa = PBXGroup;
 			children = (
 				775F079D20761D67006E563F /* SliderImages.swift */,
+				1DEAC1CD207E88400062F333 /* ServiceModel.swift */,
+				1D38A8B820829C01001C8887 /* SubServiceModel.swift */,
+				0855D62D20849032002BB7A7 /* DeviceModel.swift */,
+				0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */,
+				08390B762085F94F00321735 /* AddressModel.swift */,
+				0838CB542088A0060073C6D4 /* LoginAuthorizationModel.swift */,
+				08511669208C830400E81C61 /* JobListModel.swift */,
+				0840BD66208F338F000FC497 /* ChatModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -225,16 +274,10 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		7765890C2073A2F600876E3E /* TableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TableViewCells;
-			sourceTree = "<group>";
-		};
 		7765890D2073A2FF00876E3E /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */,
 				776589102073A40E00876E3E /* SliderCell.swift */,
 				775F079F2076286A006E563F /* MasterCollectionViewCell.swift */,
 				775F07A120762B84006E563F /* ServiceCell.swift */,
@@ -245,6 +288,7 @@
 				775F07B32079640E006E563F /* ProfileInfoCell.swift */,
 				7768ADDA207AB4DE000AC837 /* TimeSelectCell.swift */,
 				771E6790207BF13900800C0B /* JobDetailsImageCell.swift */,
+				0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -293,6 +337,7 @@
 				TargetAttributes = {
 					776588DA2073823C00876E3E = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -338,9 +383,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-800Handyman/Pods-800Handyman-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -394,14 +444,18 @@
 			files = (
 				775F07A620764547006E563F /* ServiceMenu.swift in Sources */,
 				7768ADDF207AC607000AC837 /* PaddedTextField.swift in Sources */,
+				08390B6F2085D95400321735 /* Selector.swift in Sources */,
 				776588E12073823C00876E3E /* HomeViewController.swift in Sources */,
 				771E678B207B5C3D00800C0B /* LocationSecondViewController.swift in Sources */,
 				7768ADDB207AB4DE000AC837 /* TimeSelectCell.swift in Sources */,
+				08390B772085F94F00321735 /* AddressModel.swift in Sources */,
 				776588DF2073823C00876E3E /* AppDelegate.swift in Sources */,
 				7768ADDD207ABA7F000AC837 /* LocationFirstViewController.swift in Sources */,
 				776589022073945000876E3E /* Config.swift in Sources */,
 				776588F820738CE800876E3E /* NotificationViewController.swift in Sources */,
+				0840BD67208F338F000FC497 /* ChatModel.swift in Sources */,
 				775F079E20761D67006E563F /* SliderImages.swift in Sources */,
+				0851166A208C830400E81C61 /* JobListModel.swift in Sources */,
 				775F07B220795459006E563F /* ProfileViewController.swift in Sources */,
 				775F07B020793FB6006E563F /* JobListCell.swift in Sources */,
 				77658900207393B800876E3E /* Extensions.swift in Sources */,
@@ -416,16 +470,26 @@
 				775F07B42079640E006E563F /* ProfileInfoCell.swift in Sources */,
 				77658904207394E500876E3E /* Helper.swift in Sources */,
 				775F07AC207803C1006E563F /* NotificationCell.swift in Sources */,
+				1D38A8B920829C01001C8887 /* SubServiceModel.swift in Sources */,
+				0838CB552088A0060073C6D4 /* LoginAuthorizationModel.swift in Sources */,
+				08076A9B208E06AF001A9082 /* ReceiverMessageCell.swift in Sources */,
 				776589112073A40E00876E3E /* SliderCell.swift in Sources */,
+				1DEAC1CE207E88400062F333 /* ServiceModel.swift in Sources */,
 				7768ADD9207A8DE0000AC837 /* SelectDateTimeViewController.swift in Sources */,
+				08591E4620835A7B00391BB0 /* ServiceDetailsViewController.swift in Sources */,
 				775F07AA2076521C006E563F /* ServiceChildCell.swift in Sources */,
+				0855D62E20849032002BB7A7 /* DeviceModel.swift in Sources */,
 				775F07A420764487006E563F /* ServiceViewController.swift in Sources */,
+				0840BD65208F0DC6000FC497 /* SenderMessageCell.swift in Sources */,
+				088387D7208765B8003DAC2C /* LoginViewController.swift in Sources */,
 				776588F6207385A900876E3E /* CustomTabBarController.swift in Sources */,
 				775F07AE20793E84006E563F /* JobListViewController.swift in Sources */,
 				775F07A220762B84006E563F /* ServiceCell.swift in Sources */,
 				7765890F2073A31000876E3E /* Slider.swift in Sources */,
 				776588FA2073921600876E3E /* ContactsViewController.swift in Sources */,
+				08390B752085DB0B00321735 /* SelectorCell.swift in Sources */,
 				77185420207A889A0006BEEC /* ThankYouViewController.swift in Sources */,
+				0855D6302084BEA0002BB7A7 /* AddingServiceRequestModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,12 +626,15 @@
 			baseConfigurationReference = 4ED4D1BA778EB8C21F3C31FA /* Pods-800Handyman.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W77K56RT9J;
+				DEVELOPMENT_TEAM = NVRNTBSH8C;
 				INFOPLIST_FILE = 800Handyman/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.creativeitem.-00Handyman";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.royex.-00Handyman";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "800Handyman/800Handyman-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -578,12 +645,14 @@
 			baseConfigurationReference = 4314F82EFCAAFFC7515B8F7B /* Pods-800Handyman.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W77K56RT9J;
+				DEVELOPMENT_TEAM = NVRNTBSH8C;
 				INFOPLIST_FILE = 800Handyman/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.creativeitem.-00Handyman";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.royex.-00Handyman";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "800Handyman/800Handyman-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

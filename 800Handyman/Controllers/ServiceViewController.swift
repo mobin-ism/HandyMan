@@ -7,11 +7,30 @@
 //
 
 import UIKit
+import Alamofire
 
 class ServiceViewController: UIViewController {
     
+    // this data will come from HomeViewController
+    
+    var keyValue : Int!
+    var selectedServiceId : Int!
+    var serviceId    = [Int]()
+    var servicesName = [String]()
+    var servicesIcon = [String]()
+    
+    // will be assigened with api call
+    var subServicesId = [Int]()
+    var subServicesTitle = [String]()
+    var subServicesSubTitle = [String]()
+    var subServicesRate = [String]()
+    var subServicesRequiredHours = [String]()
+    
     lazy var serviceMenu: ServiceMenu = {
         let menu = ServiceMenu()
+        menu.serviceVC     = self
+        menu.servicesIcons = self.servicesIcon
+        menu.servicesId    = self.serviceId
         return menu
     }()
     
@@ -64,7 +83,24 @@ class ServiceViewController: UIViewController {
         return collection
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = .gray
+        indicator.clipsToBounds = true
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     let serviceChildCellId = "ServiceChildCell"
+    
+    var selectedRow: Int? = 0 {
+        didSet {
+            self.getSubServices(selectedServiceId: self.serviceId[selectedRow!])
+            self.titleLabel.text = self.servicesName[selectedRow!]
+            self.topImageView.sd_setImage(with: URL(string: self.servicesIcon[selectedRow!]))
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +110,13 @@ class ServiceViewController: UIViewController {
         collectionView.register(ServiceChildCell.self, forCellWithReuseIdentifier: serviceChildCellId)
         
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // API Calls
+        self.getSubServices(selectedServiceId: self.selectedServiceId)
     }
     
     override func viewDidLayoutSubviews() {
@@ -87,8 +130,9 @@ class ServiceViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
-        //navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: self, action: #selector(settingsIconTapped))
+        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     private func layout() {
@@ -98,6 +142,7 @@ class ServiceViewController: UIViewController {
         setTopImageView()
         setTitleLabel()
         setCollectionView()
+        setupActivityIndicator()
         
         setupPageData()
     }
@@ -148,9 +193,17 @@ class ServiceViewController: UIViewController {
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
+    private func setupActivityIndicator(){
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+
+    
     private func setupPageData() {
-        topImageView.image = #imageLiteral(resourceName: "dummy1")
-        titleLabel.text = "Cleaner"
+
+        topImageView.sd_setImage(with: URL(string: self.servicesIcon[self.keyValue]))
+        titleLabel.text = self.servicesName[self.keyValue]
         collectionView.reloadData()
     }
     
@@ -163,7 +216,7 @@ extension ServiceViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.subServicesTitle.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -171,17 +224,24 @@ extension ServiceViewController: UICollectionViewDelegate, UICollectionViewDataS
             let cell = collectionView.cellForItem(at: indexPath)!
             return cell
         }
-        cell.mainText = "Full house cleaning"
-        cell.subTitleText = "Lorem ipsum"
-        cell.price = "AED 300-500"
-        cell.serviceHours = "2 hr - 3 hr"
+        cell.mainText = self.subServicesTitle[indexPath.row]
+        cell.subTitleText = self.subServicesSubTitle[indexPath.row]
+        cell.price = self.subServicesRate[indexPath.row]
+        cell.serviceHours = self.subServicesRequiredHours[indexPath.row]
         cell.priceIcon = #imageLiteral(resourceName: "priceIcon")
         cell.serviceIcon = #imageLiteral(resourceName: "serviceHours")
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        
+        let serviceDetailsVC = ServiceDetailsViewController()
+        serviceDetailsVC.jobTitleLabel.text = self.servicesName[self.keyValue]
+        serviceDetailsVC.jobSubTitleLabel.text = self.subServicesTitle[indexPath.row]
+        serviceDetailsVC.priceLabel.text = self.subServicesRate[indexPath.row]
+        serviceDetailsVC.selectedServiceId = self.selectedServiceId
+        serviceDetailsVC.selectedSubServiceId = self.subServicesId[indexPath.row]
+        self.navigationController?.pushViewController(serviceDetailsVC, animated: true)
     }
     
 }
@@ -202,4 +262,66 @@ extension ServiceViewController: UICollectionViewDelegateFlowLayout {
         return 8
     }
     
+}
+
+// API Functions
+extension ServiceViewController {
+    
+    func getSubServices( selectedServiceId : Int ) {
+        self.activityIndicator.startAnimating()
+        guard let url = URL(string: "\(API_URL)api/v1/member/services/\(UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as! String)") else { return }
+        Alamofire.request(url,method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            if let json = response.data {
+                
+                let decoder = JSONDecoder()
+                do {
+                    let serviceList = try decoder.decode(DataResponse.self, from: json)
+                    
+                    if !self.subServicesId.isEmpty {
+                        self.subServicesId.removeAll()
+                    }
+                    
+                    if !self.subServicesTitle.isEmpty {
+                        self.subServicesTitle.removeAll()
+                    }
+                    
+                    if !self.subServicesSubTitle.isEmpty {
+                        self.subServicesSubTitle.removeAll()
+                    }
+                    
+                    if !self.subServicesRate.isEmpty {
+                        self.subServicesRate.removeAll()
+                    }
+                    
+                    if !self.subServicesRequiredHours.isEmpty {
+                        self.subServicesRequiredHours.removeAll()
+                    }
+                    
+                    for service in serviceList.data.services {
+                        if  service.serviceId == selectedServiceId {
+                            for subService in service.child {
+                                self.subServicesId.append(subService.serviceId)
+                                self.subServicesTitle.append(subService.title)
+                                self.subServicesSubTitle.append(subService.subTitle)
+                                self.subServicesRate.append(subService.serviceRate)
+                                self.subServicesRequiredHours.append(subService.requiredHours)
+                            }
+                        }
+                    }
+                    
+                    self.collectionView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                } catch let err {
+                    print(err)
+                }
+            }
+        })
+    }
 }

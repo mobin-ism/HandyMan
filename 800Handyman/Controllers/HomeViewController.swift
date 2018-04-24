@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class HomeViewController: UIViewController {
+    
+    var serviceId    = [Int]()
+    var servicesName = [String]()
+    var servicesIcon = [String]()
     
     lazy var slider: Slider = {
         let slider = Slider()
@@ -41,12 +46,24 @@ class HomeViewController: UIViewController {
         return collection
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = .gray
+        indicator.clipsToBounds = true
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     let serviceCellId = "ServiceCell"
     var sliderImages = [SliderImages]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BACKGROUND_COLOR
+        
+        // Adding the language English As Default
+        UserDefaults.standard.set("en", forKey: SELECTED_LANGUAGE)
         
         setNavigationBar()
         
@@ -59,10 +76,13 @@ class HomeViewController: UIViewController {
         slider.dataSource = sliderImages
         
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        DispatchQueue.main.async {
-            self.present(LanguageSelectViewController(), animated: true, completion: nil)
-        }
+        // API Call
+        self.getServicesJSON()
     }
     
     override func viewDidLayoutSubviews() {
@@ -94,6 +114,7 @@ class HomeViewController: UIViewController {
         setSlider()
         setSearchBar()
         setCollectionView()
+        setupActivityIndicator()
     }
     
     private func setSlider() {
@@ -124,6 +145,11 @@ class HomeViewController: UIViewController {
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
+    private func setupActivityIndicator(){
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
     @objc private func menuIconTapped() {
         
     }
@@ -141,7 +167,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return self.servicesName.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -149,13 +175,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.cellForItem(at: indexPath)!
             return cell
         }
-        cell.mainImage = #imageLiteral(resourceName: "dummy1")
-        cell.mainText = "Cleaning"
+        //cell.mainImage = #imageLiteral(resourceName: "dummy1")
+        cell.imageView.sd_setImage(with: URL(string: self.servicesIcon[indexPath.row]))
+        cell.mainText = self.servicesName[indexPath.row]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(ServiceViewController(), animated: true)
+        let serviceVC = ServiceViewController()
+        serviceVC.keyValue = indexPath.row
+        serviceVC.selectedServiceId = self.serviceId[indexPath.row]
+        serviceVC.serviceId = self.serviceId
+        serviceVC.servicesName = self.servicesName
+        serviceVC.servicesIcon = self.servicesIcon
+        
+        navigationController?.pushViewController(serviceVC, animated: true)
     }
     
 }
@@ -176,5 +210,53 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         return 16
     }
     
+}
+
+// API Functions
+extension HomeViewController {
+    
+    func getServicesJSON() {
+        self.activityIndicator.startAnimating()
+        guard let url = URL(string: "\(API_URL)api/v1/member/services/\(UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as! String)") else { return }
+        Alamofire.request(url,method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            if let json = response.data {
+                
+                let decoder = JSONDecoder()
+                do {
+                    let serviceList = try decoder.decode(DataResponse.self, from: json)
+                    
+                    if !self.serviceId.isEmpty {
+                        self.serviceId.removeAll()
+                    }
+                    
+                    if !self.servicesName.isEmpty {
+                        self.servicesName.removeAll()
+                    }
+                    
+                    if !self.servicesIcon.isEmpty {
+                        self.servicesIcon.removeAll()
+                    }
+                    
+                    for eachService in serviceList.data.services {
+                        
+                        self.serviceId.append(eachService.serviceId)
+                        self.servicesName.append(eachService.title)
+                        self.servicesIcon.append(eachService.smallIconOne)
+                    }
+                    self.collectionView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                } catch let err {
+                    print(err)
+                }
+            }
+        })
+    }
 }
 

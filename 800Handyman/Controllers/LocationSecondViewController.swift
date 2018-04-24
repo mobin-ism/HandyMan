@@ -11,6 +11,9 @@ import GoogleMaps
 
 class LocationSecondViewController: UIViewController {
     
+    var markedLatitude : Double?
+    var markedLongitude : Double?
+    
     lazy var mapView: GMSMapView = {
         let view = GMSMapView()
         view.isMyLocationEnabled = true
@@ -29,6 +32,7 @@ class LocationSecondViewController: UIViewController {
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleLocationConfirmedButton), for: .touchUpInside)
         return button
     }()
     
@@ -43,6 +47,7 @@ class LocationSecondViewController: UIViewController {
         button.layer.borderWidth = 1
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
         return button
     }()
     
@@ -92,6 +97,8 @@ class LocationSecondViewController: UIViewController {
         view.backgroundColor = BACKGROUND_COLOR
         setNavigationBar()
         layout()
+        
+        self.mapView.delegate = self
     }
     
     private func setNavigationBar() {
@@ -164,4 +171,54 @@ class LocationSecondViewController: UIViewController {
         addressLineTwo.topAnchor.constraint(equalTo: addressLineOne.bottomAnchor, constant: 2).isActive = true
     }
     
+    @objc private func handleLocationConfirmedButton(){
+        
+        let firstLocationViewController = LocationFirstViewController()
+        firstLocationViewController.markedLatitude = self.markedLatitude
+        firstLocationViewController.markedLongitude = self.markedLongitude
+        self.navigationController?.pushViewController(firstLocationViewController, animated: true)
+        
+    }
+    
+    @objc private func handleBackButton(){
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+}
+
+
+extension LocationSecondViewController : GMSMapViewDelegate {
+    
+    // MARK: GMSMapViewDelegate
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        
+        self.markedLatitude  = nil
+        self.markedLongitude = nil
+        
+        mapView.clear()
+        
+        let position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let marker = GMSMarker(position: position)
+        //marker.title = "Hello There"
+        marker.map = mapView
+        marker.isDraggable = true
+        marker.tracksViewChanges = true
+        
+        
+        self.markedLatitude  = marker.position.latitude
+        self.markedLongitude = marker.position.longitude
+    }
+    
+    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
+        
+        print("dragging done")
+        self.markedLatitude = marker.position.latitude
+        self.markedLongitude = marker.position.longitude
+    }
+    
+    func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
+        print("dragging")
+    }
 }

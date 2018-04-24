@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LanguageSelectViewController: UIViewController {
     
@@ -67,6 +68,15 @@ class LanguageSelectViewController: UIViewController {
         return button
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = .gray
+        indicator.clipsToBounds = true
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -80,6 +90,7 @@ class LanguageSelectViewController: UIViewController {
         setTitleLabel()
         setEnglishButton()
         setArabicButton()
+        setupActivityIndicator()
     }
     
     private func setBackgroundImageView() {
@@ -125,12 +136,55 @@ class LanguageSelectViewController: UIViewController {
         arabicButton.heightAnchor.constraint(equalTo: englishButton.heightAnchor).isActive = true
     }
     
+    private func setupActivityIndicator(){
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
     @objc private func englishButtonTapped(_ sender: UIButton) {
+        
+        UserDefaults.standard.set("en", forKey: SELECTED_LANGUAGE)
+        self.registerDeviceToken()
         dismiss(animated: true, completion: nil)
     }
     
     @objc private func arabicButtonTapped(_ sender: UIButton) {
+        
+        UserDefaults.standard.set("ar", forKey: SELECTED_LANGUAGE)
+        self.registerDeviceToken()
         dismiss(animated: true, completion: nil)
+    }
+    
+    func registerDeviceToken(){
+        print(UserDefaults.standard.value(forKey: DEVICE_ID) as! String)
+        self.activityIndicator.startAnimating()
+        guard let url = URL(string: "\(API_URL)api/v1/member/device/register") else { return }
+        let params = ["DeviceId": UserDefaults.standard.value(forKey: DEVICE_ID) as! String] as [String : Any]
+        Alamofire.request(url,method: .post, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type": "application/x-www-form-urlencoded", "Authorization" : AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            print(response)
+            if let json = response.data {
+                
+                let decoder = JSONDecoder()
+                do {
+                    let deviceResponse = try decoder.decode(DeviceResponse.self, from: json)
+                    
+                    UserDefaults.standard.set(deviceResponse.data.member.memberId, forKey: MEMBER_ID)
+                    self.activityIndicator.stopAnimating()
+                } catch let err {
+                    print(err)
+                }
+            }
+
+            self.activityIndicator.stopAnimating()
+        })
     }
     
 }
