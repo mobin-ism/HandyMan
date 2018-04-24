@@ -36,12 +36,11 @@ class SenderMessageCell: UICollectionViewCell {
     let senderTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textAlignment = .justified
         label.numberOfLines = 0
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -86,15 +85,15 @@ class SenderMessageCell: UICollectionViewCell {
         self.addSubview(senderMessageContainer)
         senderMessageContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         senderMessageContainer.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-        senderMessageContainer.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        senderMessageContainer.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         senderMessageContainer.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     private func setupSenderTextLabel() {
         senderMessageContainer.addSubview(senderTextLabel)
         senderTextLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         senderTextLabel.leftAnchor.constraint(equalTo: senderMessageContainer.leftAnchor, constant: 15).isActive = true
-        senderTextLabel.rightAnchor.constraint(equalTo: senderMessageContainer.rightAnchor, constant: -5).isActive = true
-        
+        senderTextLabel.rightAnchor.constraint(equalTo: senderMessageContainer.rightAnchor, constant: -15).isActive = true
+        senderTextLabel.heightAnchor.constraint(equalTo: senderMessageContainer.heightAnchor, multiplier: 1).isActive = true
     }
     
     private func setupTimeLabel() {

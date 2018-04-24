@@ -12,6 +12,8 @@ import SDWebImage
 typealias JSON = [String : Any]
 class CustomTabBarController: UITabBarController {
     
+    public static var customTabBarHeight : CGFloat?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,6 +21,8 @@ class CustomTabBarController: UITabBarController {
         tabBar.clipsToBounds = true
         tabBar.backgroundColor = UIColor.white
         tabBar.isTranslucent = false
+        
+        CustomTabBarController.customTabBarHeight = tabBar.frame.size.height
         
         let homeController = createController(viewController: HomeViewController(), imageName: "home", selectedImageName: "home")
         let notificationController = createController(viewController: NotificationViewController(), imageName: "notification", selectedImageName: "notification")

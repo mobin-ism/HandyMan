@@ -11,7 +11,10 @@ import Alamofire
 
 class ChatViewController: UIViewController {
     
+    var tabBar = UITabBar()
     var chats = [NSObject]()
+    
+    var isChatHistoryExist : Bool?
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -134,8 +137,6 @@ class ChatViewController: UIViewController {
         }
     }
     
-    let message = ["Hello", "Hello Hello", "Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello", "Hello Hello Hello Hello", "Hello", "Hello Hello", "Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello", "Hello Hello Hello Hello","Hello", "Hello Hello", "Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello", "Hello Hello Hello Hello","Hello", "Hello Hello", "Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello", "Hello Hello Hello Hello","Hello", "Hello Hello", "Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello", "Hello Hello Hello Hello","Hello", "Hello Hello", "Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello", "Hello Hello Hello Hello" ]
-    
     private func setNavigationBar() {
         navigationController?.navigationBar.setGradientBackground(colors: [NAV_GRADIENT_TOP, NAV_GRADIENT_BOTTOM])
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
@@ -219,11 +220,31 @@ class ChatViewController: UIViewController {
     }
     
     @objc private func keyboardAppeared(notification: Notification) {
+        
+        guard let isChatHistoryExist = self.isChatHistoryExist else {
+            return
+        }
+        if isChatHistoryExist {
+            self.getChatHisotry()
+        }
+        
+        guard var customTabBarHeight = CustomTabBarController.customTabBarHeight else {
+            return
+        }
+        
+        if Helper.isIphoneX {
+            
+            customTabBarHeight = customTabBarHeight + 34
+        }
+        
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            
             keyboardHeight = keyboardSize.height
-            replyContainerBottomConstraint.constant = -keyboardHeight
+            replyContainerBottomConstraint.constant = -keyboardHeight + customTabBarHeight
             collectionView.contentOffset = CGPoint(x: 0, y: collectionView.contentOffset.y + keyboardHeight + 10)
             adaptLayoutChanges()
+            
+            print(keyboardHeight)
         }
     }
     
@@ -298,6 +319,7 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     senderCell.seenStatusImageView.image = #imageLiteral(resourceName: "unseen")
                 }
                 
+                
                 return senderCell
             }
             else {
@@ -332,8 +354,11 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension ChatViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        guard let data = chats as? [chatNSObject] else { return CGSize(width: 0, height: 0) }
+        
         let width: CGFloat = collectionView.frame.width
-        let contents = NSAttributedString(string: message[indexPath.item], attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        let contents = NSAttributedString(string: data[indexPath.item].message, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
         let cellRect = contents.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, context: nil)
         let height: CGFloat = cellRect.size.height + 30
         return CGSize(width: width, height: height)
@@ -420,6 +445,8 @@ extension ChatViewController {
                     let chatHistoryStatus = try decoder.decode(ChatHistoryStatus.self, from: json)
                     
                     print(chatHistoryStatus.isSuccess)
+                    
+                    self.isChatHistoryExist = chatHistoryStatus.isSuccess
                     
                     if  !chatHistoryStatus.isSuccess {
                         self.alert(title: "Oops!!", message: "No Chat History Found")

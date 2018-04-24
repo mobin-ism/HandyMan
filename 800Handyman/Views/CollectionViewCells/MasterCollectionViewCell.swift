@@ -17,7 +17,7 @@ class MasterCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+     
     var titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
