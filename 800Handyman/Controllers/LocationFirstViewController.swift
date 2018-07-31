@@ -421,7 +421,7 @@ class LocationFirstViewController: UIViewController{
         
         self.addAddressOfServiceRequest()
         
-        if isKeyPresentInUserDefaults(key: IS_LOGGED_IN) {
+        /*if isKeyPresentInUserDefaults(key: IS_LOGGED_IN) {
             
             if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
                 
@@ -435,7 +435,10 @@ class LocationFirstViewController: UIViewController{
         else {
             
             self.navigationController?.pushViewController(LoginViewController(), animated: true)
-        }
+        }*/
+        
+        let timeSlotObj = SelectDateTimeViewController()
+        self.navigationController?.pushViewController(timeSlotObj, animated: true)
     }
 }
 
@@ -456,21 +459,32 @@ extension LocationFirstViewController: CLLocationManagerDelegate {
         
         /*This If block will be executed after picking the specific point from LocationSecondViewController*/
         if let markedLatitude = self.markedLatitude, let markedLongitude = self.markedLongitude {
-            let camera = GMSCameraPosition.camera(withLatitude: markedLatitude, longitude: markedLongitude, zoom: 16)
+            let camera = GMSCameraPosition.camera(withLatitude: markedLatitude, longitude: markedLongitude, zoom: 17)
             
             let currentLocation = CLLocationCoordinate2DMake(markedLatitude, markedLongitude)
             let marker = GMSMarker(position: currentLocation)
+            
+            marker.icon = self.imageWithImage(image: UIImage(named: "mappin")!, scaledToSize: CGSize(width: 50.0, height: 50.0))
             mapView.camera = camera
             marker.map = mapView
         }
         else {
             //mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
-            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 16)
+            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 17)
             mapView.camera = camera
             
         }
         
         locationManager.stopUpdatingLocation()
+    }
+    
+    
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }
 

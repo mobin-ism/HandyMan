@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SDWebImage
 
 class HomeViewController: UIViewController {
     
@@ -18,6 +19,12 @@ class HomeViewController: UIViewController {
     lazy var slider: Slider = {
         let slider = Slider()
         return slider
+    }()
+    
+    lazy var menu: Menu = {
+        let slideMenu = Menu()
+        slideMenu.homeController = self
+        return slideMenu
     }()
     
     lazy var searchBar: UISearchBar = {
@@ -75,7 +82,13 @@ class HomeViewController: UIViewController {
         }
         slider.dataSource = sliderImages
         
+        self.clearCachedImages()
         layout()
+    }
+    
+    func clearCachedImages(){
+        SDImageCache.shared().clearMemory()
+        SDImageCache.shared().clearDisk(onCompletion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,7 +120,6 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.topItem?.titleView = imageView
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: self, action: #selector(settingsIconTapped))
     }
     
     private func layout() {
@@ -150,8 +162,14 @@ class HomeViewController: UIViewController {
         activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
+    
     @objc private func menuIconTapped() {
-        
+        self.menu.show()
+    }
+    
+    func setSelectedIndex(at index: Int) {
+        navigationController?.tabBarController?.selectedIndex = index
+        //CustomTabBarController().selectedIndex = index
     }
     
     @objc private func settingsIconTapped() {
@@ -190,6 +208,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         serviceVC.servicesIcon = self.servicesIcon
         
         navigationController?.pushViewController(serviceVC, animated: true)
+        //navigationController?.pushViewController(SelectDateTimeViewController(), animated: true)
     }
     
 }

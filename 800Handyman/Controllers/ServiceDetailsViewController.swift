@@ -8,11 +8,18 @@
 
 import UIKit
 import Alamofire
+import Photos
 
 class ServiceDetailsViewController: UIViewController {
     
     var selectedServiceId : Int!
     var selectedSubServiceId : Int!
+    
+    var imagePicker = UIImagePickerController()
+    
+    var imageArray = [#imageLiteral(resourceName: "image_placeholder"), #imageLiteral(resourceName: "image_placeholder"), #imageLiteral(resourceName: "image_placeholder")]
+    
+    var isImageSelected : Bool = false
     
     lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView(frame: .zero)
@@ -209,29 +216,37 @@ class ServiceDetailsViewController: UIViewController {
         return indicator
     }()
     
-    let jobDetailsImageCellId = "JobDetailsImageCell"
-    let numberOfItems = 3
+    let serviceRequestImageCellID = "ServiceRequestImageCell"
+    
     
     var locationVC = LocationFirstViewController()
+    var numberOfItems : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        numberOfItems = self.imageArray.count
+        
         view.backgroundColor = BACKGROUND_COLOR
         setNavigationBar()
-        collectionView.register(JobDetailsImageCell.self, forCellWithReuseIdentifier: jobDetailsImageCellId)
+        collectionView.register(ServiceRequestImageCell.self, forCellWithReuseIdentifier: serviceRequestImageCellID)
         layout()
         
         // Adding outside tap will dismiss the keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
         self.descriptionTextField.delegate = self
         self.specialNoteTextField.delegate = self
-        
-        view.addGestureRecognizer(tap)
+        self.imagePicker.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.collectionView.reloadData()
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         var contentHeight: CGFloat = 0
@@ -330,11 +345,11 @@ class ServiceDetailsViewController: UIViewController {
     private func setCollectionView() {
         scrollView.addSubview(collectionView)
         let rows: CGFloat = (CGFloat(numberOfItems)/3).rounded(.up)
-        let height = (view.frame.width / 3) * (rows) - 32
+        _ = (view.frame.width / 3) * (rows) - 32
         collectionView.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 50).isActive = true
         collectionView.leftAnchor.constraint(equalTo: jobTitleLabel.leftAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: jobSubTitleLabel.rightAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: 110).isActive = true
     }
     
     private func setAddNewImageButton(){
@@ -408,18 +423,32 @@ extension ServiceDetailsViewController: UISearchControllerDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfItems
+        return self.imageArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: jobDetailsImageCellId, for: indexPath) as? JobDetailsImageCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: serviceRequestImageCellID, for: indexPath) as? ServiceRequestImageCell else {
             let cell = collectionView.cellForItem(at: indexPath)!
             return cell
         }
-        cell.mainImage = #imageLiteral(resourceName: "image_placeholder")
+        if !self.isImageSelected {
+            cell.removeButton.alpha = 0
+        }
+        else {
+            cell.removeButton.alpha = 1
+            cell.removeButton.tag = indexPath.row
+            cell.removeButton.addTarget(self, action: #selector(removeImage(sender:)), for: .touchUpInside)
+        }
+        cell.mainImage = imageArray[indexPath.row]
+        
         return cell
     }
     
+    @objc private func removeImage(sender: UIButton) {
+        
+        self.imageArray.remove(at: sender.tag)
+        self.collectionView.reloadData()
+    }
 }
 
 extension ServiceDetailsViewController: UICollectionViewDelegateFlowLayout {
@@ -455,6 +484,8 @@ extension ServiceDetailsViewController {
     }
     
     @objc private func nextButtonTapped(_ sender: UIButton) {
+        
+        print(self.imageArray)
         
         if  UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int > 0 && UserDefaults.standard.value(forKey: IS_ANOTHER_SERVICE_REQUEST) as! Bool == true {
             
@@ -527,7 +558,6 @@ extension ServiceDetailsViewController {
             }
             
             print("Response of Next Button: \(response)")
-            print("Params of Next Button: \(params)")
             
             if let json = response.data {
 
@@ -537,6 +567,11 @@ extension ServiceDetailsViewController {
 
                     let serviceRequestMasterId = submittedRequestResponse.data.serviceRequest.serviceRequestMasterId
                     UserDefaults.standard.set(serviceRequestMasterId, forKey: SERVICE_REQUEST_MASTER_ID)
+                    
+                    if self.isImageSelected {
+                        
+                        self.sendImageToServer(serviceRequestDetailId: submittedRequestResponse.data.serviceRequest.serviceRequestDetailId)
+                    }
 
                 } catch let err {
                     print(err)
@@ -594,9 +629,14 @@ extension ServiceDetailsViewController {
                 do {
                     let submittedRequestResponse = try decoder.decode(AnotherServiceRequestResponse.self, from: json)
                     
-                    print("Message of Another Button: \(submittedRequestResponse.message)")
                     print("Response of Another Button: \(response)")
-                    print("Params of Another Button: \(params)")
+                    print(submittedRequestResponse.data.serviceRequest.serviceRequestDetailId)
+                    
+                    if self.isImageSelected {
+                        
+                        self.sendImageToServer(serviceRequestDetailId: submittedRequestResponse.data.serviceRequest.serviceRequestDetailId)
+                    }
+
                     
                 } catch let err {
                     print(err)
@@ -608,6 +648,51 @@ extension ServiceDetailsViewController {
         })
     }
     
+    func sendImageToServer(serviceRequestDetailId : Int){
+        
+        let url = "\(API_URL)api/v1/member/service/request/image/file/upload" /* your API url */
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "\(AUTH_KEY)",
+            "Content-type": "multipart/form-data"
+        ]
+        let parameters = ["ServiceRequestDetailId" : serviceRequestDetailId] as [String: Any]
+        print("The Service request detail id is: \(serviceRequestDetailId)")
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            for (key, value) in parameters {
+                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+            }
+            
+            for (image) in self.imageArray {
+                if  let imageData = UIImageJPEGRepresentation(image, 0.6) {
+                    
+                    multipartFormData.append(imageData, withName: "file", fileName: "image.jpeg", mimeType: "image/jpeg")
+                }
+            }
+            
+            
+        }, usingThreshold: UInt64.init(), to: url, method: .post, headers: headers) { (result) in
+            switch result{
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    print(response)
+                    
+                    //
+                    self.isImageSelected = false
+                    self.imageArray.removeAll()
+                    self.imageArray = [#imageLiteral(resourceName: "image_placeholder"), #imageLiteral(resourceName: "image_placeholder"), #imageLiteral(resourceName: "image_placeholder")]
+                    
+                    if let err = response.error{
+                        print(err)
+                        return
+                    }
+                }
+            case .failure(let error):
+                print("Error in upload: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     @objc private func cancelButtonTapped(_ sender: UIButton){
         
         self.navigationController?.popViewController(animated: true)
@@ -615,10 +700,78 @@ extension ServiceDetailsViewController {
     
     @objc private func addNewImageButtonTapped(_ sender: UIButton){
         
-        
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            
+            imagePicker.sourceType = .savedPhotosAlbum;
+            imagePicker.allowsEditing = false
+            
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
 }
 
+extension ServiceDetailsViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            if !isImageSelected {
+                self.imageArray.removeAll()
+            }
+            
+            self.imageArray.append(image)
+            
+            self.isImageSelected = true
+            self.numberOfItems = self.imageArray.count
+            
+            self.collectionView.reloadData()
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+        
+        picker.dismiss(animated: true, completion: nil);
+    }
+    
+    private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: newSize.width, height: newSize.height))
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    func resizeImage2(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: newWidth, height: newHeight)))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+        
+    }
+}
 
 extension ServiceDetailsViewController : UITextFieldDelegate {
     

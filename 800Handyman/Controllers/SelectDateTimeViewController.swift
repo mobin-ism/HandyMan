@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import Alamofire
 
 class SelectDateTimeViewController: UIViewController {
+    
+    var selectedDate : String?
+    var selectedTime : String = "Not Selected Yet"
+    
+    var timeSlots = [NSObject]()
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -39,6 +45,7 @@ class SelectDateTimeViewController: UIViewController {
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDatePicker)))
         return view
     }()
     
@@ -46,7 +53,7 @@ class SelectDateTimeViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "10-03-2018"
+        label.text = "MM-DD-YYYY"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -83,6 +90,7 @@ class SelectDateTimeViewController: UIViewController {
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleNextButton), for: .touchUpInside)
         return button
     }()
     
@@ -100,19 +108,37 @@ class SelectDateTimeViewController: UIViewController {
         return collection
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = .gray
+        indicator.clipsToBounds = true
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     let timeSelectCellId = "TimeSelectCell"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.getCurrentDate()
         view.backgroundColor = BACKGROUND_COLOR
         setNavigationBar()
-        
         collectionView.register(TimeSelectCell.self, forCellWithReuseIdentifier: timeSelectCellId)
         
         layout()
     }
     
+    private func getCurrentDate() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM-dd-yyyy"
+        self.selectedDate = formatter.string(from: date)
+        guard let selectedDate = self.selectedDate else { return }
+        self.changeFromDateButtonTitle(withString: selectedDate)
+    }
     private func setNavigationBar() {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
@@ -121,6 +147,14 @@ class SelectDateTimeViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "searchIcon"), style: .plain, target: self, action: nil)
     }
+    
+    lazy var calendarSelector: CalendarSelector = {
+        let calendar = CalendarSelector()
+        calendar.dateTimeVC = self
+        return calendar
+    }()
+    
+    var serviceDetailsListVC = ServiceDetailsListViewController()
     
     private func layout() {
         setTitleLabel()
@@ -131,6 +165,7 @@ class SelectDateTimeViewController: UIViewController {
         setTimeSlotLabel()
         setNextButton()
         setCollectionView()
+        setupActivityIndicator()
     }
     
     private func setTitleLabel() {
@@ -189,6 +224,33 @@ class SelectDateTimeViewController: UIViewController {
         collectionView.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -16).isActive = true
     }
     
+    private func setupActivityIndicator(){
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    @objc private func handleNextButton() {
+        
+        self.serviceDetailsListVC.selectedDate = self.selectedTime
+        self.navigationController?.pushViewController(serviceDetailsListVC, animated: true)
+    }
+    
+    @objc private func showDatePicker() {
+        calendarSelector.show()
+        print("Date picker")
+        
+    }
+    
+    func changeFromDateButtonTitle(withString title: String) {
+        DispatchQueue.main.async {
+            self.dateLabel.text = title
+        }
+        
+        self.selectedDate = title
+        // API Call
+        self.getAvailableTimeslots()
+    }
 }
 
 extension SelectDateTimeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -198,7 +260,7 @@ extension SelectDateTimeViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return self.timeSlots.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -206,14 +268,21 @@ extension SelectDateTimeViewController: UICollectionViewDelegate, UICollectionVi
             let cell = collectionView.cellForItem(at: indexPath)!
             return cell
         }
-        cell.mainText = "7AM - 8AM"
+        if let data = timeSlots as? [TimeSlotNSObject] {
+        
+            cell.mainText = "\(data[indexPath.row].timeSlot)"
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? TimeSelectCell else { return }
         cell.isSelected = true
-        print(indexPath.item)
+        if let data = timeSlots as? [TimeSlotNSObject] {
+            guard let selectedDate = self.selectedDate else { return }
+            self.selectedTime = "\(selectedDate) | \(data[indexPath.row].timeSlot)"
+        }
     }
     
 }
@@ -234,4 +303,47 @@ extension SelectDateTimeViewController: UICollectionViewDelegateFlowLayout {
         return 2
     }
     
+}
+
+// API Functions
+extension SelectDateTimeViewController {
+    
+    private func getAvailableTimeslots() {
+        guard let selectedDate = self.selectedDate else { return }
+        
+        self.activityIndicator.startAnimating()
+        guard let url = URL(string: "\(API_URL)api/v1/member/get/timeslots?date=\(selectedDate)") else { return }
+        Alamofire.request(url,method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            if !self.timeSlots.isEmpty {
+                self.timeSlots.removeAll()
+            }
+            
+            if let json = response.data {
+                
+                let decoder = JSONDecoder()
+                do {
+                    let timeSlotResponse = try decoder.decode(TimeSlotResponse.self, from: json)
+                    
+                    for eachTimeSlot in timeSlotResponse.data.timeSlots {
+                       
+                        let container = TimeSlotNSObject(timeSlot: eachTimeSlot.timeRange)
+                        self.timeSlots.append(container)
+                    }
+                    self.activityIndicator.stopAnimating()
+                    self.collectionView.reloadData()
+                    
+                    
+                } catch let err {
+                    print(err)
+                }
+            }
+        })
+    }
 }

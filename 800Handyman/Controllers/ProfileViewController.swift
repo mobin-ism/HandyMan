@@ -176,12 +176,10 @@ class ProfileViewController: UIViewController {
     }
     
     private func setNavigationBar() {
+        navigationController?.navigationBar.setGradientBackground(colors: [NAV_GRADIENT_TOP, NAV_GRADIENT_BOTTOM])
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
-        
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
-        //navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: self, action: #selector(settingsIconTapped))
+        navigationController?.navigationBar.topItem?.titleView = imageView
     }
     
     private func layout() {

@@ -15,6 +15,7 @@ class MasterCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.systemLayoutSizeFitting(CGSize(width: 200, height: 200))
         return imageView
     }()
      

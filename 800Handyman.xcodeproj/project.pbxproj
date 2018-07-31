@@ -12,6 +12,9 @@
 		08390B6F2085D95400321735 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B6E2085D95400321735 /* Selector.swift */; };
 		08390B752085DB0B00321735 /* SelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B742085DB0B00321735 /* SelectorCell.swift */; };
 		08390B772085F94F00321735 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B762085F94F00321735 /* AddressModel.swift */; };
+		083F1AC220A2CB76009954AC /* ServiceDetailsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F1AC120A2CB76009954AC /* ServiceDetailsListViewController.swift */; };
+		083F1AC420A2D243009954AC /* ServiceDetailsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F1AC320A2D243009954AC /* ServiceDetailsListViewCell.swift */; };
+		083F1AC620A2E3D4009954AC /* ShowServiceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F1AC520A2E3D4009954AC /* ShowServiceDetailsView.swift */; };
 		0840BD65208F0DC6000FC497 /* SenderMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */; };
 		0840BD67208F338F000FC497 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840BD66208F338F000FC497 /* ChatModel.swift */; };
 		0851166A208C830400E81C61 /* JobListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08511669208C830400E81C61 /* JobListModel.swift */; };
@@ -19,7 +22,13 @@
 		0855D6302084BEA0002BB7A7 /* AddingServiceRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */; };
 		08591E4620835A7B00391BB0 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08591E4520835A7B00391BB0 /* ServiceDetailsViewController.swift */; };
 		088387D7208765B8003DAC2C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088387D6208765B8003DAC2C /* LoginViewController.swift */; };
+		08DF37FB20A1A96F004A6BAA /* CustomerJobDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DF37FA20A1A96F004A6BAA /* CustomerJobDone.swift */; };
 		1D38A8B920829C01001C8887 /* SubServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D38A8B820829C01001C8887 /* SubServiceModel.swift */; };
+		1D762D1420ACB7F500EA6B29 /* ServiceRequestImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D762D1320ACB7F500EA6B29 /* ServiceRequestImageCell.swift */; };
+		1D762D1620ACCB2F00EA6B29 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D762D1520ACCB2F00EA6B29 /* Menu.swift */; };
+		1D762D1820ACCCB400EA6B29 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D762D1720ACCCB400EA6B29 /* MenuCell.swift */; };
+		1D79949A20AA0DED00019A28 /* CalenderSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79949920AA0DED00019A28 /* CalenderSelector.swift */; };
+		1D79949C20AA180D00019A28 /* TimeSlotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79949B20AA180D00019A28 /* TimeSlotModel.swift */; };
 		1DEAC1CE207E88400062F333 /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEAC1CD207E88400062F333 /* ServiceModel.swift */; };
 		77185420207A889A0006BEEC /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718541F207A889A0006BEEC /* ThankYouViewController.swift */; };
 		77185422207A89160006BEEC /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77185421207A89160006BEEC /* OpenSans-Bold.ttf */; };
@@ -70,6 +79,9 @@
 		08390B6E2085D95400321735 /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		08390B742085DB0B00321735 /* SelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorCell.swift; sourceTree = "<group>"; };
 		08390B762085F94F00321735 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
+		083F1AC120A2CB76009954AC /* ServiceDetailsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsListViewController.swift; sourceTree = "<group>"; };
+		083F1AC320A2D243009954AC /* ServiceDetailsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsListViewCell.swift; sourceTree = "<group>"; };
+		083F1AC520A2E3D4009954AC /* ShowServiceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowServiceDetailsView.swift; sourceTree = "<group>"; };
 		0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageCell.swift; sourceTree = "<group>"; };
 		0840BD66208F338F000FC497 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		08511669208C830400E81C61 /* JobListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListModel.swift; sourceTree = "<group>"; };
@@ -78,8 +90,14 @@
 		0857BD08207DFB50009AB8BF /* 800Handyman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "800Handyman-Bridging-Header.h"; sourceTree = "<group>"; };
 		08591E4520835A7B00391BB0 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
 		088387D6208765B8003DAC2C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		08DF37FA20A1A96F004A6BAA /* CustomerJobDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerJobDone.swift; sourceTree = "<group>"; };
 		16F163B31311BB0F944D8E23 /* Pods_800Handyman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_800Handyman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D38A8B820829C01001C8887 /* SubServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubServiceModel.swift; sourceTree = "<group>"; };
+		1D762D1320ACB7F500EA6B29 /* ServiceRequestImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequestImageCell.swift; sourceTree = "<group>"; };
+		1D762D1520ACCB2F00EA6B29 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		1D762D1720ACCCB400EA6B29 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		1D79949920AA0DED00019A28 /* CalenderSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderSelector.swift; sourceTree = "<group>"; };
+		1D79949B20AA180D00019A28 /* TimeSlotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotModel.swift; sourceTree = "<group>"; };
 		1DEAC1CD207E88400062F333 /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
 		4314F82EFCAAFFC7515B8F7B /* Pods-800Handyman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-800Handyman.release.xcconfig"; path = "Pods/Target Support Files/Pods-800Handyman/Pods-800Handyman.release.xcconfig"; sourceTree = "<group>"; };
 		4ED4D1BA778EB8C21F3C31FA /* Pods-800Handyman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-800Handyman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-800Handyman/Pods-800Handyman.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				08390B742085DB0B00321735 /* SelectorCell.swift */,
+				1D762D1720ACCCB400EA6B29 /* MenuCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -212,6 +231,8 @@
 				771E678E207B8C5C00800C0B /* JobDetailsViewController.swift */,
 				08591E4520835A7B00391BB0 /* ServiceDetailsViewController.swift */,
 				088387D6208765B8003DAC2C /* LoginViewController.swift */,
+				08DF37FA20A1A96F004A6BAA /* CustomerJobDone.swift */,
+				083F1AC120A2CB76009954AC /* ServiceDetailsListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -224,6 +245,9 @@
 				7765890E2073A31000876E3E /* Slider.swift */,
 				775F07A520764547006E563F /* ServiceMenu.swift */,
 				08390B6E2085D95400321735 /* Selector.swift */,
+				083F1AC520A2E3D4009954AC /* ShowServiceDetailsView.swift */,
+				1D79949920AA0DED00019A28 /* CalenderSelector.swift */,
+				1D762D1520ACCB2F00EA6B29 /* Menu.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,6 +264,7 @@
 				0838CB542088A0060073C6D4 /* LoginAuthorizationModel.swift */,
 				08511669208C830400E81C61 /* JobListModel.swift */,
 				0840BD66208F338F000FC497 /* ChatModel.swift */,
+				1D79949B20AA180D00019A28 /* TimeSlotModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,6 +314,8 @@
 				7768ADDA207AB4DE000AC837 /* TimeSelectCell.swift */,
 				771E6790207BF13900800C0B /* JobDetailsImageCell.swift */,
 				0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */,
+				083F1AC320A2D243009954AC /* ServiceDetailsListViewCell.swift */,
+				1D762D1320ACB7F500EA6B29 /* ServiceRequestImageCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -444,25 +471,32 @@
 			files = (
 				775F07A620764547006E563F /* ServiceMenu.swift in Sources */,
 				7768ADDF207AC607000AC837 /* PaddedTextField.swift in Sources */,
+				1D762D1620ACCB2F00EA6B29 /* Menu.swift in Sources */,
 				08390B6F2085D95400321735 /* Selector.swift in Sources */,
 				776588E12073823C00876E3E /* HomeViewController.swift in Sources */,
 				771E678B207B5C3D00800C0B /* LocationSecondViewController.swift in Sources */,
+				1D79949A20AA0DED00019A28 /* CalenderSelector.swift in Sources */,
 				7768ADDB207AB4DE000AC837 /* TimeSelectCell.swift in Sources */,
 				08390B772085F94F00321735 /* AddressModel.swift in Sources */,
 				776588DF2073823C00876E3E /* AppDelegate.swift in Sources */,
 				7768ADDD207ABA7F000AC837 /* LocationFirstViewController.swift in Sources */,
 				776589022073945000876E3E /* Config.swift in Sources */,
 				776588F820738CE800876E3E /* NotificationViewController.swift in Sources */,
+				1D79949C20AA180D00019A28 /* TimeSlotModel.swift in Sources */,
+				083F1AC420A2D243009954AC /* ServiceDetailsListViewCell.swift in Sources */,
 				0840BD67208F338F000FC497 /* ChatModel.swift in Sources */,
 				775F079E20761D67006E563F /* SliderImages.swift in Sources */,
 				0851166A208C830400E81C61 /* JobListModel.swift in Sources */,
 				775F07B220795459006E563F /* ProfileViewController.swift in Sources */,
+				1D762D1420ACB7F500EA6B29 /* ServiceRequestImageCell.swift in Sources */,
 				775F07B020793FB6006E563F /* JobListCell.swift in Sources */,
 				77658900207393B800876E3E /* Extensions.swift in Sources */,
+				083F1AC220A2CB76009954AC /* ServiceDetailsListViewController.swift in Sources */,
 				776588FE2073926C00876E3E /* ChatViewController.swift in Sources */,
 				776589062073984300876E3E /* LanguageSelectViewController.swift in Sources */,
 				776588FC2073924300876E3E /* PhoneViewController.swift in Sources */,
 				771E6791207BF13900800C0B /* JobDetailsImageCell.swift in Sources */,
+				08DF37FB20A1A96F004A6BAA /* CustomerJobDone.swift in Sources */,
 				771E678D207B630300800C0B /* LetUsKnowDetailsViewController.swift in Sources */,
 				775F07A820764642006E563F /* ServiceMenuCell.swift in Sources */,
 				775F07A02076286A006E563F /* MasterCollectionViewCell.swift in Sources */,
@@ -477,7 +511,9 @@
 				1DEAC1CE207E88400062F333 /* ServiceModel.swift in Sources */,
 				7768ADD9207A8DE0000AC837 /* SelectDateTimeViewController.swift in Sources */,
 				08591E4620835A7B00391BB0 /* ServiceDetailsViewController.swift in Sources */,
+				083F1AC620A2E3D4009954AC /* ShowServiceDetailsView.swift in Sources */,
 				775F07AA2076521C006E563F /* ServiceChildCell.swift in Sources */,
+				1D762D1820ACCCB400EA6B29 /* MenuCell.swift in Sources */,
 				0855D62E20849032002BB7A7 /* DeviceModel.swift in Sources */,
 				775F07A420764487006E563F /* ServiceViewController.swift in Sources */,
 				0840BD65208F0DC6000FC497 /* SenderMessageCell.swift in Sources */,

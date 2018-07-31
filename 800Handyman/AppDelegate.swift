@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UserDefaults.standard.set(false, forKey: IS_ANOTHER_SERVICE_REQUEST)
         
         
-        //UserDefaults.standard.set(false, forKey: IS_LOGGED_IN)
+        UserDefaults.standard.set(false, forKey: IS_LOGGED_IN)
         return true
     }
 }

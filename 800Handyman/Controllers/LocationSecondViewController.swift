@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 class LocationSecondViewController: UIViewController {
     
@@ -74,7 +75,7 @@ class LocationSecondViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "P Block, Emaar Business Park"
+        //label.text = "P Block, Emaar Business Park"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -85,11 +86,19 @@ class LocationSecondViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "341 Jake Island Suite 419"
+        //label.text = "341 Jake Island Suite 419"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    let mapPinImageView: UIImageView = {
+        let view = UIImageView(image: #imageLiteral(resourceName: "mappin"))
+        view.contentMode = .scaleAspectFit
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     override func viewDidLoad() {
@@ -119,6 +128,15 @@ class LocationSecondViewController: UIViewController {
         setAddressLabel()
         setAddressLineOne()
         setAddressLineTwo()
+        setMapPinImageView()
+    }
+    
+    private func setMapPinImageView() {
+        mapView.addSubview(mapPinImageView)
+        mapPinImageView.centerXAnchor.constraint(equalTo: mapView.centerXAnchor).isActive = true
+        mapPinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor).isActive = true
+        mapPinImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        mapPinImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     private func setLocationConfirmButton() {
@@ -192,33 +210,28 @@ extension LocationSecondViewController : GMSMapViewDelegate {
     
     // MARK: GMSMapViewDelegate
     
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        let bottomPoint: CGPoint = CGPoint(x: mapPinImageView.center.x, y: mapPinImageView.center.y + mapPinImageView.frame.height / 2)
+        let coordinate = mapView.projection.coordinate(for: bottomPoint)
         
-        self.markedLatitude  = nil
-        self.markedLongitude = nil
-        
-        mapView.clear()
-        
-        let position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let marker = GMSMarker(position: position)
-        //marker.title = "Hello There"
-        marker.map = mapView
-        marker.isDraggable = true
-        marker.tracksViewChanges = true
-        
-        
-        self.markedLatitude  = marker.position.latitude
-        self.markedLongitude = marker.position.longitude
-    }
-    
-    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
-        
-        print("dragging done")
-        self.markedLatitude = marker.position.latitude
-        self.markedLongitude = marker.position.longitude
-    }
-    
-    func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
-        print("dragging")
+        let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(coordinate) { (response, error) in
+            guard let response = response else { return }
+            guard let address = response.firstResult() else { return }
+            guard let lines = address.lines, let country = address.country else { return }
+            var formattedAddress: String = ""
+            for line in lines {
+                if line != "" {
+                  formattedAddress = "\(formattedAddress) \(line),"
+                }
+            }
+            formattedAddress.removeLast()
+            self.addressLineOne.text = formattedAddress
+            self.addressLineTwo.text = country
+            
+            self.markedLatitude = coordinate.latitude
+            self.markedLongitude = coordinate.longitude
+        }
+
     }
 }

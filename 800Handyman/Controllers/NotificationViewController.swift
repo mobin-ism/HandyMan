@@ -55,7 +55,7 @@ class NotificationViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationController?.navigationBar.topItem?.titleView = imageView
     }
-    
+
     private func layout() {
         setTitleLabel()
         setCollectionView()

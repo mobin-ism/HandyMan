@@ -11,6 +11,7 @@ import Foundation
 struct jobListResponse : Decodable {
     
     let data : jobsData
+    
 }
 
 struct jobsData : Decodable {
@@ -24,7 +25,7 @@ struct jobs : Decodable {
     let status : String
     let createdAt : Int
     let services : [jobsServices]
-    let timeslot : timeSchedule
+    let timeslot : timeSchedule?
 }
 
 struct jobsServices : Decodable {
@@ -38,7 +39,7 @@ struct jobsServices : Decodable {
 
 struct timeSchedule : Decodable {
     
-    //let date : Int?
+    let date : Int?
 }
 
 class JobNSObject: NSObject {
@@ -48,7 +49,8 @@ class JobNSObject: NSObject {
     private var _title : String
     private var _serviceDescription : String
     private var _totalAmount : String
-    private var _createdAt : Int
+    private var _createdAt : String
+    private var _scheduleTime : String
     private var _status : String
     private var _parentIcon : String
     
@@ -80,10 +82,16 @@ class JobNSObject: NSObject {
             return _totalAmount
         }
     }
-    var createdAt : Int {
+    var createdAt : String {
         
         get {
             return _createdAt
+        }
+    }
+    var scheduleTime : String {
+        
+        get {
+            return _scheduleTime
         }
     }
     
@@ -101,7 +109,7 @@ class JobNSObject: NSObject {
         }
     }
     
-    init(serviceRequestMasterId : Int, serviceId : Int, title : String, serviceDescription : String, totalAmount : String, createdAt : Int, status : String, parentIcon : String) {
+    init(serviceRequestMasterId : Int, serviceId : Int, title : String, serviceDescription : String, totalAmount : String, createdAt : String, status : String, parentIcon : String, scheduleTime : String) {
         
         self._serviceRequestMasterId = serviceRequestMasterId
         self._serviceId = serviceId
@@ -109,6 +117,7 @@ class JobNSObject: NSObject {
         self._serviceDescription = serviceDescription
         self._totalAmount = totalAmount
         self._createdAt = createdAt
+        self._scheduleTime = scheduleTime
         self._status = status
         self._parentIcon = parentIcon
     }

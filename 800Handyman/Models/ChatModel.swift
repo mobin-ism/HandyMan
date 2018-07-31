@@ -37,7 +37,7 @@ class chatNSObject : NSObject {
     private var _message : String
     private var _isMe : Bool
     private var _isSeen : Bool
-    private var _time : Int
+    private var _time : String
     
     var message : String {
         get{
@@ -56,14 +56,14 @@ class chatNSObject : NSObject {
             return _isSeen
         }
     }
-    var time : Int {
+    var time : String {
         
         get {
             return _time
         }
     }
     
-    init(message : String, isMe : Bool, isSeen : Bool, time : Int){
+    init(message : String, isMe : Bool, isSeen : Bool, time : String){
         
         self._message = message
         self._isMe    = isMe

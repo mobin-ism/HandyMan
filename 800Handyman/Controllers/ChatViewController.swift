@@ -115,6 +115,11 @@ class ChatViewController: UIViewController {
         
         layout()
         
+        // Adding outside tap will dismiss the keyboard
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -181,8 +186,8 @@ class ChatViewController: UIViewController {
         replyContainer.addSubview(replyButton)
         replyButton.centerYAnchor.constraint(equalTo: replyContainer.centerYAnchor).isActive = true
         replyButton.rightAnchor.constraint(equalTo: replyContainer.rightAnchor, constant: -10).isActive = true
-        replyButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        replyButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        replyButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        replyButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
     private func setupReplyTextField() {
@@ -244,7 +249,7 @@ class ChatViewController: UIViewController {
             collectionView.contentOffset = CGPoint(x: 0, y: collectionView.contentOffset.y + keyboardHeight + 10)
             adaptLayoutChanges()
             
-            print(keyboardHeight)
+            //print(keyboardHeight)
         }
     }
     
@@ -280,6 +285,10 @@ class ChatViewController: UIViewController {
             
             return false
         }
+    }
+    
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
     }
 }
 
@@ -411,7 +420,7 @@ extension ChatViewController {
             }
             
             // code after a successfull reponse
-            print(response)
+            //print(response)
             self.makeFormEmpty()
             self.getChatHisotry()
             self.activityIndicator.stopAnimating()
@@ -444,7 +453,7 @@ extension ChatViewController {
                 do {
                     let chatHistoryStatus = try decoder.decode(ChatHistoryStatus.self, from: json)
                     
-                    print(chatHistoryStatus.isSuccess)
+                    //print(chatHistoryStatus.isSuccess)
                     
                     self.isChatHistoryExist = chatHistoryStatus.isSuccess
                     
@@ -457,7 +466,10 @@ extension ChatViewController {
                         
                         for eachChat in chatHistory.data.chats {
                             
-                            let chat = chatNSObject(message: eachChat.message, isMe: eachChat.isMe, isSeen: eachChat.isSeen, time: eachChat.time)
+                            
+                            let date = Helper.getDateAndTime(timeInterval: eachChat.time, dateFormat: "hh:mm a")
+                            
+                            let chat = chatNSObject(message: eachChat.message, isMe: eachChat.isMe, isSeen: eachChat.isSeen, time: date)
                             self.chats.append(chat)
                         }
                         

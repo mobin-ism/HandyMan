@@ -257,7 +257,7 @@ class LoginViewController : UIViewController{
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
-        
+        navigationController?.navigationBar.setGradientBackground(colors: [NAV_GRADIENT_TOP, NAV_GRADIENT_BOTTOM])
         navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

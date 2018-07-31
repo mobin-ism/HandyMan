@@ -12,6 +12,7 @@ import Alamofire
 class JobListViewController: UIViewController {
     
     var listOfJobs = [NSObject]()
+    var scheduleTime : String?
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -69,12 +70,10 @@ class JobListViewController: UIViewController {
         
     }
     private func setNavigationBar() {
+        navigationController?.navigationBar.setGradientBackground(colors: [NAV_GRADIENT_TOP, NAV_GRADIENT_BOTTOM])
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
-        
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
-        //navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: self, action: #selector(settingsIconTapped))
+        navigationController?.navigationBar.topItem?.titleView = imageView
     }
     
     private func layout() {
@@ -123,7 +122,7 @@ extension JobListViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             cell.mainText = "\(data[indexPath.row].title)"
             cell.imageView.sd_setImage(with: URL(string: data[indexPath.row].parentIcon))
-            cell.scheduleDate = "\(NSLocalizedString("Schedule date", comment: "Schedule date")): \(data[indexPath.row].createdAt)"
+            cell.scheduleDate = "\(NSLocalizedString("Schedule date", comment: "Schedule date")): \(data[indexPath.row].scheduleTime)"
             cell.totalAmount = "\(NSLocalizedString("Total amount", comment: "Total amount")): \(data[indexPath.row].totalAmount)"
             cell.date = "\(data[indexPath.row].createdAt)"
             cell.pending = "\(data[indexPath.row].status)"
@@ -133,7 +132,6 @@ extension JobListViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.item)
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
     
 }
@@ -172,6 +170,11 @@ extension JobListViewController {
                 return
             }
             
+            if !self.listOfJobs.isEmpty {
+                
+                self.listOfJobs.removeAll()
+            }
+            
             if let json = response.data {
                 
                 let decoder = JSONDecoder()
@@ -179,14 +182,23 @@ extension JobListViewController {
                     let jobList = try decoder.decode(jobListResponse.self, from: json)
                     
                     for eachJob in jobList.data.jobs {
-                        
+                        self.scheduleTime = "--:--:--"
                         let serviceRequestMasterId = eachJob.serviceRequestMasterId
                         let status = eachJob.status
                         let createdAt = eachJob.createdAt
                         
+                        if eachJob.timeslot != nil {
+                            
+                            if let scheduleTime = eachJob.timeslot?.date {
+                                
+                                self.scheduleTime = Helper.getDateAndTime(timeInterval: scheduleTime, dateFormat: "MMM dd YYYY")
+                            }
+                        }
                         for eachService in eachJob.services{
                             
-                            let container = JobNSObject(serviceRequestMasterId: serviceRequestMasterId, serviceId: eachService.serviceId, title: eachService.title, serviceDescription: eachService.description, totalAmount: eachService.serviceRate, createdAt: createdAt, status: status, parentIcon: eachService.serviceParentIcon)
+                            let date = Helper.getDateAndTime(timeInterval: createdAt, dateFormat: "MMM dd YYYY")
+                            
+                            let container = JobNSObject(serviceRequestMasterId: serviceRequestMasterId, serviceId: eachService.serviceId, title: eachService.title, serviceDescription: eachService.description, totalAmount: eachService.serviceRate, createdAt: date, status: status, parentIcon: eachService.serviceParentIcon, scheduleTime: self.scheduleTime!)
                             
                             self.listOfJobs.append(container)
                         }

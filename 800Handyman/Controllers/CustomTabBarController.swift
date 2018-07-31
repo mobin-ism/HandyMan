@@ -9,8 +9,13 @@
 import UIKit
 import Alamofire
 import SDWebImage
-typealias JSON = [String : Any]
 class CustomTabBarController: UITabBarController {
+    
+    lazy var menu: Menu = {
+        let slideMenu = Menu()
+        slideMenu.customTabBar = self
+        return slideMenu
+    }()
     
     public static var customTabBarHeight : CGFloat?
     
@@ -26,8 +31,8 @@ class CustomTabBarController: UITabBarController {
         
         let homeController = createController(viewController: HomeViewController(), imageName: "home", selectedImageName: "home")
         let notificationController = createController(viewController: NotificationViewController(), imageName: "notification", selectedImageName: "notification")
-        let contactsController = createController(viewController: ContactsViewController(), imageName: "users", selectedImageName: "users")
-        let phoneController = createController(viewController: LocationSecondViewController(), imageName: "phone", selectedImageName: "phone")
+        let contactsController = createController(viewController: LoginViewController(), imageName: "users", selectedImageName: "users")
+        let phoneController = createController(viewController: ProfileViewController(), imageName: "phone", selectedImageName: "phone")
         let chatController = createController(viewController: ChatViewController(), imageName: "chat", selectedImageName: "chat")
         viewControllers = [homeController, notificationController, contactsController, phoneController, chatController]
         

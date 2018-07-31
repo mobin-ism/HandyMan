@@ -78,6 +78,7 @@ extension ServiceMenu: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         serviceVC.selectedRow = indexPath.row
+        serviceVC.keyValue = indexPath.row
     }
     
 }
