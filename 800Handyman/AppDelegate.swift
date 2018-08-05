@@ -34,12 +34,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // initializing the Service Request Master Id
         UserDefaults.standard.set(0, forKey: SERVICE_REQUEST_MASTER_ID)
-        
+    
         // initializing the Is Another Service Request
         UserDefaults.standard.set(false, forKey: IS_ANOTHER_SERVICE_REQUEST)
         
-        
+        //initialiizng login status to false
         UserDefaults.standard.set(false, forKey: IS_LOGGED_IN)
+        
+        // initializing show thank you message to false
+        UserDefaults.standard.set(false, forKey: SHOW_THANK_YOU_MESSAGE)
         return true
     }
 }

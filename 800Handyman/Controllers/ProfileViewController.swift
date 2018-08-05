@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ProfileViewController: UIViewController {
     
@@ -40,7 +41,6 @@ class ProfileViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = "Andru Leo"
         label.font = UIFont(name: OPENSANS_SEMIBOLD, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +68,6 @@ class ProfileViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .right
         label.textColor = UIColor.black
-        label.text = "Zone: Jumeirah"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +78,6 @@ class ProfileViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Area: Lorem ipsum"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -156,9 +154,18 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = .gray
+        indicator.clipsToBounds = true
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     let profileInfoCellId = "ProfileInfoCell"
     let infos = ["Total Spent", "Loyalty Point", "Total Job", "Completed Job", "Running Job",  "Cancel Job"]
-    let mains = ["5000 AED", "150", "250", "200", "40", "10"]
+    var mains = ["", "", "", "", "", ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,6 +175,8 @@ class ProfileViewController: UIViewController {
         collectionView.register(ProfileInfoCell.self, forCellWithReuseIdentifier: profileInfoCellId)
         
         layout()
+ 
+        self.getProfileDetails()
     }
     
     override func viewDidLayoutSubviews() {
@@ -197,6 +206,8 @@ class ProfileViewController: UIViewController {
         setCardNumberLabel()
         setEditButton()
         setAddNewButton()
+        
+        setupActivityIndicator()
     }
     
     private func setBackgroundImage() {
@@ -306,6 +317,12 @@ class ProfileViewController: UIViewController {
         addNewButton.widthAnchor.constraint(equalTo: creditCardView.widthAnchor, multiplier: 0.25).isActive = true
     }
     
+    private func setupActivityIndicator(){
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
 }
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -349,4 +366,47 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
         return 8
     }
     
+}
+
+// API Calls
+extension ProfileViewController {
+    
+    func getProfileDetails() {
+        self.activityIndicator.startAnimating()
+        guard let url = URL(string: "\(API_URL)api/v1/member/get/data?id=\(UserDefaults.standard.value(forKey: MEMBER_ID) as! Int)") else { return }
+        Alamofire.request(url,method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            if let json = response.data {
+                
+                let decoder = JSONDecoder()
+                do {
+                    let profileDataResponse = try decoder.decode(MemberProfile.self, from: json)
+                    
+                
+                    self.nameLabel.text = profileDataResponse.data.member.name
+                    self.zoneLabel.text = "Phone: \(profileDataResponse.data.member.phoneNumber)"
+                    self.areaLabel.text = "Email: \(profileDataResponse.data.member.email)"
+                    self.mains[0]       = "\(profileDataResponse.data.member.totalSpent)"
+                    self.mains[1]       = "\(profileDataResponse.data.member.loyaltyPoint)"
+                    self.mains[2]       = "\(profileDataResponse.data.member.totalJob)"
+                    self.mains[3]       = "\(profileDataResponse.data.member.completedJob)"
+                    self.mains[4]       = "\(profileDataResponse.data.member.runningJob)"
+                    self.mains[5]       = "\(profileDataResponse.data.member.cancelledJob)"
+                    self.view.layoutIfNeeded()
+                    self.collectionView.reloadData()
+                } catch let err {
+                    print(err)
+                }
+            }
+            self.view.layoutIfNeeded()
+            self.activityIndicator.stopAnimating()
+            
+        })
+    }
 }

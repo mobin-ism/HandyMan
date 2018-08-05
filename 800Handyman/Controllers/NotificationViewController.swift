@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class NotificationViewController: UIViewController {
+    
+    var listOfNotifications = [NSObject]()
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -35,9 +38,18 @@ class NotificationViewController: UIViewController {
         return collection
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = .gray
+        indicator.clipsToBounds = true
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     let notificationCellId = "NotificationCell"
     
-    var notifications = ["Lorem Ipsum is simply dummy text of the printing and typesetting industry."]
+    var notifications = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +59,8 @@ class NotificationViewController: UIViewController {
         collectionView.register(NotificationCell.self, forCellWithReuseIdentifier: notificationCellId)
         
         layout()
+        
+        self.getNotifications()
     }
     
     private func setNavigationBar() {
@@ -59,6 +73,7 @@ class NotificationViewController: UIViewController {
     private func layout() {
         setTitleLabel()
         setCollectionView()
+        setupActivityIndicator()
     }
     
     private func setTitleLabel() {
@@ -75,6 +90,17 @@ class NotificationViewController: UIViewController {
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
+    private func setupActivityIndicator(){
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+}
+
+// API Calls
+extension NotificationViewController {
+    
 }
 
 extension NotificationViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -84,7 +110,7 @@ extension NotificationViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return notifications.count
+        return self.listOfNotifications.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -92,15 +118,20 @@ extension NotificationViewController: UICollectionViewDelegate, UICollectionView
             let cell = collectionView.cellForItem(at: indexPath)!
             return cell
         }
-        cell.mainText = "Lorem ipsum dolor sit"
-        cell.date = "11-03-2018"
-        cell.time = "1:30 PM"
-        cell.notification = notifications[indexPath.item]
+        
+        if let data = listOfNotifications as? [NotificationNSObject] {
+            
+            cell.mainText = "\(data[indexPath.row].title)"
+            cell.date = "\(data[indexPath.row].date)"
+            cell.time = "\(data[indexPath.row].time)"
+            cell.notification = "\(data[indexPath.row].message)"
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //print(indexPath.item)
+        
         navigationController?.pushViewController(JobListViewController(), animated: true)
     }
     
@@ -124,4 +155,40 @@ extension NotificationViewController: UICollectionViewDelegateFlowLayout {
         return 8
     }
     
+}
+
+// api calls
+extension NotificationViewController {
+    func getNotifications() {
+        self.activityIndicator.startAnimating()
+        guard let url = URL(string: "\(API_URL)api/v1/member/get/notifications?memberId=\(UserDefaults.standard.value(forKey: MEMBER_ID) as! Int)") else { return }
+        let params = ["" : ""] as [String : Any]
+        Alamofire.request(url,method: .get, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            self.activityIndicator.stopAnimating()
+            
+            if let json = response.data {
+                
+                let decoder = JSONDecoder()
+                do {
+                    let notificationList = try decoder.decode(NotificationModel.self, from: json)
+                    
+                    for eachNotification in notificationList.data.notifications {
+                        
+                        let container = NotificationNSObject(notificationId: eachNotification.notificationId, title: eachNotification.title, message: eachNotification.message, date: Helper.getDateAndTime(timeInterval: eachNotification.lastModified, dateFormat: "dd-MM-YYYY"), time: Helper.getDateAndTime(timeInterval: eachNotification.lastModified, dateFormat: "hh:mm a"))
+                        self.notifications.append(eachNotification.title)
+                        self.listOfNotifications.append(container)
+                        self.collectionView.reloadData()
+                    }
+                } catch let err {
+                    print(err)
+                }
+            }
+        })
+    }
 }

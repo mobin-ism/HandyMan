@@ -11,12 +11,13 @@ import Alamofire
 
 class ServiceDetailsListViewController : UIViewController {
     
-    var selectedDate : String = "Not Selected Yet"
+    var selectedDateAndTime : String = "--:--"
+    
     var listOfServices = [NSObject]()
     var selectedItem : Int?
     
     let titleLabel : UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
         label.text = NSLocalizedString("Service Details", comment: "Service Details")
@@ -46,6 +47,7 @@ class ServiceDetailsListViewController : UIViewController {
         collection.dataSource = self
         collection.clipsToBounds = true
         collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.showsVerticalScrollIndicator = true
         return collection
     }()
     
@@ -109,6 +111,7 @@ class ServiceDetailsListViewController : UIViewController {
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleLocationEditButton), for: .touchUpInside)
         return button
     }()
     
@@ -141,6 +144,7 @@ class ServiceDetailsListViewController : UIViewController {
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
+        button.addTarget(self, action: #selector(handleDateTimeEditButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -212,7 +216,8 @@ class ServiceDetailsListViewController : UIViewController {
     let cashOnDelivertRadioButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(NSLocalizedString("◉", comment: "Edit"), for: .normal)
-        button.setTitleColor(UIColor(red:0.74, green:0.74, blue:0.74, alpha:1.0), for: .normal)
+        //button.setTitleColor(UIColor(red:0.74, green:0.74, blue:0.74, alpha:1.0), for: .normal)
+        button.setTitleColor(UIColor(red:0.26, green:0.63, blue:0.28, alpha:1.0), for: .normal)
         button.backgroundColor = UIColor.clear
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         button.layer.cornerRadius = 4
@@ -344,6 +349,8 @@ class ServiceDetailsListViewController : UIViewController {
         self.collectionView.register(ServiceDetailsListViewCell.self, forCellWithReuseIdentifier: cellID)
         print("Master Service Request ID is: \(UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int)")
         
+        // get services list
+        self.getServicesList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -351,7 +358,6 @@ class ServiceDetailsListViewController : UIViewController {
         
         // get services list
         self.getServicesList()
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -367,15 +373,11 @@ class ServiceDetailsListViewController : UIViewController {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
-        
-        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
         
     }
     
     private func layout() {
-        print("From Lyout \(self.listOfServices.count)")
         setupScrollView()
         setupTitleLabel()
         setupCollecetionView()
@@ -389,7 +391,7 @@ class ServiceDetailsListViewController : UIViewController {
         setupDateAndTimeEditButton()
         setupDateAndTimeLabel()
         setupPaymentMethodsLabel()
-        setupMasterCardButton()
+        /*setupMasterCardButton()
         setupMasterCardImageView()
         setupMasterCardTitleLabel()
         setupDifferentCardButton()
@@ -397,7 +399,7 @@ class ServiceDetailsListViewController : UIViewController {
         setupDifferentCardTitleLabel()
         setupVisaCardButton()
         setupVisaCardImageView()
-        setupVisaCardTitleLabel()
+        setupVisaCardTitleLabel()*/
         setupCashOnDeliveryButton()
         setupCashOnDeliveryTitleLabel()
         setupNoteLabel()
@@ -418,14 +420,14 @@ class ServiceDetailsListViewController : UIViewController {
         titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
     }
-
+    
     private func setupCollecetionView() {
-        let collectionViewHeight : CGFloat = CGFloat((self.listOfServices.count * 90) + (self.listOfServices.count * 8))
+        let _ : CGFloat = CGFloat((self.listOfServices.count * 90) + (self.listOfServices.count * 8))
         scrollView.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: 195).isActive = true
     }
     
     private func setupLocationTitleLabel() {
@@ -556,7 +558,7 @@ class ServiceDetailsListViewController : UIViewController {
     
     private func setupCashOnDeliveryButton() {
         scrollView.addSubview(cashOnDelivertRadioButton)
-        cashOnDelivertRadioButton.topAnchor.constraint(equalTo: visaCardRadioButton.bottomAnchor, constant: 8).isActive = true
+        cashOnDelivertRadioButton.topAnchor.constraint(equalTo: paymentTitleLabel.bottomAnchor, constant: 16).isActive = true
         cashOnDelivertRadioButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         cashOnDelivertRadioButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         cashOnDelivertRadioButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
@@ -609,12 +611,50 @@ class ServiceDetailsListViewController : UIViewController {
         }
         else if sender.tag == 4 {
             self.cashOnDelivertRadioButton.setTitleColor(UIColor(red:0.26, green:0.63, blue:0.28, alpha:1.0), for: .normal)
+        }else{
+            self.cashOnDelivertRadioButton.setTitleColor(UIColor(red:0.26, green:0.63, blue:0.28, alpha:1.0), for: .normal)
         }
     }
     
+    let thankYouOBJ = ThankYouViewController()
     @objc private func handleRequestService() {
+        UserDefaults.standard.set(true, forKey: SHOW_THANK_YOU_MESSAGE)
         
-        self.navigationController?.pushViewController(LoginViewController(), animated: true)
+        if (UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool) {
+            thankYouOBJ.serviceRequestMasterID = UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as? Int
+            self.navigationController?.pushViewController(thankYouOBJ, animated: true)
+        }
+        else {
+            self.navigationController?.pushViewController(LoginViewController(), animated: true)
+        }
+    }
+    
+    @objc func backTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func handleDateTimeEditButton() {
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers
+        for aViewController in viewControllers {
+            if aViewController is SelectDateTimeViewController {
+                self.navigationController!.popToViewController(aViewController, animated: true)
+            }
+        }
+    }
+    
+    let editLocationFirstVC = EditLocationFirstViewController()
+    
+    @objc func handleLocationEditButton() {
+        
+        print("Pre edit controller \(self.selectedDateAndTime)")
+        editLocationFirstVC.selectedDateAndTime = self.selectedDateAndTime
+        self.navigationController?.pushViewController(editLocationFirstVC, animated: true)
+    }
+    
+    var editServiceRequestDetailsOBJ = EditServiceDetailsViewController()
+    func editServiceDetails(serviceRequestDetailsID : Int) {
+        editServiceRequestDetailsOBJ.serviceRequestDetailsID = serviceRequestDetailsID
+        self.navigationController?.pushViewController(editServiceRequestDetailsOBJ, animated: true)
     }
 }
 
@@ -681,11 +721,11 @@ extension ServiceDetailsListViewController: UICollectionViewDelegateFlowLayout {
         let height: CGFloat = 90
         return CGSize(width: width, height: height)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
@@ -696,10 +736,9 @@ extension ServiceDetailsListViewController: UICollectionViewDelegateFlowLayout {
 extension ServiceDetailsListViewController {
     
     private func getServicesList() {
-        
         self.activityIndicator.startAnimating()
         guard let url = URL(string: "\(API_URL)api/v1/member/service/request/info?id=\(UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int)") else { return }
-        //guard let url = URL(string: "\(API_URL)api/v1/member/service/request/info?id=10308") else { return }
+        //guard let url = URL(string: "\(API_URL)api/v1/member/service/request/info?id=20456") else { return }
         let params = ["" : ""] as [String : Any]
         Alamofire.request(url,method: .get, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
             response in
@@ -733,7 +772,7 @@ extension ServiceDetailsListViewController {
                     self.addressLabel.text = "Address Name: \(serviceList.data.serviceRequest.location.addressName)"
                     self.streetLabel.text = "Street Name: \(serviceList.data.serviceRequest.location.street)"
                     self.apartmentLabel.text = "Apartment No.: \(serviceList.data.serviceRequest.location.apartmentNo)"
-                    self.dateAndTimeLabel.text = self.selectedDate
+                    self.dateAndTimeLabel.text = self.selectedDateAndTime
                 } catch let err {
                     print(err)
                 }
@@ -749,3 +788,4 @@ extension ServiceDetailsListViewController {
         })
     }
 }
+

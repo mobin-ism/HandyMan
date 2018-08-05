@@ -44,6 +44,7 @@ class Selector : NSObject {
     let cellId = "selectorCell"
     
     var locationVC = LocationFirstViewController()
+    var editLocationVC = EditLocationFirstViewController()
     
     override init() {
         super.init()
@@ -134,6 +135,9 @@ extension Selector : UITableViewDelegate, UITableViewDataSource {
             if let data = self.selectorData as? [AreaNSObject] {
                 self.locationVC.changeSelectorTitle(withString: "\(data[indexPath.row].areaName)")
                 self.locationVC.selectedAreaID = data[indexPath.row].areaId
+                
+                self.editLocationVC.changeSelectorTitle(withString: "\(data[indexPath.row].areaName)")
+                self.editLocationVC.selectedAreaID = data[indexPath.row].areaId
             }
         })
     }

@@ -24,6 +24,8 @@ struct serviceRequest : Decodable {
     let services : [servicesForSubservice]
     let location : locationForServices
     let createdAt : Int
+    let timeslot : ServiceTimeSlot
+    let completedByAgentAt : Int
 }
 
 struct servicesForSubservice : Decodable {
@@ -38,6 +40,7 @@ struct servicesForSubservice : Decodable {
     let images : [String]
     let thumbnails : [String]
     let serviceRate : String
+    let note : String
 }
 
 struct locationForServices : Decodable {
@@ -45,6 +48,11 @@ struct locationForServices : Decodable {
     let addressName : String
     let street : String
     let apartmentNo : String
+}
+
+struct ServiceTimeSlot : Decodable {
+    let date : Int
+    let time : String
 }
 
 

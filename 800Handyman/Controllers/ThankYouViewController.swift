@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class ThankYouViewController: UIViewController {
+    
+    var serviceRequestMasterID : Int?
     
     let thankYouLabel: UILabel = {
         let label = UILabel()
@@ -36,7 +39,6 @@ class ThankYouViewController: UIViewController {
         let label = UILabel()
         label.textColor = UIColor.black
         label.textAlignment = .center
-        label.text = "Your Request Number: #23876"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,13 +56,33 @@ class ThankYouViewController: UIViewController {
         return label
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = .gray
+        indicator.clipsToBounds = true
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BACKGROUND_COLOR
         setNavigationBar()
-        layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // disabling the thank you message by default
+        UserDefaults.standard.set(false, forKey: SHOW_THANK_YOU_MESSAGE)
+        self.submitServiceOrder()
+        guard let serviceRequestMasterID = self.serviceRequestMasterID else { return }
+        print("From Thank You VC Session: \(UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int)")
+        print("From Thank You VC Params: \(serviceRequestMasterID)")
+        self.reqNumberLabel.text = "Your Request Number: #\(serviceRequestMasterID)"
+        layout()
+    }
     private func setNavigationBar() {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
@@ -75,6 +97,7 @@ class ThankYouViewController: UIViewController {
         setSubTitleLabel()
         setRequestNumberLabel()
         setContactLabel()
+        setupActivityIndicator()
     }
     
     private func setThankYouLabel() {
@@ -105,4 +128,32 @@ class ThankYouViewController: UIViewController {
         contactLabel.widthAnchor.constraint(equalTo: thankYouLabel.widthAnchor).isActive = true
     }
     
+    private func setupActivityIndicator(){
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+}
+
+// API CALLS
+extension ThankYouViewController {
+    func submitServiceOrder() {
+        self.activityIndicator.startAnimating()
+        let params = ["PaymentType" : "Cash_On_Delivery",
+                      "ServiceRequestMasterId" : UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int] as [String : Any]
+        guard let url = URL(string: "\(API_URL)api/v1/member/service/request/submit/complete") else { return }
+        Alamofire.request(url,method: .post, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            print(response)
+            print(params)
+            self.activityIndicator.stopAnimating()
+            
+        })
+    }
 }

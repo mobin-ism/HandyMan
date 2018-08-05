@@ -15,6 +15,7 @@ class ShowServiceDetailsView : UIViewController {
     
     var serviceDetailsObj = [NSObject]()
     var imageArray = [String]()
+    var serviceRequestDetailsID : Int?
     
     lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView(frame: .zero)
@@ -63,6 +64,17 @@ class ShowServiceDetailsView : UIViewController {
         return label
     }()
     
+    lazy var optionalNote: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.textColor = UIColor.black
+        label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
+        label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        return label
+    }()
+    
     lazy var priceTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -88,13 +100,16 @@ class ShowServiceDetailsView : UIViewController {
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = true
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
         return imageView
     }()
     
     lazy var expandButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "down_arrow"), for: .normal)
-        button.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+        //button.setImage(#imageLiteral(resourceName: "down_arrow"), for: .normal)
+        //button.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+        button.setTitle("Edit", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor.clear
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 16)
@@ -102,8 +117,22 @@ class ShowServiceDetailsView : UIViewController {
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isUserInteractionEnabled = true
-        button.addTarget(self, action: #selector(hide), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleEditButton), for: .touchUpInside)
         return button
+    }()
+    
+    lazy var editLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.textColor = UIColor.black
+        label.font = UIFont(name: OPENSANS_REGULAR, size: 13)
+        label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Edit"
+        label.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEditButton))
+        label.addGestureRecognizer(tap)
+        return label
     }()
     
     lazy var collectionView: UICollectionView = {
@@ -129,6 +158,10 @@ class ShowServiceDetailsView : UIViewController {
     }()
     
     var serviceDetailsListVC = ServiceDetailsListViewController()
+    var completedServiceDetailsListVC = CompletedServiceDetailsListViewController()
+    var pendingServiceDetailsListVC = PendingServiceDetailsListViewController()
+    var reschedulePendingOrdersVC = ReschedulePendingOrdersViewController()
+    var customerJobDoneVC = CustomerJobDone()
     
     let jobDetailsImageCellId = "JobDetailsImageCell"
     
@@ -183,9 +216,11 @@ class ShowServiceDetailsView : UIViewController {
         self.setServiceUIImageView()
         self.setServiceTitleLabel()
         self.setExpandButton()
+        //self.setEditLabel()
         self.setSubServiceTitleLabel()
         self.setPriceIconImageView()
         self.setPriceLabel()
+        self.setOptionalNote()
         self.setCollectionView()
         self.setupActivityIndicator()
         
@@ -205,8 +240,8 @@ class ShowServiceDetailsView : UIViewController {
         containerView.addSubview(serviceImageView)
         serviceImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16).isActive = true
         serviceImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 16).isActive = true
-        serviceImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        serviceImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        serviceImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        serviceImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
     }
     private func setServiceTitleLabel() {
         containerView.addSubview(serviceTitleLabel)
@@ -220,6 +255,12 @@ class ShowServiceDetailsView : UIViewController {
         expandButton.centerYAnchor.constraint(equalTo: serviceImageView.centerYAnchor).isActive = true
         expandButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         expandButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    private func setEditLabel() {
+        containerView.addSubview(editLabel)
+        editLabel.topAnchor.constraint(equalTo: expandButton.bottomAnchor).isActive = true
+        editLabel.centerXAnchor.constraint(equalTo: expandButton.centerXAnchor).isActive = true
     }
     
     private func setSubServiceTitleLabel() {
@@ -244,13 +285,19 @@ class ShowServiceDetailsView : UIViewController {
         priceTitleLabel.rightAnchor.constraint(equalTo: expandButton.leftAnchor, constant: -5).isActive = true
     }
     
+    private func setOptionalNote() {
+        containerView.addSubview(optionalNote)
+        optionalNote.topAnchor.constraint(equalTo: serviceImageView.bottomAnchor, constant: 16).isActive = true
+        optionalNote.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 16).isActive = true
+        optionalNote.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -16).isActive = true
+    }
     
     private func setCollectionView(){
         let rows: CGFloat = (CGFloat(self.imageArray.count)/3).rounded(.up)
         _ = (view.frame.width / 3) * (rows) - 32
         
         containerView.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: self.subServiceTitleLabel.bottomAnchor, constant: 32).isActive = true
+        collectionView.topAnchor.constraint(equalTo: self.optionalNote.bottomAnchor, constant: 16).isActive = true
         collectionView.leftAnchor.constraint(equalTo: self.containerView.leftAnchor, constant: 16).isActive = true
         collectionView.rightAnchor.constraint(equalTo: self.containerView.rightAnchor, constant: -16).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor, constant: -16).isActive = true
@@ -268,6 +315,15 @@ class ShowServiceDetailsView : UIViewController {
                 self.backgroundView.alpha = 0
             }, completion: nil)
         }
+    }
+    
+    @objc func handleEditButton() {
+        hide()
+        guard let serviceRequestDetailsID = self.serviceRequestDetailsID else { return }
+        self.serviceDetailsListVC.editServiceDetails(serviceRequestDetailsID: serviceRequestDetailsID)
+        self.pendingServiceDetailsListVC.editServiceDetails(serviceRequestDetailsID: serviceRequestDetailsID)
+        self.reschedulePendingOrdersVC.editServiceDetails(serviceRequestDetailsID: serviceRequestDetailsID)
+        self.completedServiceDetailsListVC.editServiceDetails(serviceRequestDetailsID: serviceRequestDetailsID)
     }
 }
 
@@ -350,9 +406,11 @@ extension ShowServiceDetailsView {
                             print("Sub Services id is: \(subServiceID), and the serviceDetailsID is: \(eachService.serviceRequestDetailId)")
                             let container = GetServicesListObject(serviceRequestDetailId: eachService.serviceRequestDetailId, serviceParentIcon: eachService.serviceParentIcon, serviceParentTitle: eachService.serviceParentTitle, serviceTitle: eachService.serviceTitle, serviceRate: eachService.serviceRate, thumbnails: eachService.thumbnails)
                             
+                            self.serviceRequestDetailsID = eachService.serviceRequestDetailId
                             self.serviceTitleLabel.text = eachService.serviceParentTitle
                             self.subServiceTitleLabel.text = eachService.description
                             self.priceTitleLabel.text = eachService.serviceRate
+                            self.optionalNote.text = eachService.note
                             self.serviceImageView.sd_setImage(with: URL(string: eachService.serviceParentIcon))
                             self.serviceDetailsObj.append(container)
                             self.imageArray = eachService.thumbnails

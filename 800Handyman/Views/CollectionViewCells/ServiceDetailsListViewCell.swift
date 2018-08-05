@@ -92,6 +92,10 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
     }
     
     var serviceListVC = ServiceDetailsListViewController()
+    var completedServiceListVC = CompletedServiceDetailsListViewController()
+    var pendingServiceListVC   = PendingServiceDetailsListViewController()
+    var reschedulePendingOrdersVC = ReschedulePendingOrdersViewController()
+    var customerJobDoneVC = CustomerJobDone()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

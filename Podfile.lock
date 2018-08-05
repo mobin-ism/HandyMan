@@ -7,6 +7,7 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.5.0):
     - GoogleMaps/Base (= 2.5.0)
+  - HCSStarRatingView (1.5)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
@@ -15,21 +16,24 @@ DEPENDENCIES:
   - Alamofire (~> 4.7)
   - GoogleMaps
   - GooglePlaces
+  - HCSStarRatingView (~> 1.5)
   - SDWebImage
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - GoogleMaps
     - GooglePlaces
+    - HCSStarRatingView
     - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   GooglePlaces: dd70d9d71ea1c7944846afe67de3712c99b30a77
+  HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
 
-PODFILE CHECKSUM: 05e2977c771c2dbfc350e00d5789c5c38f167497
+PODFILE CHECKSUM: fbddcd699037262ab28246b1d238c660567ab070
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

@@ -21,7 +21,6 @@ class CustomTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tabBar.layer.borderWidth = 0
         tabBar.clipsToBounds = true
         tabBar.backgroundColor = UIColor.white

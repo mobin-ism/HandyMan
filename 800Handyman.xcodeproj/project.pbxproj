@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08076A9B208E06AF001A9082 /* ReceiverMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */; };
+		0816E7DA21108AE6009F8674 /* EditLocationFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E7D921108AE6009F8674 /* EditLocationFirstViewController.swift */; };
 		0838CB552088A0060073C6D4 /* LoginAuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838CB542088A0060073C6D4 /* LoginAuthorizationModel.swift */; };
 		08390B6F2085D95400321735 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B6E2085D95400321735 /* Selector.swift */; };
 		08390B752085DB0B00321735 /* SelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B742085DB0B00321735 /* SelectorCell.swift */; };
@@ -71,10 +72,20 @@
 		7768ADDD207ABA7F000AC837 /* LocationFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7768ADDC207ABA7F000AC837 /* LocationFirstViewController.swift */; };
 		7768ADDF207AC607000AC837 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7768ADDE207AC607000AC837 /* PaddedTextField.swift */; };
 		9CC0F23C3D95EECA35831461 /* Pods_800Handyman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F163B31311BB0F944D8E23 /* Pods_800Handyman.framework */; };
+		E92F9BB92113B97B00079C04 /* EditLocationSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F9BB82113B97B00079C04 /* EditLocationSecondViewController.swift */; };
+		E9D6D5992115DA880060E8CB /* EditServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6D5982115DA880060E8CB /* EditServiceDetailsViewController.swift */; };
+		E9D6D59B211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6D59A211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift */; };
+		E9D6D59D21166A300060E8CB /* HorizontalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6D59C21166A300060E8CB /* HorizontalCollectionViewCell.swift */; };
+		E9ECF43521146CA70082C226 /* CompletedServicesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ECF43421146CA70082C226 /* CompletedServicesListViewController.swift */; };
+		E9ECF4372114767B0082C226 /* PendingServiceDetailsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ECF4362114767B0082C226 /* PendingServiceDetailsListViewController.swift */; };
+		E9ECF439211483FB0082C226 /* ReschedulePendingOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ECF438211483FB0082C226 /* ReschedulePendingOrdersViewController.swift */; };
+		E9ECF43B2114A0C90082C226 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ECF43A2114A0C90082C226 /* NotificationModel.swift */; };
+		E9ECF43D2114EB210082C226 /* MemberProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ECF43C2114EB210082C226 /* MemberProfileModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCell.swift; sourceTree = "<group>"; };
+		0816E7D921108AE6009F8674 /* EditLocationFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationFirstViewController.swift; sourceTree = "<group>"; };
 		0838CB542088A0060073C6D4 /* LoginAuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAuthorizationModel.swift; sourceTree = "<group>"; };
 		08390B6E2085D95400321735 /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		08390B742085DB0B00321735 /* SelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorCell.swift; sourceTree = "<group>"; };
@@ -144,6 +155,15 @@
 		7768ADDA207AB4DE000AC837 /* TimeSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectCell.swift; sourceTree = "<group>"; };
 		7768ADDC207ABA7F000AC837 /* LocationFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFirstViewController.swift; sourceTree = "<group>"; };
 		7768ADDE207AC607000AC837 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
+		E92F9BB82113B97B00079C04 /* EditLocationSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationSecondViewController.swift; sourceTree = "<group>"; };
+		E9D6D5982115DA880060E8CB /* EditServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditServiceDetailsViewController.swift; sourceTree = "<group>"; };
+		E9D6D59A211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditServiceDetailsViewControllerTwo.swift; sourceTree = "<group>"; };
+		E9D6D59C21166A300060E8CB /* HorizontalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCollectionViewCell.swift; sourceTree = "<group>"; };
+		E9ECF43421146CA70082C226 /* CompletedServicesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedServicesListViewController.swift; sourceTree = "<group>"; };
+		E9ECF4362114767B0082C226 /* PendingServiceDetailsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingServiceDetailsListViewController.swift; sourceTree = "<group>"; };
+		E9ECF438211483FB0082C226 /* ReschedulePendingOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReschedulePendingOrdersViewController.swift; sourceTree = "<group>"; };
+		E9ECF43A2114A0C90082C226 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		E9ECF43C2114EB210082C226 /* MemberProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberProfileModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +253,13 @@
 				088387D6208765B8003DAC2C /* LoginViewController.swift */,
 				08DF37FA20A1A96F004A6BAA /* CustomerJobDone.swift */,
 				083F1AC120A2CB76009954AC /* ServiceDetailsListViewController.swift */,
+				0816E7D921108AE6009F8674 /* EditLocationFirstViewController.swift */,
+				E92F9BB82113B97B00079C04 /* EditLocationSecondViewController.swift */,
+				E9ECF43421146CA70082C226 /* CompletedServicesListViewController.swift */,
+				E9ECF4362114767B0082C226 /* PendingServiceDetailsListViewController.swift */,
+				E9ECF438211483FB0082C226 /* ReschedulePendingOrdersViewController.swift */,
+				E9D6D5982115DA880060E8CB /* EditServiceDetailsViewController.swift */,
+				E9D6D59A211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -265,6 +292,8 @@
 				08511669208C830400E81C61 /* JobListModel.swift */,
 				0840BD66208F338F000FC497 /* ChatModel.swift */,
 				1D79949B20AA180D00019A28 /* TimeSlotModel.swift */,
+				E9ECF43A2114A0C90082C226 /* NotificationModel.swift */,
+				E9ECF43C2114EB210082C226 /* MemberProfileModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,6 +345,7 @@
 				0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */,
 				083F1AC320A2D243009954AC /* ServiceDetailsListViewCell.swift */,
 				1D762D1320ACB7F500EA6B29 /* ServiceRequestImageCell.swift */,
+				E9D6D59C21166A300060E8CB /* HorizontalCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -412,11 +442,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-800Handyman/Pods-800Handyman-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9ECF43B2114A0C90082C226 /* NotificationModel.swift in Sources */,
 				775F07A620764547006E563F /* ServiceMenu.swift in Sources */,
 				7768ADDF207AC607000AC837 /* PaddedTextField.swift in Sources */,
 				1D762D1620ACCB2F00EA6B29 /* Menu.swift in Sources */,
@@ -481,7 +514,9 @@
 				776588DF2073823C00876E3E /* AppDelegate.swift in Sources */,
 				7768ADDD207ABA7F000AC837 /* LocationFirstViewController.swift in Sources */,
 				776589022073945000876E3E /* Config.swift in Sources */,
+				E9ECF43D2114EB210082C226 /* MemberProfileModel.swift in Sources */,
 				776588F820738CE800876E3E /* NotificationViewController.swift in Sources */,
+				E9ECF4372114767B0082C226 /* PendingServiceDetailsListViewController.swift in Sources */,
 				1D79949C20AA180D00019A28 /* TimeSlotModel.swift in Sources */,
 				083F1AC420A2D243009954AC /* ServiceDetailsListViewCell.swift in Sources */,
 				0840BD67208F338F000FC497 /* ChatModel.swift in Sources */,
@@ -489,6 +524,7 @@
 				0851166A208C830400E81C61 /* JobListModel.swift in Sources */,
 				775F07B220795459006E563F /* ProfileViewController.swift in Sources */,
 				1D762D1420ACB7F500EA6B29 /* ServiceRequestImageCell.swift in Sources */,
+				E9ECF439211483FB0082C226 /* ReschedulePendingOrdersViewController.swift in Sources */,
 				775F07B020793FB6006E563F /* JobListCell.swift in Sources */,
 				77658900207393B800876E3E /* Extensions.swift in Sources */,
 				083F1AC220A2CB76009954AC /* ServiceDetailsListViewController.swift in Sources */,
@@ -501,12 +537,15 @@
 				775F07A820764642006E563F /* ServiceMenuCell.swift in Sources */,
 				775F07A02076286A006E563F /* MasterCollectionViewCell.swift in Sources */,
 				771E678F207B8C5C00800C0B /* JobDetailsViewController.swift in Sources */,
+				E9ECF43521146CA70082C226 /* CompletedServicesListViewController.swift in Sources */,
 				775F07B42079640E006E563F /* ProfileInfoCell.swift in Sources */,
 				77658904207394E500876E3E /* Helper.swift in Sources */,
+				E9D6D5992115DA880060E8CB /* EditServiceDetailsViewController.swift in Sources */,
 				775F07AC207803C1006E563F /* NotificationCell.swift in Sources */,
 				1D38A8B920829C01001C8887 /* SubServiceModel.swift in Sources */,
 				0838CB552088A0060073C6D4 /* LoginAuthorizationModel.swift in Sources */,
 				08076A9B208E06AF001A9082 /* ReceiverMessageCell.swift in Sources */,
+				0816E7DA21108AE6009F8674 /* EditLocationFirstViewController.swift in Sources */,
 				776589112073A40E00876E3E /* SliderCell.swift in Sources */,
 				1DEAC1CE207E88400062F333 /* ServiceModel.swift in Sources */,
 				7768ADD9207A8DE0000AC837 /* SelectDateTimeViewController.swift in Sources */,
@@ -516,14 +555,17 @@
 				1D762D1820ACCCB400EA6B29 /* MenuCell.swift in Sources */,
 				0855D62E20849032002BB7A7 /* DeviceModel.swift in Sources */,
 				775F07A420764487006E563F /* ServiceViewController.swift in Sources */,
+				E9D6D59B211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift in Sources */,
 				0840BD65208F0DC6000FC497 /* SenderMessageCell.swift in Sources */,
 				088387D7208765B8003DAC2C /* LoginViewController.swift in Sources */,
 				776588F6207385A900876E3E /* CustomTabBarController.swift in Sources */,
 				775F07AE20793E84006E563F /* JobListViewController.swift in Sources */,
+				E92F9BB92113B97B00079C04 /* EditLocationSecondViewController.swift in Sources */,
 				775F07A220762B84006E563F /* ServiceCell.swift in Sources */,
 				7765890F2073A31000876E3E /* Slider.swift in Sources */,
 				776588FA2073921600876E3E /* ContactsViewController.swift in Sources */,
 				08390B752085DB0B00321735 /* SelectorCell.swift in Sources */,
+				E9D6D59D21166A300060E8CB /* HorizontalCollectionViewCell.swift in Sources */,
 				77185420207A889A0006BEEC /* ThankYouViewController.swift in Sources */,
 				0855D6302084BEA0002BB7A7 /* AddingServiceRequestModel.swift in Sources */,
 			);

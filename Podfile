@@ -5,4 +5,5 @@ target '800Handyman' do
   pod 'GooglePlaces'
   pod 'Alamofire', '~> 4.7'
   pod 'SDWebImage'
+  pod 'HCSStarRatingView', '~> 1.5'
 end

@@ -585,9 +585,16 @@ extension LoginViewController {
                     
                         if  loginResponse.isSuccess {
                             
-                            UserDefaults.standard.set(1, forKey: IS_LOGGED_IN)
+                            UserDefaults.standard.set(true, forKey: IS_LOGGED_IN)
                             UserDefaults.standard.set(loginResponse.data.member.memberId, forKey: MEMBER_ID)
-                            self.navigationController?.pushViewController(JobListViewController(), animated: true)
+                            if UserDefaults.standard.value(forKey: SHOW_THANK_YOU_MESSAGE) as! Bool {
+                                let thankYouOBJ = ThankYouViewController()
+                                thankYouOBJ.serviceRequestMasterID = UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as? Int
+                                self.navigationController?.pushViewController(thankYouOBJ, animated: true)
+                            }
+                            else {
+                                self.navigationController?.pushViewController(JobListViewController(), animated: true)
+                            }
                         }
                         else{
                             self.loginFailed()

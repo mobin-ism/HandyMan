@@ -12,9 +12,10 @@ import Alamofire
 class SelectDateTimeViewController: UIViewController {
     
     var selectedDate : String?
-    var selectedTime : String = "Not Selected Yet"
-    
+    var selectedTime : String?
+    var selectedTimeAndDate : String = "Not Selected Yet"
     var timeSlots = [NSObject]()
+    var counter = 0
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -131,6 +132,13 @@ class SelectDateTimeViewController: UIViewController {
         layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // API Call
+        self.getAvailableTimeslots()
+        self.counter = 0
+    }
+    
     private func getCurrentDate() {
         let date = Date()
         let formatter = DateFormatter()
@@ -232,7 +240,8 @@ class SelectDateTimeViewController: UIViewController {
     
     @objc private func handleNextButton() {
         
-        self.serviceDetailsListVC.selectedDate = self.selectedTime
+        self.updateDateTime()
+        serviceDetailsListVC.selectedDateAndTime = self.selectedTimeAndDate
         self.navigationController?.pushViewController(serviceDetailsListVC, animated: true)
     }
     
@@ -268,8 +277,8 @@ extension SelectDateTimeViewController: UICollectionViewDelegate, UICollectionVi
             let cell = collectionView.cellForItem(at: indexPath)!
             return cell
         }
+
         if let data = timeSlots as? [TimeSlotNSObject] {
-        
             cell.mainText = "\(data[indexPath.row].timeSlot)"
         }
         
@@ -278,10 +287,13 @@ extension SelectDateTimeViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? TimeSelectCell else { return }
+        
         cell.isSelected = true
         if let data = timeSlots as? [TimeSlotNSObject] {
+            self.selectedTime = "\(data[indexPath.row].timeSlot)"
+            
             guard let selectedDate = self.selectedDate else { return }
-            self.selectedTime = "\(selectedDate) | \(data[indexPath.row].timeSlot)"
+            self.selectedTimeAndDate = "\(selectedDate) | \(data[indexPath.row].timeSlot)"
         }
     }
     
@@ -309,6 +321,7 @@ extension SelectDateTimeViewController: UICollectionViewDelegateFlowLayout {
 extension SelectDateTimeViewController {
     
     private func getAvailableTimeslots() {
+        self.counter = 0
         guard let selectedDate = self.selectedDate else { return }
         
         self.activityIndicator.startAnimating()
@@ -344,6 +357,24 @@ extension SelectDateTimeViewController {
                     print(err)
                 }
             }
+        })
+    }
+    
+    private func updateDateTime() {
+        guard let selectedDate = self.selectedDate else { return }
+        guard let selectedTime = self.selectedTime else { return }
+        
+        self.activityIndicator.startAnimating()
+        let params = ["ServiceRequestMasterId" : UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int, "StartDate" : selectedDate, "TimeRange" : selectedTime] as [String : Any]
+        guard let url = URL(string: "\(API_URL)api/v1/member/service/request/datetime/update") else { return }
+        Alamofire.request(url,method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            print(response)
         })
     }
 }

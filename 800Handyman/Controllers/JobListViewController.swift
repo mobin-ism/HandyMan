@@ -13,6 +13,9 @@ class JobListViewController: UIViewController {
     
     var listOfJobs = [NSObject]()
     var scheduleTime : String?
+    var serviceRequestMasterId = [Int]()
+    var orderStatus : String?
+    var selectedDateAndTime : String = "--:--"
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -52,6 +55,9 @@ class JobListViewController: UIViewController {
     
     let jobListCellId = "JobListCell"
     
+    var completedServiceListVC = CompletedServiceDetailsListViewController()
+    var pendingServiceListVC   = PendingServiceDetailsListViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BACKGROUND_COLOR
@@ -64,6 +70,10 @@ class JobListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if !self.serviceRequestMasterId.isEmpty {
+            self.serviceRequestMasterId.removeAll()
+        }
         
         // get the job list
         self.getJobList()
@@ -101,6 +111,16 @@ class JobListViewController: UIViewController {
         activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
+    
+    private func alert(title : String, message : String){
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: { action in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
 }
 
 extension JobListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -118,6 +138,7 @@ extension JobListViewController: UICollectionViewDelegate, UICollectionViewDataS
             let cell = collectionView.cellForItem(at: indexPath)!
             return cell
         }
+        
         if let data = listOfJobs as? [JobNSObject] {
             
             cell.mainText = "\(data[indexPath.row].title)"
@@ -131,7 +152,12 @@ extension JobListViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        
+        if let data = listOfJobs as? [JobNSObject] {
+        
+         UserDefaults.standard.set(data[indexPath.row].serviceRequestMasterId, forKey: SERVICE_REQUEST_MASTER_ID)
+         self.getOrderStatusAndRedirect(serviceRequestMasterID: data[indexPath.row].serviceRequestMasterId)
+        }
     }
     
 }
@@ -171,7 +197,6 @@ extension JobListViewController {
             }
             
             if !self.listOfJobs.isEmpty {
-                
                 self.listOfJobs.removeAll()
             }
             
@@ -184,6 +209,7 @@ extension JobListViewController {
                     for eachJob in jobList.data.jobs {
                         self.scheduleTime = "--:--:--"
                         let serviceRequestMasterId = eachJob.serviceRequestMasterId
+                        
                         let status = eachJob.status
                         let createdAt = eachJob.createdAt
                         
@@ -205,6 +231,7 @@ extension JobListViewController {
                         
                     }
                     
+                    self.listOfJobs.reverse()
                     self.collectionView.reloadData()
                     self.activityIndicator.stopAnimating()
                 } catch let err {
@@ -215,5 +242,62 @@ extension JobListViewController {
             //print(response)
             self.activityIndicator.stopAnimating()
         })
+    }
+    
+    
+    func getOrderStatusAndRedirect(serviceRequestMasterID : Int) {
+        print("WTF: \(serviceRequestMasterID)")
+        self.activityIndicator.startAnimating()
+        guard let url = URL(string: "\(API_URL)api/v1/member/service/request/info?id=\(serviceRequestMasterID)") else { return }
+        let params = ["" : ""] as [String : Any]
+        Alamofire.request(url,method: .get, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            // code after a successfull reponse
+            self.activityIndicator.stopAnimating()
+            
+            if let json = response.data {
+                
+                let decoder = JSONDecoder()
+                do {
+                    let serviceList = try decoder.decode(subService.self, from: json)
+                    // find the order status
+                    self.orderStatus = serviceList.data.serviceRequest.status.lowercased()
+                    let date = Helper.getDateAndTime(timeInterval: serviceList.data.serviceRequest.timeslot.date, dateFormat: "dd-MM-YYYY")
+                    let time = serviceList.data.serviceRequest.timeslot.time
+                    self.selectedDateAndTime = "\(date) | \(time)"
+                    
+                    guard let orderStatus = self.orderStatus else { return }
+                    
+                    
+                    if  orderStatus == "submitted" || orderStatus == "pending" {
+//                        self.pendingServiceListVC.selectedDateAndTime = self.selectedDateAndTime
+//                        self.pendingServiceListVC.serviceRequestMasterID = serviceRequestMasterID
+//                        self.navigationController?.pushViewController(self.pendingServiceListVC, animated: true)
+                        self.completedServiceListVC.selectedDateAndTime = self.selectedDateAndTime
+                        self.completedServiceListVC.serviceRequestMasterID = serviceRequestMasterID
+                        self.navigationController?.pushViewController(self.completedServiceListVC, animated: true)
+                    }
+                    else if orderStatus == "completed" {
+                        self.completedServiceListVC.selectedDateAndTime = self.selectedDateAndTime
+                        self.completedServiceListVC.serviceRequestMasterID = serviceRequestMasterID
+                        self.navigationController?.pushViewController(self.completedServiceListVC, animated: true)
+                    }
+                    else if orderStatus == "canceled" {
+                        self.alert(title: "Oops..", message: "Sorry, Canceled service request can not be opened")
+                    }
+                } catch let err {
+                    print(err)
+                }
+            }
+            self.activityIndicator.stopAnimating()
+            
+        })
+
     }
 }
