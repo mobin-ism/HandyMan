@@ -282,7 +282,7 @@ extension JobListViewController {
                         
                         /*self.completedServiceListVC.selectedDateAndTime = self.selectedDateAndTime
                         self.completedServiceListVC.serviceRequestMasterID = serviceRequestMasterID
-                        self.navigationController?.pushViewController(self.completedServiceListVC, animated: true)*
+                        self.navigationController?.pushViewController(self.completedServiceListVC, animated: true)*/
                     }
                     else if orderStatus == "completed" {
                         self.completedServiceListVC.selectedDateAndTime = self.selectedDateAndTime
