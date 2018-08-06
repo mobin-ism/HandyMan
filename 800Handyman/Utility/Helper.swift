@@ -32,5 +32,4 @@ class Helper {
         
         return dateString
     }
-    
 }

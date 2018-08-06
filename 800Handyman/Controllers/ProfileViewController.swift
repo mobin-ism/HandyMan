@@ -175,7 +175,11 @@ class ProfileViewController: UIViewController {
         collectionView.register(ProfileInfoCell.self, forCellWithReuseIdentifier: profileInfoCellId)
         
         layout()
- 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.getProfileDetails()
     }
     
@@ -381,7 +385,7 @@ extension ProfileViewController {
                 self.activityIndicator.stopAnimating()
                 return
             }
-            
+            print(response)
             if let json = response.data {
                 
                 let decoder = JSONDecoder()

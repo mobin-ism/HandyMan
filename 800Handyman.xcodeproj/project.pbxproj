@@ -22,6 +22,7 @@
 		0855D62E20849032002BB7A7 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62D20849032002BB7A7 /* DeviceModel.swift */; };
 		0855D6302084BEA0002BB7A7 /* AddingServiceRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */; };
 		08591E4620835A7B00391BB0 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08591E4520835A7B00391BB0 /* ServiceDetailsViewController.swift */; };
+		08743F332118266F0077C5EE /* ReachabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08743F322118266F0077C5EE /* ReachabilityViewController.swift */; };
 		088387D7208765B8003DAC2C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088387D6208765B8003DAC2C /* LoginViewController.swift */; };
 		08DF37FB20A1A96F004A6BAA /* CustomerJobDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DF37FA20A1A96F004A6BAA /* CustomerJobDone.swift */; };
 		1D38A8B920829C01001C8887 /* SubServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D38A8B820829C01001C8887 /* SubServiceModel.swift */; };
@@ -100,6 +101,7 @@
 		0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingServiceRequestModel.swift; sourceTree = "<group>"; };
 		0857BD08207DFB50009AB8BF /* 800Handyman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "800Handyman-Bridging-Header.h"; sourceTree = "<group>"; };
 		08591E4520835A7B00391BB0 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
+		08743F322118266F0077C5EE /* ReachabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityViewController.swift; sourceTree = "<group>"; };
 		088387D6208765B8003DAC2C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		08DF37FA20A1A96F004A6BAA /* CustomerJobDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerJobDone.swift; sourceTree = "<group>"; };
 		16F163B31311BB0F944D8E23 /* Pods_800Handyman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_800Handyman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -313,6 +315,7 @@
 				776589012073945000876E3E /* Config.swift */,
 				77658903207394E500876E3E /* Helper.swift */,
 				7768ADDE207AC607000AC837 /* PaddedTextField.swift */,
+				08743F322118266F0077C5EE /* ReachabilityViewController.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 			files = (
 				E9ECF43B2114A0C90082C226 /* NotificationModel.swift in Sources */,
 				775F07A620764547006E563F /* ServiceMenu.swift in Sources */,
+				08743F332118266F0077C5EE /* ReachabilityViewController.swift in Sources */,
 				7768ADDF207AC607000AC837 /* PaddedTextField.swift in Sources */,
 				1D762D1620ACCB2F00EA6B29 /* Menu.swift in Sources */,
 				08390B6F2085D95400321735 /* Selector.swift in Sources */,

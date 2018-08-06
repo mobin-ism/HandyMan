@@ -761,8 +761,17 @@ class CustomerJobDone : UIViewController {
     
     var editServiceRequestDetailsOBJ = EditServiceDetailsViewController()
     func editServiceDetails(serviceRequestDetailsID : Int) {
-        editServiceRequestDetailsOBJ.serviceRequestDetailsID = serviceRequestDetailsID
-        self.navigationController?.pushViewController(editServiceRequestDetailsOBJ, animated: true)
+        self.alert2(title: "Oops...", message: "Sorry you can not edit Service Request details from here.")
+    }
+    
+    private func alert2(title : String, message : String){
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: { action in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     private func alert(title : String, message : String){

@@ -94,6 +94,8 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.checkNetworkConnection()
+        
         // API Call
         self.getServicesJSON()
     }
@@ -120,6 +122,25 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.topItem?.titleView = imageView
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
+    }
+    
+    func alert(title : String, message : String){
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: { action in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func checkNetworkConnection() {
+        if Reachability.isConnectedToNetwork() {
+            print("")
+        }
+        else {
+            self.alert(title: "No Internet Connection", message: "Please check your internet connection!!!")
+        }
+        
     }
     
     private func layout() {

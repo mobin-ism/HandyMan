@@ -59,10 +59,14 @@ class NotificationViewController: UIViewController {
         collectionView.register(NotificationCell.self, forCellWithReuseIdentifier: notificationCellId)
         
         layout()
-        
-        self.getNotifications()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // API
+        self.getNotifications()
+    }
     private func setNavigationBar() {
         navigationController?.navigationBar.setGradientBackground(colors: [NAV_GRADIENT_TOP, NAV_GRADIENT_BOTTOM])
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
@@ -96,6 +100,12 @@ class NotificationViewController: UIViewController {
         activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
+    private func alert(title : String, message : String){
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 // API Calls
@@ -190,5 +200,9 @@ extension NotificationViewController {
                 }
             }
         })
+        
+        if  listOfNotifications.count == 0 {
+            self.alert(title: "No Notification Found", message: "")
+        }
     }
 }

@@ -324,6 +324,7 @@ class ShowServiceDetailsView : UIViewController {
         self.pendingServiceDetailsListVC.editServiceDetails(serviceRequestDetailsID: serviceRequestDetailsID)
         self.reschedulePendingOrdersVC.editServiceDetails(serviceRequestDetailsID: serviceRequestDetailsID)
         self.completedServiceDetailsListVC.editServiceDetails(serviceRequestDetailsID: serviceRequestDetailsID)
+        self.customerJobDoneVC.editServiceDetails(serviceRequestDetailsID: serviceRequestDetailsID)
     }
 }
 
