@@ -78,6 +78,12 @@ class ChatViewController: UIViewController {
         return indicator
     }()
     
+    lazy var menu: Menu = {
+        let slideMenu = Menu()
+        slideMenu.chatVC = self
+        return slideMenu
+    }()
+    
     let receiverMessageCellId = "ReceiverMessageCell"
     let senderMessageCellId = "SenderMessageCell"
     
@@ -147,6 +153,11 @@ class ChatViewController: UIViewController {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
         navigationController?.navigationBar.topItem?.titleView = imageView
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
+    }
+    
+    @objc private func menuIconTapped() {
+        self.menu.show()
     }
     
     private func layout() {

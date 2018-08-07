@@ -10,6 +10,15 @@ import UIKit
 
 class ServiceRequestImageCell: MasterCollectionViewCell {
     
+    lazy var serviceImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.systemLayoutSizeFitting(CGSize(width: 200, height: 200))
+        return imageView
+    }()
+    
     lazy var removeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Remove", for: .normal)
@@ -33,17 +42,17 @@ class ServiceRequestImageCell: MasterCollectionViewCell {
     }
     
     override func layout() {
-        addSubview(imageView)
-        imageView.layer.cornerRadius = 4
-        imageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        imageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        addSubview(serviceImageView)
+        serviceImageView.layer.cornerRadius = 4
+        serviceImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        serviceImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        serviceImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        serviceImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         addSubview(removeButton)
-        removeButton.bottomAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
-        removeButton.leftAnchor.constraint(equalTo: imageView.leftAnchor).isActive = true
-        removeButton.rightAnchor.constraint(equalTo: imageView.rightAnchor).isActive = true
+        removeButton.bottomAnchor.constraint(equalTo: serviceImageView.bottomAnchor).isActive = true
+        removeButton.leftAnchor.constraint(equalTo: serviceImageView.leftAnchor).isActive = true
+        removeButton.rightAnchor.constraint(equalTo: serviceImageView.rightAnchor).isActive = true
         removeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
 }

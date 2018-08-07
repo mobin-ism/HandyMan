@@ -12,6 +12,7 @@ import UIKit
 let API_URL   = "http://handyman.r-y-x.com/"
 let AUTH_KEY  = "Basic YWRtaW46MTIzNA=="
 let TIME_ZONE = "BST"
+let PHONE_NUMBER = "+97180042639626"
 
 let MEMBER_ID = "Member_Id"
 let SERVICE_REQUEST_MASTER_ID = "Service_Request_Master_Id"

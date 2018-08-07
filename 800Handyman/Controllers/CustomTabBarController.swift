@@ -31,7 +31,8 @@ class CustomTabBarController: UITabBarController {
         let homeController = createController(viewController: HomeViewController(), imageName: "home", selectedImageName: "home")
         let notificationController = createController(viewController: NotificationViewController(), imageName: "notification", selectedImageName: "notification")
         let contactsController = createController(viewController: LoginViewController(), imageName: "users", selectedImageName: "users")
-        let phoneController = createController(viewController: ProfileViewController(), imageName: "phone", selectedImageName: "phone")
+        //let phoneController = createController(viewController: ProfileViewController(), imageName: "phone", selectedImageName: "phone")
+        let phoneController = createController(viewController: PhoneCallViewController(), imageName: "phone", selectedImageName: "phone")
         let chatController = createController(viewController: ChatViewController(), imageName: "chat", selectedImageName: "chat")
         viewControllers = [homeController, notificationController, contactsController, phoneController, chatController]
         

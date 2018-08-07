@@ -116,7 +116,7 @@ class LocationFirstViewController: UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Mirdif"
+        label.text = "Select An Area"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -230,6 +230,9 @@ class LocationFirstViewController: UIViewController{
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.touchTapped(_:)))
         
+        // set map view to current location
+        self.setMapViewToCurrentLocation()
+        
         self.areaHolder.addGestureRecognizer(tap)
         self.downArrowIcon.addGestureRecognizer(tap)
         self.areaNameLabel.addGestureRecognizer(tap)
@@ -259,6 +262,21 @@ class LocationFirstViewController: UIViewController{
         navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    func setMapViewToCurrentLocation() {
+        
+        guard let currentLatitude  = locationManager.location?.coordinate.latitude else { return }
+        guard let currentLongitude = locationManager.location?.coordinate.longitude else { return }
+        
+        let currentLocation = CLLocationCoordinate2DMake(currentLatitude, currentLongitude)
+        mapView.animate(toLocation: currentLocation)
+        mapView.animate(toZoom: 16)
+        
+        let position = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
+        let marker = GMSMarker(position: position)
+        marker.icon = self.imageWithImage(image: UIImage(named: "mappin")!, scaledToSize: CGSize(width: 50.0, height: 50.0))
+        marker.map = mapView
     }
     
     private func layout() {
@@ -420,23 +438,6 @@ class LocationFirstViewController: UIViewController{
     @objc func handleNextButton() {
         
         self.addAddressOfServiceRequest()
-        
-        /*if isKeyPresentInUserDefaults(key: IS_LOGGED_IN) {
-            
-            if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
-                
-                self.navigationController?.pushViewController(JobListViewController(), animated: true)
-            }
-            else {
-                
-                self.navigationController?.pushViewController(LoginViewController(), animated: true)
-            }
-        }
-        else {
-            
-            self.navigationController?.pushViewController(LoginViewController(), animated: true)
-        }*/
-        
         let timeSlotObj = SelectDateTimeViewController()
         self.navigationController?.pushViewController(timeSlotObj, animated: true)
         
@@ -460,7 +461,7 @@ extension LocationFirstViewController: CLLocationManagerDelegate {
         
         /*This If block will be executed after picking the specific point from LocationSecondViewController*/
         if let markedLatitude = self.markedLatitude, let markedLongitude = self.markedLongitude {
-            let camera = GMSCameraPosition.camera(withLatitude: markedLatitude, longitude: markedLongitude, zoom: 17)
+            let camera = GMSCameraPosition.camera(withLatitude: markedLatitude, longitude: markedLongitude, zoom: 16)
             
             let currentLocation = CLLocationCoordinate2DMake(markedLatitude, markedLongitude)
             let marker = GMSMarker(position: currentLocation)
@@ -471,7 +472,7 @@ extension LocationFirstViewController: CLLocationManagerDelegate {
         }
         else {
             //mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
-            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 17)
+            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 16)
             mapView.camera = camera
             
         }
@@ -583,7 +584,7 @@ extension LocationFirstViewController {
             return
         }
         
-        if selectedAreaID == 0 || areaName == "" || addressName == "" || addressType == "" || street == "" || apartmentNo == "" {
+        if selectedAreaID == 0 || addressName == "" || addressType == "" || street == "" || apartmentNo == "" {
             
             self.showEmptyAlert()
             return

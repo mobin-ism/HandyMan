@@ -64,41 +64,45 @@ class ServiceDetailsListViewController : UIViewController {
     
     let areaNameLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
         return label
     }()
     
     let addressLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
         return label
     }()
     
     let streetLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
         return label
     }()
     
     let apartmentLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
         return label
     }()
     
@@ -444,26 +448,30 @@ class ServiceDetailsListViewController : UIViewController {
     
     private func setupAreaNameLabel() {
         scrollView.addSubview(areaNameLabel)
-        areaNameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         areaNameLabel.topAnchor.constraint(equalTo: locationTitleLabel.bottomAnchor, constant: 8).isActive = true
+        areaNameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        areaNameLabel.rightAnchor.constraint(equalTo: locationEditButton.leftAnchor, constant: -5).isActive = true
     }
     
     private func setupAddressLabel() {
         scrollView.addSubview(addressLabel)
         addressLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         addressLabel.topAnchor.constraint(equalTo: areaNameLabel.bottomAnchor, constant: 5).isActive = true
+        addressLabel.rightAnchor.constraint(equalTo: locationEditButton.leftAnchor, constant: -5).isActive = true
     }
     
     private func setupStreetLabel() {
         scrollView.addSubview(streetLabel)
         streetLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         streetLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 5).isActive = true
+        streetLabel.rightAnchor.constraint(equalTo: locationEditButton.leftAnchor, constant: -5).isActive = true
     }
     
     private func setupApartmentLabel() {
         scrollView.addSubview(apartmentLabel)
         apartmentLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         apartmentLabel.topAnchor.constraint(equalTo: streetLabel.bottomAnchor, constant: 5).isActive = true
+        apartmentLabel.rightAnchor.constraint(equalTo: locationEditButton.leftAnchor, constant: -5).isActive = true
     }
     
     private func setupDateAndTimeTitleLabel() {
@@ -656,6 +664,20 @@ class ServiceDetailsListViewController : UIViewController {
         editServiceRequestDetailsOBJ.serviceRequestDetailsID = serviceRequestDetailsID
         self.navigationController?.pushViewController(editServiceRequestDetailsOBJ, animated: true)
     }
+    
+    @objc func handleRemoveButton(_ sender : UIButton) {
+        let refreshAlert = UIAlertController(title: "Are You Sure?", message: "It will remove the Service Request Detail.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action: UIAlertAction!) in
+            self.removeServiceRequestDetails(serviceRequestDetailId: sender.tag)
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
+    }
 }
 
 extension ServiceDetailsListViewController : UIScrollViewDelegate {
@@ -696,6 +718,8 @@ extension ServiceDetailsListViewController : UICollectionViewDelegate, UICollect
             
             cell.expandButton.tag = data[indexPath.row].serviceRequestDetailId
             cell.expandButton.addTarget(self, action: #selector(handleExpandButton(_:)), for: .touchUpInside)
+            cell.removeButton.tag =  data[indexPath.row].serviceRequestDetailId
+            cell.removeButton.addTarget(self, action: #selector(handleRemoveButton(_:)), for: .touchUpInside)
         }
         return cell
     }
@@ -785,6 +809,28 @@ extension ServiceDetailsListViewController {
             self.activityIndicator.stopAnimating()
             
             print("From API: \(self.listOfServices.count)")
+        })
+    }
+    
+    func removeServiceRequestDetails(serviceRequestDetailId : Int) {
+        self.activityIndicator.startAnimating()
+        print(UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int)
+        guard let url = URL(string: "\(API_URL)api/v1/agent/service/request/detail/remove") else { return }
+        let params = ["ServiceRequestMasterId" : UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int,
+                      "ServiceRequestDetailsId" : serviceRequestDetailId] as [String : Any]
+        Alamofire.request(url,method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+            response in
+            guard response.result.isSuccess else {
+                print(response)
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            print(response)
+            self.layout()
+            self.collectionView.reloadData()
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.view.layoutIfNeeded()
+            self.activityIndicator.stopAnimating()
         })
     }
 }

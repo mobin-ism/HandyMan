@@ -439,7 +439,7 @@ extension ServiceDetailsViewController: UISearchControllerDelegate, UICollection
             cell.removeButton.tag = indexPath.row
             cell.removeButton.addTarget(self, action: #selector(removeImage(sender:)), for: .touchUpInside)
         }
-        cell.mainImage = imageArray[indexPath.row]
+        cell.serviceImageView.image = imageArray[indexPath.row]
         
         return cell
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08027A962119BBB100775DBD /* PhoneCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08027A952119BBB100775DBD /* PhoneCallViewController.swift */; };
 		08076A9B208E06AF001A9082 /* ReceiverMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */; };
 		0816E7DA21108AE6009F8674 /* EditLocationFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E7D921108AE6009F8674 /* EditLocationFirstViewController.swift */; };
 		0838CB552088A0060073C6D4 /* LoginAuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838CB542088A0060073C6D4 /* LoginAuthorizationModel.swift */; };
@@ -85,6 +86,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08027A952119BBB100775DBD /* PhoneCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCallViewController.swift; sourceTree = "<group>"; };
 		08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCell.swift; sourceTree = "<group>"; };
 		0816E7D921108AE6009F8674 /* EditLocationFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationFirstViewController.swift; sourceTree = "<group>"; };
 		0838CB542088A0060073C6D4 /* LoginAuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAuthorizationModel.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				E9ECF438211483FB0082C226 /* ReschedulePendingOrdersViewController.swift */,
 				E9D6D5982115DA880060E8CB /* EditServiceDetailsViewController.swift */,
 				E9D6D59A211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift */,
+				08027A952119BBB100775DBD /* PhoneCallViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				776588DF2073823C00876E3E /* AppDelegate.swift in Sources */,
 				7768ADDD207ABA7F000AC837 /* LocationFirstViewController.swift in Sources */,
 				776589022073945000876E3E /* Config.swift in Sources */,
+				08027A962119BBB100775DBD /* PhoneCallViewController.swift in Sources */,
 				E9ECF43D2114EB210082C226 /* MemberProfileModel.swift in Sources */,
 				776588F820738CE800876E3E /* NotificationViewController.swift in Sources */,
 				E9ECF4372114767B0082C226 /* PendingServiceDetailsListViewController.swift in Sources */,

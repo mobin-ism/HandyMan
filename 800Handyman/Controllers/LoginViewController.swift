@@ -222,6 +222,11 @@ class LoginViewController : UIViewController{
         return indicator
     }()
     
+    lazy var menu: Menu = {
+        let slideMenu = Menu()
+        slideMenu.loginVC = self
+        return slideMenu
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -258,13 +263,14 @@ class LoginViewController : UIViewController{
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         navigationController?.navigationBar.setGradientBackground(colors: [NAV_GRADIENT_TOP, NAV_GRADIENT_BOTTOM])
-        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "searchIcon"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
     }
     
-    
+    @objc private func menuIconTapped() {
+        self.menu.show()
+    }
+
     private func layout() {
         setScrollView()
         setupPageTitleLable()

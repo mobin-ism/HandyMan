@@ -66,7 +66,8 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let areaNameLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
+        label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -76,7 +77,8 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let addressLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
+        label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -86,7 +88,8 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let streetLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
+        label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -96,7 +99,8 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let apartmentLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
+        label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -456,24 +460,28 @@ class ReschedulePendingOrdersViewController : UIViewController {
         scrollView.addSubview(areaNameLabel)
         areaNameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         areaNameLabel.topAnchor.constraint(equalTo: locationTitleLabel.bottomAnchor, constant: 8).isActive = true
+        areaNameLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
     }
     
     private func setupAddressLabel() {
         scrollView.addSubview(addressLabel)
         addressLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         addressLabel.topAnchor.constraint(equalTo: areaNameLabel.bottomAnchor, constant: 5).isActive = true
+        addressLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
     }
     
     private func setupStreetLabel() {
         scrollView.addSubview(streetLabel)
         streetLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         streetLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 5).isActive = true
+        streetLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
     }
     
     private func setupApartmentLabel() {
         scrollView.addSubview(apartmentLabel)
         apartmentLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         apartmentLabel.topAnchor.constraint(equalTo: streetLabel.bottomAnchor, constant: 5).isActive = true
+        apartmentLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
     }
     
     private func setupDateAndTimeTitleLabel() {

@@ -50,7 +50,7 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
     
     let serviceImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderColor = UIColor.lightGray.cgColor
@@ -67,6 +67,18 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor.clear
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 16)
+        button.layer.cornerRadius = 4
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    lazy var removeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Remove", for: .normal)
+        button.setTitleColor(UIColor.red, for: .normal)
+        button.backgroundColor = UIColor.clear
+        button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 11)
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -117,9 +129,9 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
         setServiceTitleLabel()
         setSubServiceTitleLabel()
         setExpandButton()
+        setERemoveButton()
         setPriceIconImageView()
         setPriceLabel()
-        
     }
     
     private func setServiceUIImageView() {
@@ -144,9 +156,17 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
     private func setExpandButton() {
         self.addSubview(expandButton)
         expandButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
-        expandButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        expandButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         expandButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         expandButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    private func setERemoveButton() {
+        self.addSubview(removeButton)
+        removeButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+        removeButton.topAnchor.constraint(equalTo: expandButton.bottomAnchor).isActive = true
+        removeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        removeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
     private func setPriceIconImageView() {
         self.addSubview(priceTagIconView)

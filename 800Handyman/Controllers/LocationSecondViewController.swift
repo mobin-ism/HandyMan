@@ -14,6 +14,7 @@ class LocationSecondViewController: UIViewController {
     
     var markedLatitude : Double?
     var markedLongitude : Double?
+    private let locationManager = CLLocationManager()
     
     lazy var mapView: GMSMapView = {
         let view = GMSMapView()
@@ -108,6 +109,7 @@ class LocationSecondViewController: UIViewController {
         layout()
         
         self.mapView.delegate = self
+        self.setMapViewToCurrentLocation()
     }
     
     private func setNavigationBar() {
@@ -118,6 +120,16 @@ class LocationSecondViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    func setMapViewToCurrentLocation() {
+        
+        guard let currentLatitude  = locationManager.location?.coordinate.latitude else { return }
+        guard let currentLongitude = locationManager.location?.coordinate.longitude else { return }
+        
+        let currentLocation = CLLocationCoordinate2DMake(currentLatitude, currentLongitude)
+        mapView.animate(toLocation: currentLocation)
+        mapView.animate(toZoom: 16)
     }
     
     private func layout() {
@@ -134,7 +146,7 @@ class LocationSecondViewController: UIViewController {
     private func setMapPinImageView() {
         mapView.addSubview(mapPinImageView)
         mapPinImageView.centerXAnchor.constraint(equalTo: mapView.centerXAnchor).isActive = true
-        mapPinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor).isActive = true
+        mapPinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: -25).isActive = true
         mapPinImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         mapPinImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
@@ -194,6 +206,7 @@ class LocationSecondViewController: UIViewController {
         let firstLocationViewController = LocationFirstViewController()
         firstLocationViewController.markedLatitude = self.markedLatitude
         firstLocationViewController.markedLongitude = self.markedLongitude
+        firstLocationViewController.streetTextField.text = self.addressLineOne.text
         self.navigationController?.pushViewController(firstLocationViewController, animated: true)
         
     }
@@ -233,5 +246,47 @@ extension LocationSecondViewController : GMSMapViewDelegate {
             self.markedLongitude = coordinate.longitude
         }
 
+    }
+}
+
+extension LocationSecondViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        guard status == .authorizedWhenInUse else { return }
+        locationManager.startUpdatingLocation()
+        mapView.isMyLocationEnabled = true
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        
+        /*This If block will be executed after picking the specific point from LocationSecondViewController*/
+        if let markedLatitude = self.markedLatitude, let markedLongitude = self.markedLongitude {
+            let camera = GMSCameraPosition.camera(withLatitude: markedLatitude, longitude: markedLongitude, zoom: 17)
+            
+            let currentLocation = CLLocationCoordinate2DMake(markedLatitude, markedLongitude)
+            let marker = GMSMarker(position: currentLocation)
+            
+            marker.icon = self.imageWithImage(image: UIImage(named: "mappin")!, scaledToSize: CGSize(width: 50.0, height: 50.0))
+            mapView.camera = camera
+            marker.map = mapView
+        }
+        else {
+            //mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
+            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 17)
+            mapView.camera = camera
+            
+        }
+        
+        locationManager.stopUpdatingLocation()
+    }
+    
+    
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }

@@ -11,8 +11,13 @@ import UIKit
 class Menu: NSObject {
     
     var homeController = HomeViewController()
-    
+    var notificationVC = NotificationViewController()
+    var profileVC = ProfileViewController()
+    var chatVC = ChatViewController()
     var customTabBar = CustomTabBarController()
+    var loginVC = LoginViewController()
+    var jobListVC = JobListViewController()
+    var phoneCallVC = PhoneCallViewController()
     
     lazy var backgroundView: UIView = {
         let view = UIView()

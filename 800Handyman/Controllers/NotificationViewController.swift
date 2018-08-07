@@ -51,6 +51,11 @@ class NotificationViewController: UIViewController {
     
     var notifications = [String]()
     
+    lazy var menu: Menu = {
+        let slideMenu = Menu()
+        slideMenu.notificationVC = self
+        return slideMenu
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BACKGROUND_COLOR
@@ -72,8 +77,13 @@ class NotificationViewController: UIViewController {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
         navigationController?.navigationBar.topItem?.titleView = imageView
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
     }
-
+    
+    @objc private func menuIconTapped() {
+        self.menu.show()
+    }
+    
     private func layout() {
         setTitleLabel()
         setCollectionView()

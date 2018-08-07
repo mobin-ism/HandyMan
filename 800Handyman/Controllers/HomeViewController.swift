@@ -145,7 +145,7 @@ class HomeViewController: UIViewController {
     
     private func layout() {
         setSlider()
-        setSearchBar()
+        //setSearchBar()
         setCollectionView()
         setupActivityIndicator()
     }
@@ -172,7 +172,7 @@ class HomeViewController: UIViewController {
     
     private func setCollectionView() {
         view.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 16).isActive = true
+        collectionView.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 16).isActive = true
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
