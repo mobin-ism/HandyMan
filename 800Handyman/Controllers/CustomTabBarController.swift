@@ -58,5 +58,4 @@ class CustomTabBarController: UITabBarController {
         SDImageCache.shared().clearMemory()
         SDImageCache.shared().clearDisk(onCompletion: nil)
     }
-    
 }

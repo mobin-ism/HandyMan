@@ -125,7 +125,14 @@ class NotificationViewController: UIViewController {
             // Modal for changing the Language view
             DispatchQueue.main.async {
                 self.present(LanguageSelectViewController(), animated: true, completion: nil)
-                self.navigationController?.tabBarController?.selectedIndex = 0
+            }
+        }
+        else if(index == 5) {
+            if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
+                Alert.logOutConfirmationAlert(on: self)
+            }
+            else {
+                navigationController?.tabBarController?.selectedIndex = 2
             }
         }
         else {
@@ -168,8 +175,7 @@ extension NotificationViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        navigationController?.pushViewController(JobListViewController(), animated: true)
+        print(indexPath.row)
     }
     
 }
@@ -198,7 +204,9 @@ extension NotificationViewController: UICollectionViewDelegateFlowLayout {
 extension NotificationViewController {
     func getNotifications() {
         self.activityIndicator.startAnimating()
-        guard let url = URL(string: "\(API_URL)api/v1/member/get/notifications?memberId=\(UserDefaults.standard.value(forKey: MEMBER_ID) as! Int)") else { return }
+        guard let url = URL(string: "\(API_URL)api/v1/member/get/notifications?memberId=\(UserDefaults.standard.value(forKey: MEMBER_ID) as! Int)") else {
+            self.activityIndicator.stopAnimating()
+            return }
         let params = ["" : ""] as [String : Any]
         Alamofire.request(url,method: .get, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
             response in
@@ -207,7 +215,10 @@ extension NotificationViewController {
                 self.activityIndicator.stopAnimating()
                 return
             }
-            self.activityIndicator.stopAnimating()
+            
+            if !self.listOfNotifications.isEmpty {
+                self.listOfNotifications.removeAll()
+            }
             
             if let json = response.data {
                 
@@ -226,10 +237,8 @@ extension NotificationViewController {
                     print(err)
                 }
             }
+            self.alert(title: "No Notification Found", message: "Try again later")
+            self.activityIndicator.stopAnimating()
         })
-        
-        if  listOfNotifications.count == 0 {
-            self.alert(title: "No Notification Found", message: "")
-        }
     }
 }

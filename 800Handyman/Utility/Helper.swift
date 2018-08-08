@@ -32,4 +32,26 @@ class Helper {
         
         return dateString
     }
+    
+    static func Exists(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
 }
+
+class Alert: UIViewController {
+    public static func logOutConfirmationAlert(on vc : UIViewController) {
+        
+        let alert = UIAlertController(title: "Are You Sure?", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            //run your function here
+            vc.navigationController?.tabBarController?.selectedIndex = 0
+            UserDefaults.standard.set(false, forKey: IS_LOGGED_IN)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
+            //run your function here
+            
+        }))
+        vc.present(alert, animated: true, completion: nil)
+    }
+}
+

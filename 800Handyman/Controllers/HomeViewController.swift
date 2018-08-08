@@ -93,8 +93,14 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.checkNetworkConnection()
+        
+        if Helper.Exists(key: IS_LOGGED_IN){
+            print(UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool)
+        }
+        else {
+            print("false")
+        }
         
         // API Call
         self.getServicesJSON()
@@ -189,17 +195,7 @@ class HomeViewController: UIViewController {
     }
     
     func setSelectedIndex(at index: Int) {
-        if (index == 2) {
-            if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
-                print(UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool)
-                self.navigationController?.pushViewController(JobListViewController(), animated: true)
-            }
-            else {
-                print(UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool)
-                self.navigationController?.pushViewController(LoginViewController(), animated: true)
-            }
-        }
-        else if (index == 3) {
+        if (index == 3) {
             self.navigationController?.pushViewController(ProfileViewController(), animated: true)
         }
         else if(index == 4) {
@@ -210,10 +206,10 @@ class HomeViewController: UIViewController {
         }
         else if(index == 5) {
             if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
-                UserDefaults.standard.set(false, forKey: IS_LOGGED_IN)
+                Alert.logOutConfirmationAlert(on: self)
             }
             else {
-                self.navigationController?.pushViewController(LoginViewController(), animated: true)
+                navigationController?.tabBarController?.selectedIndex = 2
             }
         }
         else {

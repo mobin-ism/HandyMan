@@ -248,6 +248,10 @@ class LoginViewController : UIViewController{
         self.phoneNoForLoginTextField.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.isLoggedIn()
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         var contentHeight: CGFloat = 0
@@ -267,6 +271,15 @@ class LoginViewController : UIViewController{
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
     }
     
+    func isLoggedIn() {
+        if UserDefaults.standard.value(forKey: SHOW_THANK_YOU_MESSAGE) as! Bool == false {
+            if Helper.Exists(key: IS_LOGGED_IN){
+                if UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
+                    self.navigationController?.pushViewController(JobListViewController(), animated: true)
+                }
+            }
+        }
+    }
     @objc private func menuIconTapped() {
         self.menu.show(fromVC: self)
     }
@@ -503,6 +516,30 @@ class LoginViewController : UIViewController{
         self.phoneNoTextField.text         = ""
         self.emailTextField.text           = ""
         self.phoneNoForLoginTextField.text = ""
+    }
+    
+    func setSelectedIndex(at index: Int) {
+        if (index == 3) {
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        }
+        else if(index == 4) {
+            // Modal for changing the Language view
+            DispatchQueue.main.async {
+                self.present(LanguageSelectViewController(), animated: true, completion: nil)
+            }
+        }
+        else if(index == 5) {
+            if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
+                Alert.logOutConfirmationAlert(on: self)
+            }
+            else {
+                navigationController?.tabBarController?.selectedIndex = 2
+            }
+        }
+        else {
+            navigationController?.tabBarController?.selectedIndex = index
+            //CustomTabBarController().selectedIndex = index
+        }
     }
 }
 

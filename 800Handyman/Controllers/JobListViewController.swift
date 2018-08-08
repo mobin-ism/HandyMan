@@ -75,14 +75,17 @@ class JobListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.isLoggedIn()
+        
         if !self.serviceRequestMasterId.isEmpty {
             self.serviceRequestMasterId.removeAll()
         }
-        
+        print("Member id is: \(UserDefaults.standard.value(forKey: MEMBER_ID) as! Int)")
         // get the job list
         self.getJobList()
         
     }
+    
     private func setNavigationBar() {
         navigationController?.navigationBar.setGradientBackground(colors: [NAV_GRADIENT_TOP, NAV_GRADIENT_BOTTOM])
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
@@ -93,6 +96,14 @@ class JobListViewController: UIViewController {
     
     @objc private func menuIconTapped() {
         self.menu.show(fromVC: self)
+    }
+    
+    func isLoggedIn() {
+        if Helper.Exists(key: IS_LOGGED_IN){
+            if UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool == false {
+                self.navigationController?.pushViewController(LoginViewController(), animated: true)
+            }
+        }
     }
     
     private func layout() {
@@ -128,6 +139,30 @@ class JobListViewController: UIViewController {
             
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func setSelectedIndex(at index: Int) {
+        if (index == 3) {
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        }
+        else if(index == 4) {
+            // Modal for changing the Language view
+            DispatchQueue.main.async {
+                self.present(LanguageSelectViewController(), animated: true, completion: nil)
+            }
+        }
+        else if(index == 5) {
+            if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
+                Alert.logOutConfirmationAlert(on: self)
+            }
+            else {
+                navigationController?.tabBarController?.selectedIndex = 2
+            }
+        }
+        else {
+            navigationController?.tabBarController?.selectedIndex = index
+            //CustomTabBarController().selectedIndex = index
+        }
     }
 }
 

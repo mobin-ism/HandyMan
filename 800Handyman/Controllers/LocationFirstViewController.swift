@@ -576,16 +576,16 @@ extension LocationFirstViewController {
     func addAddressOfServiceRequest() {
         
         guard let selectedAreaID = self.selectedAreaID else {
-            
             self.showEmptyAlert()
             return
-            
         }
-        guard let areaName       = self.areaNameLabel.text else { return }
-        guard let addressName    = self.addressNameTextField.text else { return }
-        guard let addressType    = self.addressTypeTextField.text else { return }
-        guard let street         = self.streetTextField.text else { return }
-        guard let apartmentNo    = self.villaTextField.text else { return }
+        guard let markedLatitude  = self.markedLatitude else { return }
+        guard let markedLongitude = self.markedLongitude else { return }
+        guard let areaName        = self.areaNameLabel.text else { return }
+        guard let addressName     = self.addressNameTextField.text else { return }
+        guard let addressType     = self.addressTypeTextField.text else { return }
+        guard let street          = self.streetTextField.text else { return }
+        guard let apartmentNo     = self.villaTextField.text else { return }
         
         /*guard let markedLatitude = self.markedLatitude, let markedLongitude = self.markedLongitude else {
             

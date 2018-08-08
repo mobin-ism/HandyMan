@@ -166,10 +166,16 @@ extension Menu: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? MenuCell {
             //cell.icon = menuIcons[indexPath.row]
             if indexPath.row == 5 {
-                if UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool == false {
+                if !Helper.Exists(key: IS_LOGGED_IN){
                     cell.titleText = "Login"
-                }else {
-                    cell.titleText = menuItems[indexPath.row]
+                }
+                else {
+                    if UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool == false {
+                        cell.titleText = "Login"
+                    }
+                    else {
+                        cell.titleText = "Logout"
+                    }
                 }
             }
             else {
@@ -186,6 +192,12 @@ extension Menu: UITableViewDelegate, UITableViewDataSource {
         self.hide()
         homeController.setSelectedIndex(at: indexPath.row)
         notificationVC.setSelectedIndex(at: indexPath.row)
+        profileVC.setSelectedIndex(at: indexPath.row)
+        chatVC.setSelectedIndex(at: indexPath.row)
+        loginVC.setSelectedIndex(at: indexPath.row)
+        jobListVC.setSelectedIndex(at: indexPath.row)
+        phoneCallVC.setSelectedIndex(at: indexPath.row)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

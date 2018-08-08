@@ -327,6 +327,30 @@ class ProfileViewController: UIViewController {
         activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
+    func setSelectedIndex(at index: Int) {
+        if (index == 3) {
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        }
+        else if(index == 4) {
+            // Modal for changing the Language view
+            DispatchQueue.main.async {
+                self.present(LanguageSelectViewController(), animated: true, completion: nil)
+            }
+        }
+        else if(index == 5) {
+            if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
+                Alert.logOutConfirmationAlert(on: self)
+            }
+            else {
+                navigationController?.tabBarController?.selectedIndex = 2
+            }
+        }
+        else {
+            navigationController?.tabBarController?.selectedIndex = index
+            //CustomTabBarController().selectedIndex = index
+        }
+    }
+    
 }
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
