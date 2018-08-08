@@ -30,6 +30,18 @@ class ServiceDetailsViewController: UIViewController {
         return scroll
     }()
     
+    
+    let gifArrow : UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .clear
+        imageView.loadGif(name: "scroll-down")
+        imageView.alpha = 0
+        return imageView
+    }()
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -278,6 +290,7 @@ class ServiceDetailsViewController: UIViewController {
         setDescriptionLabel()
         setDescriptionTextField()
         setCollectionView()
+        setBottomIndicatorArrow()
         setAddNewImageButton()
         setSpecialNoteLabel()
         setSpecialNoteTextField()
@@ -350,6 +363,14 @@ class ServiceDetailsViewController: UIViewController {
         collectionView.leftAnchor.constraint(equalTo: jobTitleLabel.leftAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: jobSubTitleLabel.rightAnchor).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: 110).isActive = true
+    }
+    
+    private func setBottomIndicatorArrow() {
+        scrollView.addSubview(gifArrow)
+        gifArrow.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor).isActive = true
+        gifArrow.leftAnchor.constraint(equalTo: collectionView.rightAnchor, constant: -20).isActive = true
+        gifArrow.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        gifArrow.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     private func setAddNewImageButton(){
@@ -448,6 +469,10 @@ extension ServiceDetailsViewController: UISearchControllerDelegate, UICollection
         
         self.imageArray.remove(at: sender.tag)
         self.collectionView.reloadData()
+        
+        if  self.imageArray.count <= 3 {
+            self.gifArrow.alpha = 0
+        }
     }
 }
 
@@ -719,12 +744,14 @@ extension ServiceDetailsViewController : UIImagePickerControllerDelegate, UINavi
             if !isImageSelected {
                 self.imageArray.removeAll()
             }
-            
+        
             self.imageArray.append(image)
-            
             self.isImageSelected = true
             self.numberOfItems = self.imageArray.count
             
+            if  self.imageArray.count > 3 {
+                self.gifArrow.alpha = 1
+            }
             self.collectionView.reloadData()
             self.collectionView.collectionViewLayout.invalidateLayout()
         }

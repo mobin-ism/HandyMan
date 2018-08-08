@@ -49,7 +49,7 @@ class MenuCell: UITableViewCell {
     }
     
     func setupSubviews() {
-        setupIconImageView()
+        //setupIconImageView()
         setupTitleLabel()
     }
     
@@ -63,8 +63,8 @@ class MenuCell: UITableViewCell {
     
     func setupTitleLabel() {
         self.addSubview(titleLabel)
-        titleLabel.centerYAnchor.constraint(equalTo: iconImageView.centerYAnchor).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

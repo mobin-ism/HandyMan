@@ -245,7 +245,6 @@ class LocationFirstViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     
@@ -276,7 +275,7 @@ class LocationFirstViewController: UIViewController{
         let position = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
         let marker = GMSMarker(position: position)
         marker.icon = self.imageWithImage(image: UIImage(named: "mappin")!, scaledToSize: CGSize(width: 50.0, height: 50.0))
-        marker.map = mapView
+        //marker.map = mapView
     }
     
     private func layout() {
@@ -442,6 +441,8 @@ class LocationFirstViewController: UIViewController{
         self.navigationController?.pushViewController(timeSlotObj, animated: true)
         
     }
+    
+    var secondLocationVC = LocationSecondViewController()
 }
 
 extension LocationFirstViewController: UIScrollViewDelegate {
@@ -497,9 +498,17 @@ extension LocationFirstViewController : GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         
-        self.navigationController?.pushViewController(LocationSecondViewController(), animated: true)
+        if let selectedAreaID = self.selectedAreaID, let selectedAreaName = self.areaNameLabel.text, let addressName = self.addressNameTextField.text, let addressType = self.addressTypeTextField.text, let streetBuilding = self.streetTextField.text, let apartmentNo = self.villaTextField.text {
+            
+            self.secondLocationVC.selectedAreaID = selectedAreaID
+            self.secondLocationVC.selectedAreaName = selectedAreaName
+            self.secondLocationVC.addressName = addressName
+            self.secondLocationVC.addressType = addressType
+            self.secondLocationVC.streetBuilding = streetBuilding
+            self.secondLocationVC.apartmentNo = apartmentNo
+        }
         
-        //self.present(LocationSecondViewController(), animated: true, completion: nil)
+        self.navigationController?.pushViewController(secondLocationVC, animated: true)
     }
     
 }
@@ -578,13 +587,13 @@ extension LocationFirstViewController {
         guard let street         = self.streetTextField.text else { return }
         guard let apartmentNo    = self.villaTextField.text else { return }
         
-        guard let markedLatitude = self.markedLatitude, let markedLongitude = self.markedLongitude else {
+        /*guard let markedLatitude = self.markedLatitude, let markedLongitude = self.markedLongitude else {
             
             self.showAlertForEmptyCoordinate()
             return
-        }
+        }*/
         
-        if selectedAreaID == 0 || addressName == "" || addressType == "" || street == "" || apartmentNo == "" {
+        if selectedAreaID == 0 || addressType == "" || street == "" || apartmentNo == "" {
             
             self.showEmptyAlert()
             return

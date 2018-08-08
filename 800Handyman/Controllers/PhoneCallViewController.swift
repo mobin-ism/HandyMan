@@ -54,7 +54,7 @@ class PhoneCallViewController: UIViewController {
     }
     
     @objc private func menuIconTapped() {
-        self.menu.show()
+        self.menu.show(fromVC: self)
     }
     
     func layout() {

@@ -46,4 +46,9 @@ struct MemberDetails : Decodable {
 struct RegistrationValidity : Decodable {
     
     let isSuccess : Bool
+    let data : RegistrationToken
+}
+
+struct RegistrationToken : Decodable {
+    let token : String
 }

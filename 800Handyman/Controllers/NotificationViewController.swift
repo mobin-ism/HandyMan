@@ -81,7 +81,7 @@ class NotificationViewController: UIViewController {
     }
     
     @objc private func menuIconTapped() {
-        self.menu.show()
+        self.menu.show(fromVC: self)
     }
     
     private func layout() {
@@ -115,6 +115,23 @@ class NotificationViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func setSelectedIndex(at index: Int) {
+        if (index == 3) {
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        }
+        else if(index == 4) {
+            // Modal for changing the Language view
+            DispatchQueue.main.async {
+                self.present(LanguageSelectViewController(), animated: true, completion: nil)
+                self.navigationController?.tabBarController?.selectedIndex = 0
+            }
+        }
+        else {
+            navigationController?.tabBarController?.selectedIndex = index
+            //CustomTabBarController().selectedIndex = index
+        }
     }
 }
 

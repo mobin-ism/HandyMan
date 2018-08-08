@@ -268,7 +268,7 @@ class LoginViewController : UIViewController{
     }
     
     @objc private func menuIconTapped() {
-        self.menu.show()
+        self.menu.show(fromVC: self)
     }
 
     private func layout() {
@@ -465,6 +465,13 @@ class LoginViewController : UIViewController{
         self.present(alert, animated: true, completion: nil)
     }
     
+    private func invalidEmailAlert(){
+        
+        let alert = UIAlertController(title: "Invalid Email Address", message: "Please provide a valid email address", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     private func loginFailed(){
         
         let alert = UIAlertController(title: "Ooops!!", message: "Login Failed", preferredStyle: UIAlertControllerStyle.alert)
@@ -479,10 +486,14 @@ class LoginViewController : UIViewController{
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func registrationSuccessfullyDoneAlert() {
+    private func registrationSuccessfullyDoneAlert(tokenID : String, phoneNumber: String) {
         
         let alert = UIAlertController(title: "Congratulations!!!", message: "Registration Successfully Done", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { action in
+            //run your function here
+            self.doLoginWithToken(tokenID: tokenID, phoneNumber: phoneNumber)
+            self.makeFormEmpty()
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -535,7 +546,7 @@ extension LoginViewController {
                     
                     if tokenValidity.isSuccess {
                         let tokenResponse = try decoder.decode(TokenReponse.self, from: json)
-                        self.doLoginWithToken(tokenID: tokenResponse.data.token)
+                        self.doLoginWithToken(tokenID: tokenResponse.data.token, phoneNumber: phoneNumber)
                     }
                     else {
                         self.loginFailed()
@@ -554,19 +565,7 @@ extension LoginViewController {
         })
     }
     
-    private func doLoginWithToken(tokenID : String) {
-        
-        guard let phoneNumber = self.phoneNoForLoginTextField.text else {
-            
-            self.loginFieldEmptyAlert()
-            return
-        }
-        if phoneNumber == "" {
-            
-            self.loginFieldEmptyAlert()
-            return
-        }
-        
+    private func doLoginWithToken(tokenID : String, phoneNumber: String) {
         self.activityIndicator.startAnimating()
         guard let url = URL(string: "\(API_URL)api/v1/member/token/submit") else { return }
         let params = ["PhoneNumber" : phoneNumber,
@@ -627,6 +626,14 @@ extension LoginViewController {
         if name == "" || phoneNumber == "" || email == "" {
             
             self.registrationFieldsEmptyAlert()
+            return
+        }
+        else {
+            let validity = self.checkEmailValidation(email: email)
+            if  !validity {
+                self.invalidEmailAlert()
+                return
+            }
         }
         
         self.activityIndicator.startAnimating()
@@ -642,7 +649,7 @@ extension LoginViewController {
                 self.activityIndicator.stopAnimating()
                 return
             }
-            
+            print(response)
             if let json = response.data {
                 
                 let decoder = JSONDecoder()
@@ -653,7 +660,7 @@ extension LoginViewController {
                     
                     if  registrationResponse.isSuccess {
                         
-                        self.registrationSuccessfullyDoneAlert()
+                        self.registrationSuccessfullyDoneAlert(tokenID: registrationResponse.data.token, phoneNumber: phoneNumber)
                     }
                     else{
                         self.registrationFailedAlert()
@@ -667,8 +674,17 @@ extension LoginViewController {
             
             // code after a successfull reponse
             self.activityIndicator.stopAnimating()
-            self.makeFormEmpty()
         })
+    }
+    
+    func checkEmailValidation(email: String) -> Bool{
+        // alternative: not case sensitive
+        if  email.lowercased().range(of:"@") != nil && email.lowercased().range(of:".com") != nil {
+            return true
+        }
+        else {
+            return false
+        }
     }
 }
 

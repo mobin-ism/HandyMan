@@ -10,6 +10,8 @@ import UIKit
 
 class Menu: NSObject {
     
+    var vc = UIViewController()
+    
     var homeController = HomeViewController()
     var notificationVC = NotificationViewController()
     var profileVC = ProfileViewController()
@@ -68,7 +70,7 @@ class Menu: NSObject {
     }()
     
     let cellId = "MenuCell"
-    let menuItems = ["Home", "Notification", "Job List", "Profile", "Messaging"]
+    let menuItems = ["Home", "Notification", "Service History", "Profile", "Language", "Logout"]
     let menuIcons = [#imageLiteral(resourceName: "home_slider_icon"), #imageLiteral(resourceName: "notification_slider_icon"), #imageLiteral(resourceName: "users_slider_icon"), #imageLiteral(resourceName: "phone_slider_icon"), #imageLiteral(resourceName: "chat_slider_icon")]
     
     override init() {
@@ -76,7 +78,7 @@ class Menu: NSObject {
         tableView.register(MenuCell.self, forCellReuseIdentifier: cellId)
     }
     
-    func show() {
+    func show(fromVC : UIViewController) {
         setupSubViews()
     }
     
@@ -162,8 +164,17 @@ extension Menu: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? MenuCell {
-            cell.icon = menuIcons[indexPath.row]
-            cell.titleText = menuItems[indexPath.row]
+            //cell.icon = menuIcons[indexPath.row]
+            if indexPath.row == 5 {
+                if UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool == false {
+                    cell.titleText = "Login"
+                }else {
+                    cell.titleText = menuItems[indexPath.row]
+                }
+            }
+            else {
+                cell.titleText = menuItems[indexPath.row]
+            }
             return cell
         } else {
             let cell = tableView.cellForRow(at: indexPath)!
@@ -172,8 +183,9 @@ extension Menu: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        hide()
+        self.hide()
         homeController.setSelectedIndex(at: indexPath.row)
+        notificationVC.setSelectedIndex(at: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -185,12 +185,41 @@ class HomeViewController: UIViewController {
     }
     
     @objc private func menuIconTapped() {
-        self.menu.show()
+        self.menu.show(fromVC: self)
     }
     
     func setSelectedIndex(at index: Int) {
-        navigationController?.tabBarController?.selectedIndex = index
-        //CustomTabBarController().selectedIndex = index
+        if (index == 2) {
+            if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
+                print(UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool)
+                self.navigationController?.pushViewController(JobListViewController(), animated: true)
+            }
+            else {
+                print(UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool)
+                self.navigationController?.pushViewController(LoginViewController(), animated: true)
+            }
+        }
+        else if (index == 3) {
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        }
+        else if(index == 4) {
+            // Modal for changing the Language view
+            DispatchQueue.main.async {
+                self.present(LanguageSelectViewController(), animated: true, completion: nil)
+            }
+        }
+        else if(index == 5) {
+            if  UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool {
+                UserDefaults.standard.set(false, forKey: IS_LOGGED_IN)
+            }
+            else {
+                self.navigationController?.pushViewController(LoginViewController(), animated: true)
+            }
+        }
+        else {
+            navigationController?.tabBarController?.selectedIndex = index
+            //CustomTabBarController().selectedIndex = index
+        }
     }
     
     @objc private func settingsIconTapped() {

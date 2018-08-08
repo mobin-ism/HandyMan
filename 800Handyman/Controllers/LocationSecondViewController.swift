@@ -12,6 +12,13 @@ import GooglePlaces
 
 class LocationSecondViewController: UIViewController {
     
+    var selectedAreaID : Int?
+    var selectedAreaName : String?
+    var addressName : String?
+    var addressType : String?
+    var streetBuilding : String?
+    var apartmentNo : String?
+    
     var markedLatitude : Double?
     var markedLongitude : Double?
     private let locationManager = CLLocationManager()
@@ -207,6 +214,14 @@ class LocationSecondViewController: UIViewController {
         firstLocationViewController.markedLatitude = self.markedLatitude
         firstLocationViewController.markedLongitude = self.markedLongitude
         firstLocationViewController.streetTextField.text = self.addressLineOne.text
+        if let selectedAreaID = self.selectedAreaID, let selectedAreaName = self.selectedAreaName, let addressName = self.addressName, let addressType = self.addressType, let apartmentNo = self.apartmentNo {
+            firstLocationViewController.selectedAreaID = selectedAreaID
+            firstLocationViewController.areaNameLabel.text = selectedAreaName
+            firstLocationViewController.addressNameTextField.text = addressName
+            firstLocationViewController.addressTypeTextField.text = addressType
+            firstLocationViewController.villaTextField.text = apartmentNo
+        }
+        
         self.navigationController?.pushViewController(firstLocationViewController, animated: true)
         
     }

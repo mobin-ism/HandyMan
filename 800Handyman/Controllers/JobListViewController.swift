@@ -92,7 +92,7 @@ class JobListViewController: UIViewController {
     }
     
     @objc private func menuIconTapped() {
-        self.menu.show()
+        self.menu.show(fromVC: self)
     }
     
     private func layout() {

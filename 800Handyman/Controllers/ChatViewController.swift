@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class ChatViewController: UIViewController {
-    
+    var timer = Timer()
     var tabBar = UITabBar()
     var chats = [NSObject]()
     
@@ -126,6 +126,22 @@ class ChatViewController: UIViewController {
             target: self,
             action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        
+        scheduledTimerWithTimeInterval()
+    }
+    
+   
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateCounting(){
+        // chat history
+        if self.checkMemberID() {
+            self.getChatHisotry()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,14 +173,14 @@ class ChatViewController: UIViewController {
     }
     
     @objc private func menuIconTapped() {
-        self.menu.show()
+        self.menu.show(fromVC: self)
     }
     
     private func layout() {
         //setTitleLabel()
         setupReplyContainer()
         setCollectionView()
-        setupActivityIndicator()
+        //setupActivityIndicator()
     }
     
     private func setTitleLabel() {
@@ -469,7 +485,7 @@ extension ChatViewController {
                     self.isChatHistoryExist = chatHistoryStatus.isSuccess
                     
                     if  !chatHistoryStatus.isSuccess {
-                        self.alert(title: "Oops!!", message: "No Chat History Found")
+                        //self.alert(title: "Oops!!", message: "No Chat History Found")
                     }
                     else {
                         

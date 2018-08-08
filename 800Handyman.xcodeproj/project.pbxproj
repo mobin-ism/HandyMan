@@ -10,6 +10,9 @@
 		08027A962119BBB100775DBD /* PhoneCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08027A952119BBB100775DBD /* PhoneCallViewController.swift */; };
 		08076A9B208E06AF001A9082 /* ReceiverMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */; };
 		0816E7DA21108AE6009F8674 /* EditLocationFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E7D921108AE6009F8674 /* EditLocationFirstViewController.swift */; };
+		08236FE3211AF25D00EA41D6 /* GifHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08236FE2211AF25D00EA41D6 /* GifHandler.swift */; };
+		08236FEB211AFEA000EA41D6 /* bottom-arrow.gif in Resources */ = {isa = PBXBuildFile; fileRef = 08236FEA211AFEA000EA41D6 /* bottom-arrow.gif */; };
+		08236FED211B003000EA41D6 /* scroll-down.gif in Resources */ = {isa = PBXBuildFile; fileRef = 08236FEC211B003000EA41D6 /* scroll-down.gif */; };
 		0838CB552088A0060073C6D4 /* LoginAuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838CB542088A0060073C6D4 /* LoginAuthorizationModel.swift */; };
 		08390B6F2085D95400321735 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B6E2085D95400321735 /* Selector.swift */; };
 		08390B752085DB0B00321735 /* SelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B742085DB0B00321735 /* SelectorCell.swift */; };
@@ -89,6 +92,9 @@
 		08027A952119BBB100775DBD /* PhoneCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCallViewController.swift; sourceTree = "<group>"; };
 		08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCell.swift; sourceTree = "<group>"; };
 		0816E7D921108AE6009F8674 /* EditLocationFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationFirstViewController.swift; sourceTree = "<group>"; };
+		08236FE2211AF25D00EA41D6 /* GifHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifHandler.swift; sourceTree = "<group>"; };
+		08236FEA211AFEA000EA41D6 /* bottom-arrow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "bottom-arrow.gif"; sourceTree = "<group>"; };
+		08236FEC211B003000EA41D6 /* scroll-down.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "scroll-down.gif"; sourceTree = "<group>"; };
 		0838CB542088A0060073C6D4 /* LoginAuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAuthorizationModel.swift; sourceTree = "<group>"; };
 		08390B6E2085D95400321735 /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		08390B742085DB0B00321735 /* SelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorCell.swift; sourceTree = "<group>"; };
@@ -226,6 +232,8 @@
 				776588F12073857400876E3E /* Views */,
 				776588F02073856A00876E3E /* Controllers */,
 				776588DE2073823C00876E3E /* AppDelegate.swift */,
+				08236FEC211B003000EA41D6 /* scroll-down.gif */,
+				08236FEA211AFEA000EA41D6 /* bottom-arrow.gif */,
 				776588E52073823C00876E3E /* Assets.xcassets */,
 				776588E72073823C00876E3E /* LaunchScreen.storyboard */,
 				776588EA2073823C00876E3E /* Info.plist */,
@@ -319,6 +327,7 @@
 				77658903207394E500876E3E /* Helper.swift */,
 				7768ADDE207AC607000AC837 /* PaddedTextField.swift */,
 				08743F322118266F0077C5EE /* ReachabilityViewController.swift */,
+				08236FE2211AF25D00EA41D6 /* GifHandler.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -429,11 +438,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				776588E92073823C00876E3E /* LaunchScreen.storyboard in Resources */,
+				08236FEB211AFEA000EA41D6 /* bottom-arrow.gif in Resources */,
 				7765890A20739D7700876E3E /* OpenSans-SemiBold.ttf in Resources */,
 				77185424207A89270006BEEC /* OpenSans-LightItalic.ttf in Resources */,
 				7765890B20739D7700876E3E /* OpenSans-Regular.ttf in Resources */,
 				77185422207A89160006BEEC /* OpenSans-Bold.ttf in Resources */,
 				776588E62073823C00876E3E /* Assets.xcassets in Resources */,
+				08236FED211B003000EA41D6 /* scroll-down.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +581,7 @@
 				775F07AE20793E84006E563F /* JobListViewController.swift in Sources */,
 				E92F9BB92113B97B00079C04 /* EditLocationSecondViewController.swift in Sources */,
 				775F07A220762B84006E563F /* ServiceCell.swift in Sources */,
+				08236FE3211AF25D00EA41D6 /* GifHandler.swift in Sources */,
 				7765890F2073A31000876E3E /* Slider.swift in Sources */,
 				776588FA2073921600876E3E /* ContactsViewController.swift in Sources */,
 				08390B752085DB0B00321735 /* SelectorCell.swift in Sources */,

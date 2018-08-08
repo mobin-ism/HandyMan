@@ -16,6 +16,17 @@ class ServiceDetailsListViewController : UIViewController {
     var listOfServices = [NSObject]()
     var selectedItem : Int?
     
+    let gifArrow : UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .clear
+        imageView.loadGif(name: "scroll-down")
+        imageView.alpha = 0
+        return imageView
+    }()
+    
     let titleLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -108,14 +119,15 @@ class ServiceDetailsListViewController : UIViewController {
     
     let locationEditButton : UIButton = {
         let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(NSLocalizedString("Edit", comment: "Edit"), for: .normal)
         button.setTitleColor(UIColor.gray, for: .normal)
         button.backgroundColor = UIColor.clear
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleLocationEditButton), for: .touchUpInside)
+        button.titleLabel?.textAlignment = .right
         return button
     }()
     
@@ -150,6 +162,7 @@ class ServiceDetailsListViewController : UIViewController {
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(handleDateTimeEditButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.textAlignment = .right
         return button
     }()
     
@@ -199,7 +212,7 @@ class ServiceDetailsListViewController : UIViewController {
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 2
-        button.addTarget(self, action: #selector(paymentButtonTapped(sender:)), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(paymentButtonTapped(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -266,7 +279,7 @@ class ServiceDetailsListViewController : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Different Credit Card", comment: "Different Credit Card")
+        label.text = NSLocalizedString("Card", comment: "Card")
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -385,6 +398,7 @@ class ServiceDetailsListViewController : UIViewController {
         setupScrollView()
         setupTitleLabel()
         setupCollecetionView()
+        setBottomIndicatorArrow()
         setupLocationTitleLabel()
         setupLocationEditButton()
         setupAreaNameLabel()
@@ -396,14 +410,14 @@ class ServiceDetailsListViewController : UIViewController {
         setupDateAndTimeLabel()
         setupPaymentMethodsLabel()
         /*setupMasterCardButton()
-        setupMasterCardImageView()
-        setupMasterCardTitleLabel()
+         setupMasterCardImageView()
+         setupMasterCardTitleLabel()*/
         setupDifferentCardButton()
         setupDifferentCardImageView()
         setupDifferentCardTitleLabel()
-        setupVisaCardButton()
-        setupVisaCardImageView()
-        setupVisaCardTitleLabel()*/
+        /*setupVisaCardButton()
+         setupVisaCardImageView()
+         setupVisaCardTitleLabel()*/
         setupCashOnDeliveryButton()
         setupCashOnDeliveryTitleLabel()
         setupNoteLabel()
@@ -434,6 +448,14 @@ class ServiceDetailsListViewController : UIViewController {
         collectionView.heightAnchor.constraint(equalToConstant: 195).isActive = true
     }
     
+    private func setBottomIndicatorArrow() {
+        scrollView.addSubview(gifArrow)
+        gifArrow.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor, constant: -10).isActive = true
+        gifArrow.leftAnchor.constraint(equalTo: collectionView.rightAnchor, constant: -20).isActive = true
+        gifArrow.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        gifArrow.widthAnchor.constraint(equalToConstant: 40).isActive = true
+    }
+    
     private func setupLocationTitleLabel() {
         scrollView.addSubview(locationTitleLabel)
         locationTitleLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 30).isActive = true
@@ -444,6 +466,7 @@ class ServiceDetailsListViewController : UIViewController {
         scrollView.addSubview(locationEditButton)
         locationEditButton.centerYAnchor.constraint(equalTo: locationTitleLabel.centerYAnchor).isActive = true
         locationEditButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        locationEditButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
     }
     
     private func setupAreaNameLabel() {
@@ -484,6 +507,7 @@ class ServiceDetailsListViewController : UIViewController {
         scrollView.addSubview(dateTimeEditButton)
         dateTimeEditButton.centerYAnchor.constraint(equalTo: dateAndTimeTitleLabel.centerYAnchor).isActive = true
         dateTimeEditButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        dateTimeEditButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
     }
     
     private func setupDateAndTimeLabel() {
@@ -522,7 +546,7 @@ class ServiceDetailsListViewController : UIViewController {
     
     private func setupDifferentCardButton() {
         scrollView.addSubview(differentCardRadioButton)
-        differentCardRadioButton.topAnchor.constraint(equalTo: masterCardRadioButton.bottomAnchor, constant: 8).isActive = true
+        differentCardRadioButton.topAnchor.constraint(equalTo: paymentTitleLabel.bottomAnchor, constant: 16).isActive = true
         differentCardRadioButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         differentCardRadioButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         differentCardRadioButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
@@ -532,8 +556,8 @@ class ServiceDetailsListViewController : UIViewController {
         scrollView.addSubview(differentCreditCardImageView)
         differentCreditCardImageView.centerYAnchor.constraint(equalTo: differentCardRadioButton.centerYAnchor).isActive = true
         differentCreditCardImageView.leftAnchor.constraint(equalTo: differentCardRadioButton.rightAnchor, constant: 5).isActive = true
-        differentCreditCardImageView.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        differentCreditCardImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        differentCreditCardImageView.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        differentCreditCardImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
     private func setupDifferentCardTitleLabel() {
@@ -566,7 +590,7 @@ class ServiceDetailsListViewController : UIViewController {
     
     private func setupCashOnDeliveryButton() {
         scrollView.addSubview(cashOnDelivertRadioButton)
-        cashOnDelivertRadioButton.topAnchor.constraint(equalTo: paymentTitleLabel.bottomAnchor, constant: 16).isActive = true
+        cashOnDelivertRadioButton.topAnchor.constraint(equalTo: differentCardRadioButton.bottomAnchor, constant: 8).isActive = true
         cashOnDelivertRadioButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         cashOnDelivertRadioButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         cashOnDelivertRadioButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
@@ -803,6 +827,9 @@ extension ServiceDetailsListViewController {
             }
             
             self.layout()
+            if  self.listOfServices.count > 2 {
+                self.gifArrow.alpha = 1
+            }
             self.collectionView.reloadData()
             self.collectionView.collectionViewLayout.invalidateLayout()
             self.view.layoutIfNeeded()
@@ -815,21 +842,16 @@ extension ServiceDetailsListViewController {
     func removeServiceRequestDetails(serviceRequestDetailId : Int) {
         self.activityIndicator.startAnimating()
         print(UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int)
-        guard let url = URL(string: "\(API_URL)api/v1/agent/service/request/detail/remove") else { return }
-        let params = ["ServiceRequestMasterId" : UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int,
-                      "ServiceRequestDetailsId" : serviceRequestDetailId] as [String : Any]
-        Alamofire.request(url,method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
+        guard let url = URL(string: "\(API_URL)api/v1/member/service/request/details/remove") else { return }
+        let params = ["ServiceRequestDetailId" : serviceRequestDetailId] as [String : Any]
+        Alamofire.request(url,method: .post, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
             response in
             guard response.result.isSuccess else {
-                print(response)
+                
                 self.activityIndicator.stopAnimating()
                 return
             }
-            print(response)
-            self.layout()
-            self.collectionView.reloadData()
-            self.collectionView.collectionViewLayout.invalidateLayout()
-            self.view.layoutIfNeeded()
+            self.getServicesList()
             self.activityIndicator.stopAnimating()
         })
     }

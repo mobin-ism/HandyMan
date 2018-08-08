@@ -201,7 +201,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 2
-        button.addTarget(self, action: #selector(paymentButtonTapped(sender:)), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(paymentButtonTapped(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -267,7 +267,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Different Credit Card", comment: "Different Credit Card")
+        label.text = NSLocalizedString("Card", comment: "Card")
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -407,11 +407,11 @@ class ReschedulePendingOrdersViewController : UIViewController {
         setupPaymentMethodsLabel()
         /*setupMasterCardButton()
         setupMasterCardImageView()
-        setupMasterCardTitleLabel()
+        setupMasterCardTitleLabel()*/
         setupDifferentCardButton()
         setupDifferentCardImageView()
         setupDifferentCardTitleLabel()
-        setupVisaCardButton()
+        /*setupVisaCardButton()
         setupVisaCardImageView()
         setupVisaCardTitleLabel()*/
         setupCashOnDeliveryButton()
@@ -532,7 +532,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     private func setupDifferentCardButton() {
         scrollView.addSubview(differentCardRadioButton)
-        differentCardRadioButton.topAnchor.constraint(equalTo: masterCardRadioButton.bottomAnchor, constant: 8).isActive = true
+        differentCardRadioButton.topAnchor.constraint(equalTo: paymentTitleLabel.bottomAnchor, constant: 16).isActive = true
         differentCardRadioButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         differentCardRadioButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         differentCardRadioButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
@@ -542,8 +542,8 @@ class ReschedulePendingOrdersViewController : UIViewController {
         scrollView.addSubview(differentCreditCardImageView)
         differentCreditCardImageView.centerYAnchor.constraint(equalTo: differentCardRadioButton.centerYAnchor).isActive = true
         differentCreditCardImageView.leftAnchor.constraint(equalTo: differentCardRadioButton.rightAnchor, constant: 5).isActive = true
-        differentCreditCardImageView.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        differentCreditCardImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        differentCreditCardImageView.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        differentCreditCardImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
     private func setupDifferentCardTitleLabel() {
@@ -576,7 +576,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     private func setupCashOnDeliveryButton() {
         scrollView.addSubview(cashOnDelivertRadioButton)
-        cashOnDelivertRadioButton.topAnchor.constraint(equalTo: paymentTitleLabel.bottomAnchor, constant: 16).isActive = true
+        cashOnDelivertRadioButton.topAnchor.constraint(equalTo: differentCardRadioButton.bottomAnchor, constant: 8).isActive = true
         cashOnDelivertRadioButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         cashOnDelivertRadioButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         cashOnDelivertRadioButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
