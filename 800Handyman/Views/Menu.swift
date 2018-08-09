@@ -70,16 +70,34 @@ class Menu: NSObject {
     }()
     
     let cellId = "MenuCell"
-    let menuItems = ["Home", "Notification", "Service History", "Profile", "Language", "Logout"]
+    let menuItems = ["Home", "Notification", "Service History", "Profile", "Language"]
     let menuIcons = [#imageLiteral(resourceName: "home_slider_icon"), #imageLiteral(resourceName: "notification_slider_icon"), #imageLiteral(resourceName: "users_slider_icon"), #imageLiteral(resourceName: "phone_slider_icon"), #imageLiteral(resourceName: "chat_slider_icon")]
+    var loginStatus : String = ""
     
     override init() {
         super.init()
+        
         tableView.register(MenuCell.self, forCellReuseIdentifier: cellId)
     }
     
     func show(fromVC : UIViewController) {
+        if Helper.Exists(key: IS_LOGGED_IN){
+            if (UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool == true) {
+                self.loginStatus = "Logout"
+                print("Logged In")
+            }
+            else if (UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool == false) {
+                self.loginStatus = "Login"
+                print("Logged Out")
+            }
+        }
+        else {
+            self.loginStatus = "Login"
+            print("Logged Out")
+        }
+        
         setupSubViews()
+        self.tableView.reloadData()
     }
     
     func setupSubViews() {
@@ -159,24 +177,14 @@ extension Menu: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuItems.count
+        return menuItems.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? MenuCell {
             //cell.icon = menuIcons[indexPath.row]
             if indexPath.row == 5 {
-                if !Helper.Exists(key: IS_LOGGED_IN){
-                    cell.titleText = "Login"
-                }
-                else {
-                    if UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool == false {
-                        cell.titleText = "Login"
-                    }
-                    else {
-                        cell.titleText = "Logout"
-                    }
-                }
+                cell.titleText = self.loginStatus
             }
             else {
                 cell.titleText = menuItems[indexPath.row]

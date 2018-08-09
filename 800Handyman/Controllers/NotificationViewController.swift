@@ -237,7 +237,7 @@ extension NotificationViewController {
                     print(err)
                 }
             }
-            self.alert(title: "No Notification Found", message: "Try again later")
+            //self.alert(title: "No Notification Found", message: "Try again later")
             self.activityIndicator.stopAnimating()
         })
     }
