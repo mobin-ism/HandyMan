@@ -6,4 +6,6 @@ target '800Handyman' do
   pod 'Alamofire', '~> 4.7'
   pod 'SDWebImage'
   pod 'HCSStarRatingView', '~> 1.5'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 end

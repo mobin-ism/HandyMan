@@ -1,5 +1,26 @@
 PODS:
   - Alamofire (4.7.1)
+  - Firebase/Core (4.12.0):
+    - FirebaseAnalytics (= 4.1.0)
+    - FirebaseCore (= 4.0.19)
+  - Firebase/Messaging (4.12.0):
+    - Firebase/Core
+    - FirebaseMessaging (= 2.2.0)
+  - FirebaseAnalytics (4.1.0):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.19):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseInstanceID (2.0.10):
+    - FirebaseCore (~> 4.0)
+  - FirebaseMessaging (2.2.0):
+    - FirebaseAnalytics (~> 4.1)
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.5)
   - GoogleMaps (2.5.0):
     - GoogleMaps/Maps (= 2.5.0)
   - GoogleMaps/Base (2.5.0)
@@ -7,13 +28,26 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.5.0):
     - GoogleMaps/Base (= 2.5.0)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/Logger (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
+    - GoogleToolboxForMac/Defines (= 2.1.3)
   - HCSStarRatingView (1.5)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - Protobuf (3.5.0)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - Firebase/Core
+  - Firebase/Messaging
   - GoogleMaps
   - GooglePlaces
   - HCSStarRatingView (~> 1.5)
@@ -22,18 +56,34 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
     - GoogleMaps
     - GooglePlaces
+    - GoogleToolboxForMac
     - HCSStarRatingView
+    - nanopb
+    - Protobuf
     - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
+  Firebase: d7fdf40e4d6c841849c52919f437fd3a0009ded0
+  FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
+  FirebaseCore: ff49ebb37e0f63a570d78c4f1c1c0befe8659d5c
+  FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
+  FirebaseMessaging: 75cdb862e86c30e0913a2ff307e48d49357c5b73
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   GooglePlaces: dd70d9d71ea1c7944846afe67de3712c99b30a77
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
 
-PODFILE CHECKSUM: fbddcd699037262ab28246b1d238c660567ab070
+PODFILE CHECKSUM: 0013fef83a2b01ac1166080581e438c9966a5372
 
 COCOAPODS: 1.5.3

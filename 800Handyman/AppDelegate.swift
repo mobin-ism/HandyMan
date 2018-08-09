@@ -10,7 +10,8 @@ import UIKit
 import UserNotifications
 import GoogleMaps
 import GooglePlaces
-
+import Firebase
+import FirebaseMessaging
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
@@ -43,7 +44,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // initializing show thank you message to false
         UserDefaults.standard.set(false, forKey: SHOW_THANK_YOU_MESSAGE)
+        
+        FirebaseApp.configure()
+        
+        
+        // push notification settings
+        
+        let notificationTypes : UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
+        let notificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+        application.registerForRemoteNotifications()
+        application.registerUserNotificationSettings(notificationSettings)
         return true
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print(userInfo)
     }
 }
 

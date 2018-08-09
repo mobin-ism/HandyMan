@@ -22,6 +22,7 @@
 		083F1AC620A2E3D4009954AC /* ShowServiceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F1AC520A2E3D4009954AC /* ShowServiceDetailsView.swift */; };
 		0840BD65208F0DC6000FC497 /* SenderMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */; };
 		0840BD67208F338F000FC497 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840BD66208F338F000FC497 /* ChatModel.swift */; };
+		08469672211C3206002F8DFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08469671211C3206002F8DFB /* GoogleService-Info.plist */; };
 		0851166A208C830400E81C61 /* JobListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08511669208C830400E81C61 /* JobListModel.swift */; };
 		0855D62E20849032002BB7A7 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62D20849032002BB7A7 /* DeviceModel.swift */; };
 		0855D6302084BEA0002BB7A7 /* AddingServiceRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */; };
@@ -104,6 +105,8 @@
 		083F1AC520A2E3D4009954AC /* ShowServiceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowServiceDetailsView.swift; sourceTree = "<group>"; };
 		0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageCell.swift; sourceTree = "<group>"; };
 		0840BD66208F338F000FC497 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		08469670211C2E7A002F8DFB /* 800Handyman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = 800Handyman.entitlements; sourceTree = "<group>"; };
+		08469671211C3206002F8DFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		08511669208C830400E81C61 /* JobListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListModel.swift; sourceTree = "<group>"; };
 		0855D62D20849032002BB7A7 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingServiceRequestModel.swift; sourceTree = "<group>"; };
@@ -226,6 +229,8 @@
 		776588DD2073823C00876E3E /* 800Handyman */ = {
 			isa = PBXGroup;
 			children = (
+				08469671211C3206002F8DFB /* GoogleService-Info.plist */,
+				08469670211C2E7A002F8DFB /* 800Handyman.entitlements */,
 				776588F42073858800876E3E /* Utility */,
 				776588F32073857F00876E3E /* Resources */,
 				776588F22073857900876E3E /* Models */,
@@ -411,6 +416,14 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -439,6 +452,7 @@
 			files = (
 				776588E92073823C00876E3E /* LaunchScreen.storyboard in Resources */,
 				08236FEB211AFEA000EA41D6 /* bottom-arrow.gif in Resources */,
+				08469672211C3206002F8DFB /* GoogleService-Info.plist in Resources */,
 				7765890A20739D7700876E3E /* OpenSans-SemiBold.ttf in Resources */,
 				77185424207A89270006BEEC /* OpenSans-LightItalic.ttf in Resources */,
 				7765890B20739D7700876E3E /* OpenSans-Regular.ttf in Resources */,
@@ -459,14 +473,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-800Handyman/Pods-800Handyman-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -725,6 +745,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = 800Handyman/800Handyman.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NVRNTBSH8C;
 				INFOPLIST_FILE = 800Handyman/Info.plist;
@@ -744,6 +765,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = 800Handyman/800Handyman.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NVRNTBSH8C;
 				INFOPLIST_FILE = 800Handyman/Info.plist;
