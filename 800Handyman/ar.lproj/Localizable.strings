@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  800Handyman
+
+  Created by Creativeitem on 13/8/18.
+  Copyright © 2018 Tanvir Hasan Piash. All rights reserved.
+*/
+"No Internet Connection" = "لا يوجد اتصال بالإنترنت";
+"Are you sure?" = "هل أنت واثق؟";
+"Logout" = "الخروج";

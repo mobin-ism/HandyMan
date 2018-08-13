@@ -8,4 +8,5 @@ target '800Handyman' do
   pod 'HCSStarRatingView', '~> 1.5'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'Localize-Swift', '~> 2.0'
 end

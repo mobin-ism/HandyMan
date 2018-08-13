@@ -93,6 +93,7 @@ class Menu: NSObject {
         }
         else {
             self.loginStatus = "Login"
+            UserDefaults.standard.set(false, forKey: IS_LOGGED_IN)
             print("Logged Out")
         }
         

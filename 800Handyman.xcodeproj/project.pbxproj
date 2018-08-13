@@ -27,6 +27,7 @@
 		0855D62E20849032002BB7A7 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62D20849032002BB7A7 /* DeviceModel.swift */; };
 		0855D6302084BEA0002BB7A7 /* AddingServiceRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */; };
 		08591E4620835A7B00391BB0 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08591E4520835A7B00391BB0 /* ServiceDetailsViewController.swift */; };
+		0864E35421219FDF00B107A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0864E35621219FDF00B107A8 /* Localizable.strings */; };
 		08743F332118266F0077C5EE /* ReachabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08743F322118266F0077C5EE /* ReachabilityViewController.swift */; };
 		088387D7208765B8003DAC2C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088387D6208765B8003DAC2C /* LoginViewController.swift */; };
 		08DF37FB20A1A96F004A6BAA /* CustomerJobDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DF37FA20A1A96F004A6BAA /* CustomerJobDone.swift */; };
@@ -112,6 +113,8 @@
 		0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingServiceRequestModel.swift; sourceTree = "<group>"; };
 		0857BD08207DFB50009AB8BF /* 800Handyman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "800Handyman-Bridging-Header.h"; sourceTree = "<group>"; };
 		08591E4520835A7B00391BB0 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
+		0864E35521219FDF00B107A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0864E35721219FE400B107A8 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		08743F322118266F0077C5EE /* ReachabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityViewController.swift; sourceTree = "<group>"; };
 		088387D6208765B8003DAC2C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		08DF37FA20A1A96F004A6BAA /* CustomerJobDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerJobDone.swift; sourceTree = "<group>"; };
@@ -243,6 +246,7 @@
 				776588E72073823C00876E3E /* LaunchScreen.storyboard */,
 				776588EA2073823C00876E3E /* Info.plist */,
 				0857BD08207DFB50009AB8BF /* 800Handyman-Bridging-Header.h */,
+				0864E35621219FDF00B107A8 /* Localizable.strings */,
 			);
 			path = 800Handyman;
 			sourceTree = "<group>";
@@ -434,6 +438,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 776588D22073823C00876E3E;
 			productRefGroup = 776588DC2073823C00876E3E /* Products */;
@@ -455,6 +460,7 @@
 				08469672211C3206002F8DFB /* GoogleService-Info.plist in Resources */,
 				7765890A20739D7700876E3E /* OpenSans-SemiBold.ttf in Resources */,
 				77185424207A89270006BEEC /* OpenSans-LightItalic.ttf in Resources */,
+				0864E35421219FDF00B107A8 /* Localizable.strings in Resources */,
 				7765890B20739D7700876E3E /* OpenSans-Regular.ttf in Resources */,
 				77185422207A89160006BEEC /* OpenSans-Bold.ttf in Resources */,
 				776588E62073823C00876E3E /* Assets.xcassets in Resources */,
@@ -475,6 +481,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
+				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -484,6 +491,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -614,6 +622,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0864E35621219FDF00B107A8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0864E35521219FDF00B107A8 /* en */,
+				0864E35721219FE400B107A8 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		776588E72073823C00876E3E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

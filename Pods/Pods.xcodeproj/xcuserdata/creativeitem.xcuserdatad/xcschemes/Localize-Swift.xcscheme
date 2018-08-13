@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D3BCFA082ABCF9024B148FBB13BD0FDC"
-               BuildableName = "Pods_800Handyman.framework"
-               BlueprintName = "Pods-800Handyman"
+               BlueprintIdentifier = "FC00A2B118650C6C90D34FB24F60280D"
+               BuildableName = "Localize_Swift.framework"
+               BlueprintName = "Localize-Swift"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D3BCFA082ABCF9024B148FBB13BD0FDC"
-            BuildableName = "Pods_800Handyman.framework"
-            BlueprintName = "Pods-800Handyman"
+            BlueprintIdentifier = "FC00A2B118650C6C90D34FB24F60280D"
+            BuildableName = "Localize_Swift.framework"
+            BlueprintName = "Localize-Swift"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

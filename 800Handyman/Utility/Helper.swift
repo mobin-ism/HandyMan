@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Localize_Swift
 class Helper {
     
     public static var isIphoneX: Bool {
@@ -41,13 +41,13 @@ class Helper {
 class Alert: UIViewController {
     public static func logOutConfirmationAlert(on vc : UIViewController) {
         
-        let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Logout", style: .default, handler: { action in
+        let alert = UIAlertController(title: "Are you sure?".localized(), message: "", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Logout".localized(), style: .default, handler: { action in
             //run your function here
             vc.navigationController?.tabBarController?.selectedIndex = 0
             UserDefaults.standard.set(false, forKey: IS_LOGGED_IN)
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .default, handler: { action in
             //run your function here
             
         }))

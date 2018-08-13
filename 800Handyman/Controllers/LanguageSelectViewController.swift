@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Localize_Swift
 
 class LanguageSelectViewController: UIViewController {
     
@@ -145,14 +146,18 @@ class LanguageSelectViewController: UIViewController {
     @objc private func englishButtonTapped(_ sender: UIButton) {
         
         UserDefaults.standard.set("en", forKey: SELECTED_LANGUAGE)
+        UIView.appearance().semanticContentAttribute = .forceLeftToRight
         self.registerDeviceToken()
+        Localize.setCurrentLanguage("en")
         dismiss(animated: true, completion: nil)
     }
     
     @objc private func arabicButtonTapped(_ sender: UIButton) {
         
         UserDefaults.standard.set("ar", forKey: SELECTED_LANGUAGE)
+        UIView.appearance().semanticContentAttribute = .forceRightToLeft
         self.registerDeviceToken()
+        Localize.setCurrentLanguage("ar")
         dismiss(animated: true, completion: nil)
     }
     

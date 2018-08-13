@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SDWebImage
+import Localize_Swift
 
 class HomeViewController: UIViewController {
     
@@ -144,7 +145,7 @@ class HomeViewController: UIViewController {
             print("")
         }
         else {
-            self.alert(title: "No Internet Connection", message: "Please check your internet connection!!!")
+            self.alert(title: "No Internet Connection".localized(), message: "Please check your internet connection!!!".localized())
         }
         
     }
