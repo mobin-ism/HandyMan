@@ -9,7 +9,8 @@
 import UIKit
 
 
-let API_URL   = "http://handyman.r-y-x.com/"
+//let API_URL   = "http://handyman.r-y-x.com/"
+let API_URL   = "http://admin.800handyman.ae/"
 let AUTH_KEY  = "Basic YWRtaW46MTIzNA=="
 let TIME_ZONE = "BST"
 let PHONE_NUMBER = "+97180042639626"

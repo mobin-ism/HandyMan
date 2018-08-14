@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import Localize_Swift
 class JobListViewController: UIViewController {
     
     var listOfJobs = [NSObject]()
@@ -21,7 +21,7 @@ class JobListViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Service Request List", comment: "Service Request List")
+        label.text = "Service Request List".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -135,7 +135,7 @@ class JobListViewController: UIViewController {
     private func alert(title : String, message : String){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: { action in
             
         }))
         self.present(alert, animated: true, completion: nil)

@@ -6,5 +6,154 @@
   Copyright © 2018 Tanvir Hasan Piash. All rights reserved.
 */
 "No Internet Connection" = "No Internet Connection";
+"Please check your internet connection!!!" = "Please check your internet connection!!!";
 "Are you sure?" = "Are you sure?";
 "Logout" = "Logout";
+"Home" = "Home";
+"Notification" = "Notification";
+"Service History" = "Service History";
+"Profile" = "Profile";
+"Language" = "Language";
+"Logout" = "Logout";
+"Login" = "Login";
+"Today" = "Today";
+"Cancel" = "Cancel";
+"CANCEL" = "CANCEL";
+"Edit" = "Edit";
+"Notification" = "Notification";
+"Okay" = "Okay";
+"Write a reply" = "Write a reply";
+"Ooops!!" = "Ooops!!";
+"Please register first" = "Please register first";
+"Select your preferred language" = "Select your preferred language";
+"Service Request List" = "Service Request List";
+"Credit card" = "Credit card";
+"ADD NEW" = "ADD NEW";
+"EDIT" = "EDIT";
+"Total Spent" = "Total Spent";
+"Loyalty Point" = "Loyalty Point";
+"Total Job" = "Total Job";
+"Completed Job" = "Completed Job";
+"Running Job" = "Running Job";
+"Cancel Job" = "Cancel Job";
+"Thank You" = "Thank You";
+"for placing service request" = "for placing service request";
+"Someone from our team will contact you soon" = "Someone from our team will contact you soon";
+"Your Request Number" = "Your Request Number";
+"Not Selected Yet" = "Not Selected Yet";
+"Select Date and Time" = "Select Date and Time";
+"Select date" = "Select date";
+"MM-DD-YYYY" = "MM-DD-YYYY";
+"Available Time Slot" = "Available Time Slot";
+"NEXT" = "NEXT";
+"Area" = "Area";
+"Address Name (Optional)" = "Address Name (Optional)";
+"Address Type" = "Address Type";
+"Street / Building" = "Street / Building";
+"Apartment no / Villa no" = "Apartment no / Villa no";
+"Select An Area" = "Select An Area";
+"Next" = "Next";
+"Fields can not be empty" = "Fields can not be empty";
+"You have to pick a specific address from the map" = "You have to pick a specific address from the map";
+"LOCATION CONFIRMED" = "LOCATION CONFIRMED";
+"BACK" = "BACK";
+"Address" = "Address";
+"Let Us Know Your Details" = "Let Us Know Your Details";
+"Name" = "Name";
+"Phone no" = "Phone no";
+"E-mail address (Optional)" = "E-mail address (Optional)";
+"SUBMIT" = "SUBMIT";
+"LOGIN" = "LOGIN";
+"Or" = "Or";
+"Have an account?" = "Have an account?";
+"Log in" = "Log in";
+"Job Details" = "Job Details";
+"Description" = "Description";
+"Location" = "Location";
+"Date and time" = "Date and time";
+"Service Details" = "Service Details";
+"Any Special Note (Optional)" = "Any Special Note (Optional)";
+"ADD ANOTHER SERVICE REQUEST" = "ADD ANOTHER SERVICE REQUEST";
+"Title" = "Title";
+"Have an account? Login" = "Have an account? Login";
+"Phone number field can not be empty" = "Phone number field can not be empty";
+"Registration fields can not be empty" = "Registration fields can not be empty";
+"Invalid Email Address" = "Invalid Email Address";
+"Please provide a valid email address" = "Please provide a valid email address";
+"Login Failed" = "Login Failed";
+"Try Again" = "Try Again";
+"Registration failed" = "Registration failed";
+"Congratulations!!!" = "Congratulations!!!";
+"Registration Successfully Done" = "Registration Successfully Done";
+"Close" = "Close";
+"Job ID" = "Job ID";
+"Task Completed" = "Task Completed";
+"Rate Our Service" = "Rate Our Service";
+"Note" = "Note";
+"Do You Like To Pay Tips" = "Do You Like To Pay Tips";
+"RATE NOW" = "RATE NOW";
+"Your payment method" = "Your payment method";
+"Different Credit Card" = "Different Credit Card";
+"Card On Delivery" = "Card On Delivery";
+"Cash On Delivery" = "Cash On Delivery";
+"Sorry you can not edit Service Request details from here." = "Sorry you can not edit Service Request details from here.";
+"Thanks for rating our service. We really appreciate it." = "Thanks for rating our service. We really appreciate it.";
+"Write your comments" = "Write your comments";
+"You won't need to pay at this moment. Our technician will verify the spot and inform you the real cost " = "You won't need to pay at this moment. Our technician will verify the spot and inform you the real cost ";
+"REQUEST SERVICE" = "REQUEST SERVICE";
+"It will remove the Service Request Detail." = "It will remove the Service Request Detail.";
+"Yes" = "Yes";
+"Area Name:" = "Area Name:";
+"Address Name:" = "Address Name:";
+"Street Name:" = "Street Name:";
+"Apartment No.:" = "Apartment No.:";
+"Customer Job Done" = "Customer Job Done";
+"Request ID" = "Request ID";
+"Status: " = "Status: ";
+"Completed" = "Completed";
+"Total Price" = "Total Price";
+"Order Again" = "Order Again";
+"Rate It" = "Rate It";
+"RESCHEDULE" = "RESCHEDULE";
+"Service Cancelled" = "Service Cancelled";
+"Congratulations, The Services has been cancelled successfully!" = "Congratulations, The Services has been cancelled successfully!";
+"PAY NOW" = "PAY NOW";
+"Update" = "Update";
+"Remove" = "Remove";
+"Card" = "Card";
+"Phone No." = "Phone No.";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Localize_Swift
 class CalendarSelector: NSObject {
     
     var selectorData = [NSObject]()
@@ -31,7 +32,7 @@ class CalendarSelector: NSObject {
     
     lazy var todayButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Today", for: .normal)
+        button.setTitle("Today".localized(), for: .normal)
         button.setTitleColor(UIColor(red:0.12, green:0.53, blue:0.90, alpha:1.0), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleToday), for: .touchUpInside)
@@ -41,7 +42,7 @@ class CalendarSelector: NSObject {
     }()
     lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Cancel", for: .normal)
+        button.setTitle("Cancel".localized(), for: .normal)
         button.setTitleColor(UIColor(red:0.96, green:0.26, blue:0.21, alpha:1.0), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)

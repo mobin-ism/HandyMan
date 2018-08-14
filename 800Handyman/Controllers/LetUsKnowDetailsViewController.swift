@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class LetUsKnowDetailsViewController: UIViewController {
     
@@ -14,7 +15,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = "Let Us Know Your Details"
+        label.text = "Let Us Know Your Details".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -25,7 +26,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Name"
+        label.text = "Name".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +37,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Phone no"
+        label.text = "Phone no".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +48,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Phone no"
+        label.text = "Phone no".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +59,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "E-mail address (Optional)"
+        label.text = "E-mail address (Optional)".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +73,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Your name"
+        //field.placeholder = "Your name"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -85,7 +86,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Your phone no."
+        //field.placeholder = "Your phone no."
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -98,7 +99,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Your phone no."
+        //field.placeholder = "Your phone no."
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -111,7 +112,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Your e-mail address"
+        //field.placeholder = "Your e-mail address"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -119,7 +120,7 @@ class LetUsKnowDetailsViewController: UIViewController {
     
     lazy var submitButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("SUBMIT", for: .normal)
+        button.setTitle("SUBMIT".localized(), for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = YELLOW_ACCENT
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
@@ -131,7 +132,7 @@ class LetUsKnowDetailsViewController: UIViewController {
     
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("LOGIN", for: .normal)
+        button.setTitle("LOGIN".localized(), for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.black
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
@@ -145,7 +146,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = "Or"
+        label.text = "Or".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -172,7 +173,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.lightGray
-        label.text = "Have an account?"
+        label.text = "Have an account?".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -183,7 +184,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Log in"
+        label.text = "Log in".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.isUserInteractionEnabled = true
         label.clipsToBounds = true
@@ -203,9 +204,11 @@ class LetUsKnowDetailsViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
+        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
+ 
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "searchIcon"), style: .plain, target: nil, action: nil)
     }
     
@@ -340,4 +343,7 @@ class LetUsKnowDetailsViewController: UIViewController {
         loginButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
+    @objc func backTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

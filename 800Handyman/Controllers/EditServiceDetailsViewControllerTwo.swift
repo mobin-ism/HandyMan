@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Photos
 import SDWebImage
+import Localize_Swift
 
 class EditServiceDetailsViewControllerTwo: UIViewController {
     
@@ -101,7 +102,7 @@ class EditServiceDetailsViewControllerTwo: UIViewController {
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Write Your Job Details"
+        //field.placeholder = "Write Your Job Details"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -138,7 +139,7 @@ class EditServiceDetailsViewControllerTwo: UIViewController {
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Don't press the door bell"
+        //field.placeholder = "Don't press the door bell"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -270,9 +271,11 @@ class EditServiceDetailsViewControllerTwo: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
+        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "searchIcon"), style: .plain, target: nil, action: nil)
     }
     
@@ -417,6 +420,10 @@ class EditServiceDetailsViewControllerTwo: UIViewController {
     
     @objc func dismissKeyboard(){
         view.endEditing(true)
+    }
+    
+    @objc func backTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

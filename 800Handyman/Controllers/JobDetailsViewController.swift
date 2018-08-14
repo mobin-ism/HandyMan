@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class JobDetailsViewController: UIViewController {
     
@@ -23,7 +24,7 @@ class JobDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = "Job Details"
+        label.text = "Job Details".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +46,7 @@ class JobDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .right
         label.textColor = UIColor.gray
-        label.text = "EDIT"
+        label.text = "EDIT".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +69,7 @@ class JobDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Description"
+        label.text = "Description".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -104,7 +105,7 @@ class JobDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Location"
+        label.text = "Location".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -139,7 +140,7 @@ class JobDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Date and time"
+        label.text = "Date and time".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -183,9 +184,10 @@ class JobDetailsViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
+        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "searchIcon"), style: .plain, target: nil, action: nil)
     }
     
@@ -291,6 +293,9 @@ class JobDetailsViewController: UIViewController {
         dateTimeTextLabel.topAnchor.constraint(equalTo: dateTimeLabel.bottomAnchor, constant: 8).isActive = true
     }
     
+    @objc func backTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension JobDetailsViewController: UIScrollViewDelegate {

@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import Localize_Swift
 class LoginViewController : UIViewController{
     
     lazy var scrollView: UIScrollView = {
@@ -25,7 +25,7 @@ class LoginViewController : UIViewController{
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = "Let Us Know Your Details"
+        //label.text = "Let Us Know Your Details".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ class LoginViewController : UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Name"
+        //label.text = "Name".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +47,7 @@ class LoginViewController : UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Phone no."
+        //label.text = "Phone no.".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +58,7 @@ class LoginViewController : UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "E-mail address (Optional)"
+        //label.text = "E-mail address (Optional)".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +87,7 @@ class LoginViewController : UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Or"
+        //label.text = "Or".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -98,7 +98,7 @@ class LoginViewController : UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Have an account? Login"
+        //label.text = "Have an account? Login".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -109,7 +109,7 @@ class LoginViewController : UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Log in"
+        //label.text = "Log in".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -120,7 +120,7 @@ class LoginViewController : UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Phone No."
+        //label.text = "Phone No.".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -134,7 +134,7 @@ class LoginViewController : UIViewController{
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Your Name"
+        //field.placeholder = "Your Name"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -147,7 +147,7 @@ class LoginViewController : UIViewController{
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Your phone no."
+        //field.placeholder = "Your phone no."
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -160,7 +160,7 @@ class LoginViewController : UIViewController{
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Your e-mail address"
+        //field.placeholder = "Your e-mail address"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -173,7 +173,7 @@ class LoginViewController : UIViewController{
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Your phone no."
+        //field.placeholder = "Your phone no."
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -181,7 +181,7 @@ class LoginViewController : UIViewController{
     
     let submitButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("SUBMIT", for: .normal)
+        //button.setTitle("SUBMIT".localized(), for: .normal)
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 16)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = YELLOW_ACCENT
@@ -198,7 +198,7 @@ class LoginViewController : UIViewController{
     
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("LOGIN", for: .normal)
+        //button.setTitle("LOGIN".localized(), for: .normal)
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 16)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.black
@@ -251,6 +251,27 @@ class LoginViewController : UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.isLoggedIn()
+        print("Hello")
+        if (UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as! String == "ar") {
+            self.namelabel.text = "الإسم"
+            self.phoneNumberForLoginLabel.text = "رقم الهاتف."
+            self.emailAddressLabel.text = "عنوان البريد الإلكتروني (اختياري)"
+            self.submitButton.setTitle("خضع", for: .normal)
+            self.haveAnAccountLabel.text = "لديك حساب؟"
+            self.orLabel.text = "أو"
+            self.phoneNumberLabel.text = "رقم الهاتف."
+            self.loginButton.setTitle("تسجيل الدخول", for: .normal)
+        }
+        else {
+            self.namelabel.text = "Name"
+            self.phoneNumberForLoginLabel.text = "Phone No."
+            self.emailAddressLabel.text = "E-mail address (Optional)"
+            self.submitButton.setTitle("Submit", for: .normal)
+            self.haveAnAccountLabel.text = "Have an account?"
+            self.orLabel.text = "Or"
+            self.phoneNumberLabel.text = "Phone No."
+            self.loginButton.setTitle("Login", for: .normal)
+        }
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -466,43 +487,43 @@ class LoginViewController : UIViewController{
     
     private func loginFieldEmptyAlert(){
         
-        let alert = UIAlertController(title: "Ooops!!", message: "Phone number field can not be empty", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "Ooops!!".localized(), message: "Phone number field can not be empty".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     private func registrationFieldsEmptyAlert(){
         
-        let alert = UIAlertController(title: "Ooops!!", message: "Registration fields can not be empty", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "Ooops!!".localized(), message: "Registration fields can not be empty".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     private func invalidEmailAlert(){
         
-        let alert = UIAlertController(title: "Invalid Email Address", message: "Please provide a valid email address", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "Invalid Email Address".localized(), message: "Please provide a valid email address".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     private func loginFailed(){
         
-        let alert = UIAlertController(title: "Ooops!!", message: "Login Failed", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "Ooops!!".localized(), message: "Login Failed".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Try Again".localized(), style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     private func registrationFailedAlert(){
         
-        let alert = UIAlertController(title: "Ooops!!", message: "Registration failed", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "Ooops!!".localized(), message: "Registration failed".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Try Again".localized(), style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     private func registrationSuccessfullyDoneAlert(tokenID : String, phoneNumber: String) {
         
-        let alert = UIAlertController(title: "Congratulations!!!", message: "Registration Successfully Done", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { action in
+        let alert = UIAlertController(title: "Congratulations!!!".localized(), message: "Registration Successfully Done".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Close".localized(), style: .default, handler: { action in
             //run your function here
             self.doLoginWithToken(tokenID: tokenID, phoneNumber: phoneNumber)
             self.makeFormEmpty()

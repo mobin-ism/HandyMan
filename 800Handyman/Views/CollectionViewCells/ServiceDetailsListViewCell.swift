@@ -75,7 +75,7 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
     
     lazy var removeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Remove", for: .normal)
+        button.setTitle("Remove".localized(), for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
         button.backgroundColor = UIColor.clear
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 11)

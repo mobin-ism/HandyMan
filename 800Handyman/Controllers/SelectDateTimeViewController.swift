@@ -8,12 +8,13 @@
 
 import UIKit
 import Alamofire
+import Localize_Swift
 
 class SelectDateTimeViewController: UIViewController {
     
     var selectedDate : String?
     var selectedTime : String?
-    var selectedTimeAndDate : String = "Not Selected Yet"
+    var selectedTimeAndDate : String = "Not Selected Yet".localized()
     var timeSlots = [NSObject]()
     var counter = 0
     
@@ -21,7 +22,7 @@ class SelectDateTimeViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = "Select Date and Time"
+        label.text = "Select Date and Time".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +33,7 @@ class SelectDateTimeViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Select date"
+        label.text = "Select date".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +55,7 @@ class SelectDateTimeViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "MM-DD-YYYY"
+        label.text = "MM-DD-YYYY".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +76,7 @@ class SelectDateTimeViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Available Time Slot"
+        label.text = "Available Time Slot".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +85,7 @@ class SelectDateTimeViewController: UIViewController {
     
     lazy var nextButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("NEXT", for: .normal)
+        button.setTitle("NEXT".localized(), for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = YELLOW_ACCENT
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
@@ -152,7 +153,8 @@ class SelectDateTimeViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        navigationItem.backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: nil, action: nil)
+        //navigationItem.backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "searchIcon"), style: .plain, target: self, action: nil)
     }
     
@@ -259,6 +261,10 @@ class SelectDateTimeViewController: UIViewController {
         self.selectedDate = title
         // API Call
         self.getAvailableTimeslots()
+    }
+    
+    @objc func backTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

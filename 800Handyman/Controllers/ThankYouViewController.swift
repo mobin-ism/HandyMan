@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Localize_Swift
 
 class ThankYouViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class ThankYouViewController: UIViewController {
         let label = UILabel()
         label.textColor = UIColor.black
         label.textAlignment = .center
-        label.text = "Thank You"
+        label.text = "Thank You".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size: 22)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +29,7 @@ class ThankYouViewController: UIViewController {
         let label = UILabel()
         label.textColor = UIColor.black
         label.textAlignment = .center
-        label.text = "for placing service request"
+        label.text = "for placing service request".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +50,7 @@ class ThankYouViewController: UIViewController {
         let label = UILabel()
         label.textColor = UIColor.black
         label.textAlignment = .center
-        label.text = "Someone from our team will contact you soon"
+        label.text = "Someone from our team will contact you soon".localized()
         label.font = UIFont(name: OPENSANS_LIGHTITALIC, size: 11)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +81,7 @@ class ThankYouViewController: UIViewController {
         guard let serviceRequestMasterID = self.serviceRequestMasterID else { return }
         print("From Thank You VC Session: \(UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int)")
         print("From Thank You VC Params: \(serviceRequestMasterID)")
-        self.reqNumberLabel.text = "Your Request Number: #\(serviceRequestMasterID)"
+        self.reqNumberLabel.text = "Your Request Number".localized()+" :#\(serviceRequestMasterID)"
         layout()
     }
     private func setNavigationBar() {
@@ -90,6 +91,7 @@ class ThankYouViewController: UIViewController {
         
         //navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
         //navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: self, action: #selector(settingsIconTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
     }
     
     private func layout() {
@@ -132,6 +134,10 @@ class ThankYouViewController: UIViewController {
         view.addSubview(activityIndicator)
         activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    @objc func backTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

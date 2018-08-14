@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Localize_Swift
 
 class CompletedServiceDetailsListViewController : UIViewController {
     
@@ -21,7 +22,7 @@ class CompletedServiceDetailsListViewController : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Customer Job Done", comment: "Customer Job Done")
+        label.text = "Customer Job Done".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +42,7 @@ class CompletedServiceDetailsListViewController : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Request ID", comment: "Request ID")
+        label.text = "Request ID".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -62,7 +63,7 @@ class CompletedServiceDetailsListViewController : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Status: ", comment: "Status: ")
+        label.text = "Status: ".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +77,7 @@ class CompletedServiceDetailsListViewController : UIViewController {
         label.font = UIFont(name: OPENSANS_REGULAR, size : 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Completed"
+        label.text = "Completed".localized()
         return label
     }()
     
@@ -99,7 +100,7 @@ class CompletedServiceDetailsListViewController : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Total Price", comment: "Total Price")
+        label.text = "Total Price".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -121,7 +122,7 @@ class CompletedServiceDetailsListViewController : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Location", comment: "Location")
+        label.text = "Location".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -176,7 +177,7 @@ class CompletedServiceDetailsListViewController : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Date and Time", comment: "Date and Time")
+        label.text = "Date and Time".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -195,7 +196,7 @@ class CompletedServiceDetailsListViewController : UIViewController {
     
     lazy var orderAgainButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Order Again", for: .normal)
+        button.setTitle("Order Again".localized(), for: .normal)
         button.backgroundColor = UIColor.black
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -208,7 +209,7 @@ class CompletedServiceDetailsListViewController : UIViewController {
     
     lazy var rateItButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Rate It", for: .normal)
+        button.setTitle("Rate It".localized(), for: .normal)
         button.backgroundColor = UIColor.white
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
         button.setTitleColor(UIColor.black, for: .normal)
@@ -602,10 +603,10 @@ extension CompletedServiceDetailsListViewController {
                         
                         self.listOfServices.append(container)
                     }
-                    self.areaNameLabel.text = "Area Name: \(serviceList.data.serviceRequest.location.areaName)"
-                    self.addressLabel.text = "Address Name: \(serviceList.data.serviceRequest.location.addressName)"
-                    self.streetLabel.text = "Street Name: \(serviceList.data.serviceRequest.location.street)"
-                    self.apartmentLabel.text = "Apartment No.: \(serviceList.data.serviceRequest.location.apartmentNo)"
+                    self.areaNameLabel.text = "Area Name:".localized() + "\(serviceList.data.serviceRequest.location.areaName)"
+                    self.addressLabel.text = "Address Name:".localized() + "\(serviceList.data.serviceRequest.location.addressName)"
+                    self.streetLabel.text = "Street Name:".localized() + "\(serviceList.data.serviceRequest.location.street)"
+                    self.apartmentLabel.text = "Apartment No.:".localized() + "\(serviceList.data.serviceRequest.location.apartmentNo)"
                     self.dateAndTimeLabel.text = self.selectedDateAndTime
                 } catch let err {
                     print(err)

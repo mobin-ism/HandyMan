@@ -21,7 +21,7 @@ class ServiceRequestImageCell: MasterCollectionViewCell {
     
     lazy var removeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Remove", for: .normal)
+        button.setTitle("Remove".localized(), for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:0.8)
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 16)

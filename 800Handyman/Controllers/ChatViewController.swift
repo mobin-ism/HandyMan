@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import Localize_Swift
 class ChatViewController: UIViewController {
     var timer = Timer()
     var tabBar = UITabBar()
@@ -51,7 +51,6 @@ class ChatViewController: UIViewController {
     
     lazy var replyTextField: PaddedTextField = {
         let field = PaddedTextField()
-        field.placeholder = "Write a reply"
         field.textAlignment = .left
         field.font = UIFont.systemFont(ofSize: 14)
         field.clipsToBounds = true
@@ -106,7 +105,7 @@ class ChatViewController: UIViewController {
             }
             else {
                 
-                self.alert(title: "Ooops!!", message: "Please register first")
+                self.alert(title: "Ooops!!".localized(), message: "Please register first".localized())
             }
         }
     }
@@ -131,6 +130,7 @@ class ChatViewController: UIViewController {
         scheduledTimerWithTimeInterval()
     }
     
+    
    
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
@@ -147,6 +147,13 @@ class ChatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if (UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as! String == "ar") {
+            self.replyTextField.placeholder = "اكتب رد"
+        }
+        else {
+            self.replyTextField.placeholder = "Write a reply"
+        }
+        
         // add keyboard appear observer
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardAppeared(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
@@ -160,7 +167,7 @@ class ChatViewController: UIViewController {
         }
         else {
             
-            self.alert(title: "Ooops!!", message: "Please register first")
+            self.alert(title: "Ooops!!".localized(), message: "Please register first".localized())
         }
     }
     
@@ -298,7 +305,7 @@ class ChatViewController: UIViewController {
     private func alert(title : String, message : String){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     

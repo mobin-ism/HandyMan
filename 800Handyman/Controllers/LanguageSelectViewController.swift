@@ -30,7 +30,7 @@ class LanguageSelectViewController: UIViewController {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("Select your preferred language", comment: "select preferred language")
+        label.text = "Select your preferred language".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.textColor = UIColor.black
         label.textAlignment = .center
@@ -161,6 +161,23 @@ class LanguageSelectViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    private func alert(title : String, message : String){
+        
+        // Create the alert controller
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // Create the actions
+        let okAction = UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            exit(20)
+        }
+
+        // Add the actions
+        alertController.addAction(okAction)
+        
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+    }
     func registerDeviceToken(){
         print(UserDefaults.standard.value(forKey: DEVICE_ID) as! String)
         self.activityIndicator.startAnimating()

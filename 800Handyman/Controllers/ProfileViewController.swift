@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Localize_Swift
 
 class ProfileViewController: UIViewController {
     
@@ -113,7 +114,7 @@ class ProfileViewController: UIViewController {
         label.textAlignment = .left
         label.textColor = UIColor.gray
         label.font = UIFont(name: OPENSANS_REGULAR, size: 10)
-        label.text = NSLocalizedString("Credit card", comment: "Credit card")
+        label.text = "Credit card".localized()
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -132,7 +133,7 @@ class ProfileViewController: UIViewController {
     
     lazy var editButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("EDIT", comment: "EDIT"), for: .normal)
+        button.setTitle("EDIT".localized(), for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.black
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 12)
@@ -144,7 +145,7 @@ class ProfileViewController: UIViewController {
     
     lazy var addNewButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("ADD NEW", comment: "ADD NEW"), for: .normal)
+        button.setTitle("ADD NEW".localized(), for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = YELLOW_ACCENT
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 12)
@@ -164,7 +165,7 @@ class ProfileViewController: UIViewController {
     }()
     
     let profileInfoCellId = "ProfileInfoCell"
-    let infos = ["Total Spent", "Loyalty Point", "Total Job", "Completed Job", "Running Job",  "Cancel Job"]
+    let infos = ["Total Spent".localized(), "Loyalty Point".localized(), "Total Job".localized(), "Completed Job".localized(), "Running Job".localized(),  "Cancel Job".localized()]
     var mains = ["", "", "", "", "", ""]
     
     override func viewDidLoad() {

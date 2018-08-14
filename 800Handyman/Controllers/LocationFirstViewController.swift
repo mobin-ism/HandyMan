@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import Alamofire
+import Localize_Swift
 
 class LocationFirstViewController: UIViewController{
     
@@ -51,7 +52,7 @@ class LocationFirstViewController: UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Area"
+        label.text = "Area".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -62,7 +63,7 @@ class LocationFirstViewController: UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Address Name (Optional)"
+        label.text = "Address Name (Optional)".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +74,7 @@ class LocationFirstViewController: UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Address Type"
+        label.text = "Address Type".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +85,7 @@ class LocationFirstViewController: UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Street / Building"
+        label.text = "Street / Building".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -95,7 +96,7 @@ class LocationFirstViewController: UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Apartment no / Villa no"
+        label.text = "Apartment no / Villa no".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -116,7 +117,7 @@ class LocationFirstViewController: UIViewController{
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Select An Area"
+        label.text = "Select An Area".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -141,7 +142,7 @@ class LocationFirstViewController: UIViewController{
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Facilisis"
+        //field.placeholder = "Facilisis"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -154,7 +155,7 @@ class LocationFirstViewController: UIViewController{
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Apartment"
+        //field.placeholder = "Apartment"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -167,7 +168,7 @@ class LocationFirstViewController: UIViewController{
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Maecenas"
+        //field.placeholder = "Maecenas"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -180,7 +181,7 @@ class LocationFirstViewController: UIViewController{
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "45, LPT"
+        //field.placeholder = "45, LPT"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -188,7 +189,7 @@ class LocationFirstViewController: UIViewController{
     
     lazy var nextButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("NEXT", for: .normal)
+        button.setTitle("NEXT".localized(), for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = YELLOW_ACCENT
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
@@ -258,9 +259,10 @@ class LocationFirstViewController: UIViewController{
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
+        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
     }
     
     func setMapViewToCurrentLocation() {
@@ -443,6 +445,10 @@ class LocationFirstViewController: UIViewController{
     }
     
     var secondLocationVC = LocationSecondViewController()
+    
+    @objc func backTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension LocationFirstViewController: UIScrollViewDelegate {
@@ -517,14 +523,14 @@ extension LocationFirstViewController : GMSMapViewDelegate {
 extension LocationFirstViewController {
     
     func showEmptyAlert(){
-        let alert = UIAlertController(title: "Ooops!!", message: "Fields can not be empty", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "Ooops!!".localized(), message: "Fields can not be empty".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     func showAlertForEmptyCoordinate(){
-        let alert = UIAlertController(title: "Ooops!!", message: "You have to pick a specific address from the map", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "Ooops!!".localized(), message: "You have to pick a specific address from the map".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     

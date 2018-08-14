@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import Photos
-
+import Localize_Swift
 class ServiceDetailsViewController: UIViewController {
     
     var selectedServiceId : Int!
@@ -30,7 +30,6 @@ class ServiceDetailsViewController: UIViewController {
         return scroll
     }()
     
-    
     let gifArrow : UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +45,7 @@ class ServiceDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = "Service Details"
+        label.text = "Service Details".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +54,7 @@ class ServiceDetailsViewController: UIViewController {
     
     let jobTitleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_BOLD, size: 16)
         label.clipsToBounds = true
@@ -65,7 +64,7 @@ class ServiceDetailsViewController: UIViewController {
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .right
+        label.textAlignment = .natural
         label.textColor = UIColor.gray
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
@@ -97,7 +96,7 @@ class ServiceDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Description"
+        label.text = "Description".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -111,7 +110,7 @@ class ServiceDetailsViewController: UIViewController {
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Write Your Job Details"
+        //field.placeholder = "Write Your Job Details"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -134,7 +133,7 @@ class ServiceDetailsViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Any Special Note (Optional)"
+        label.text = "Any Special Note (Optional)".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -148,7 +147,7 @@ class ServiceDetailsViewController: UIViewController {
         field.layer.cornerRadius = 4
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
-        field.placeholder = "Don't press the door bell"
+        //field.placeholder = "Don't press the door bell"
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -156,7 +155,7 @@ class ServiceDetailsViewController: UIViewController {
     
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Next", for: .normal)
+        button.setTitle("Next".localized(), for: .normal)
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = YELLOW_ACCENT
@@ -171,7 +170,7 @@ class ServiceDetailsViewController: UIViewController {
     
     let addAnotherServiceButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("ADD ANOTHER SERVICE REQUEST", for: .normal)
+        button.setTitle("ADD ANOTHER SERVICE REQUEST".localized(), for: .normal)
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.black
@@ -188,7 +187,7 @@ class ServiceDetailsViewController: UIViewController {
     
     let cancelButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("CANCEL", for: .normal)
+        button.setTitle("CANCEL".localized(), for: .normal)
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor.white
@@ -236,9 +235,7 @@ class ServiceDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         numberOfItems = self.imageArray.count
-        
         view.backgroundColor = BACKGROUND_COLOR
         setNavigationBar()
         collectionView.register(ServiceRequestImageCell.self, forCellWithReuseIdentifier: serviceRequestImageCellID)
@@ -274,9 +271,11 @@ class ServiceDetailsViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
+        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "searchIcon"), style: .plain, target: nil, action: nil)
     }
     
@@ -431,6 +430,10 @@ class ServiceDetailsViewController: UIViewController {
     @objc func dismissKeyboard(){
         view.endEditing(true)
     }
+    
+    @objc func backTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension ServiceDetailsViewController: UIScrollViewDelegate {
@@ -498,7 +501,7 @@ extension ServiceDetailsViewController: UICollectionViewDelegateFlowLayout {
 extension ServiceDetailsViewController {
     
     func showEmptyAlert( requiredField : String ){
-        let alert = UIAlertController(title: "Ooops!!", message: "\(requiredField) field can not be empty", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Ooops!!".localized(), message: "\(requiredField) Fields can not be empty".localized(), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -547,12 +550,12 @@ extension ServiceDetailsViewController {
         guard let title       = self.jobSubTitleLabel.text else { return }
         
         if description == "" {
-            self.showEmptyAlert(requiredField: "Description")
+            self.showEmptyAlert(requiredField: "Description".localized())
             return
         }
         
         if title == "" {
-            self.showEmptyAlert(requiredField: "Title")
+            self.showEmptyAlert(requiredField: "Title".localized())
             return
         }
         

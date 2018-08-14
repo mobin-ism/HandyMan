@@ -8,6 +8,7 @@
 
 import Alamofire
 import HCSStarRatingView
+import Localize_Swift
 
 class CustomerJobDone : UIViewController {
     
@@ -24,7 +25,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Service Details", comment: "Service Details")
+        label.text = "Service Details".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +73,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Address", comment: "Address")
+        label.text = "Address".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -122,7 +123,7 @@ class CustomerJobDone : UIViewController {
     
     let locationEditButton : UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("Edit", comment: "Edit"), for: .normal)
+        button.setTitle("Edit".localized(), for: .normal)
         button.setTitleColor(UIColor.gray, for: .normal)
         button.backgroundColor = UIColor.clear
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -137,7 +138,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Date and Time", comment: "Date and Time")
+        label.text = "Date and Time".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -158,7 +159,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Job ID", comment: "Job ID")
+        label.text = "Job ID".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -172,7 +173,6 @@ class CustomerJobDone : UIViewController {
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "hjkkhkhj"
         return label
     }()
     
@@ -180,7 +180,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Task Completed", comment: "Task Completed")
+        label.text = "Task Completed".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -194,7 +194,6 @@ class CustomerJobDone : UIViewController {
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "sakjhksad"
         return label
     }()
     
@@ -210,7 +209,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Rate Our Service", comment: "Rate Our Service")
+        label.text = "Rate Our Service".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -245,7 +244,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Note", comment: "Note")
+        label.text = "Note".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -268,7 +267,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Do You Like To Pay Tips", comment: "Do You Like To Pay Tips")
+        label.text = "Do You Like To Pay Tips".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -277,7 +276,7 @@ class CustomerJobDone : UIViewController {
     
     let dateTimeEditButton : UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("Edit", comment: "Edit"), for: .normal)
+        button.setTitle("Edit".localized(), for: .normal)
         button.setTitleColor(UIColor.gray, for: .normal)
         button.backgroundColor = UIColor.clear
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -290,7 +289,7 @@ class CustomerJobDone : UIViewController {
     
     lazy var payNowButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("RATE NOW", for: .normal)
+        button.setTitle("RATE NOW".localized(), for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = YELLOW_ACCENT
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
@@ -306,7 +305,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Your payment method", comment: "Your payment method")
+        label.text = "Your payment method".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -414,7 +413,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Different Credit Card", comment: "Different Credit Card")
+        label.text = "Different Credit Card".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -425,7 +424,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Card On Delivery", comment: "Card On Delivery")
+        label.text = "Card On Delivery".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -436,7 +435,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Cash On Delivery", comment: "Cash On Delivery")
+        label.text = "Cash On Delivery".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -447,7 +446,7 @@ class CustomerJobDone : UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("You won't need to pay at this moment. Our technician will verify the spot and inform you the real cost ", comment: "You won't need to pay at this moment. Our technician will verify the spot and inform you the real cost")
+        label.text = "You won't need to pay at this moment. Our technician will verify the spot and inform you the real cost ".localized()
         label.font = UIFont(name: OPENSANS_LIGHTITALIC, size : 13)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -761,13 +760,13 @@ class CustomerJobDone : UIViewController {
     
     var editServiceRequestDetailsOBJ = EditServiceDetailsViewController()
     func editServiceDetails(serviceRequestDetailsID : Int) {
-        self.alert2(title: "Oops...", message: "Sorry you can not edit Service Request details from here.")
+        self.alert2(title: "Ooops!!".localized(), message: "Sorry you can not edit Service Request details from here.".localized())
     }
     
     private func alert2(title : String, message : String){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: { action in
             
         }))
         self.present(alert, animated: true, completion: nil)
@@ -777,7 +776,7 @@ class CustomerJobDone : UIViewController {
     private func alert(title : String, message : String){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: { action in
             let viewControllers: [UIViewController] = self.navigationController!.viewControllers
             for aViewController in viewControllers {
                 if aViewController is JobListViewController {
@@ -990,7 +989,7 @@ extension CustomerJobDone {
             // code after a successfull reponse
             self.activityIndicator.stopAnimating()
             print(response)
-            self.alert(title: "Thank You", message: "Thanks for rating our service. We really appreciate it.")
+            self.alert(title: "Thank You".localized(), message: "Thanks for rating our service. We really appreciate it.".localized())
         })
     }
 }
@@ -1005,7 +1004,7 @@ extension CustomerJobDone : UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Write your comments"
+            textView.text = "Write your comments".localized()
             textView.textColor = UIColor.lightGray
         }
     }

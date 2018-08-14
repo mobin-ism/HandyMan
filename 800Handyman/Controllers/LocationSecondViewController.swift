@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import Localize_Swift
 
 class LocationSecondViewController: UIViewController {
     
@@ -34,7 +35,7 @@ class LocationSecondViewController: UIViewController {
     
     lazy var locationConfirmButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("LOCATION CONFIRMED", for: .normal)
+        button.setTitle("LOCATION CONFIRMED".localized(), for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = YELLOW_ACCENT
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
@@ -47,7 +48,7 @@ class LocationSecondViewController: UIViewController {
     
     lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("BACK", for: .normal)
+        button.setTitle("BACK".localized(), for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor.white
         button.titleLabel?.font = UIFont(name: OPENSANS_SEMIBOLD, size: 14)
@@ -72,7 +73,7 @@ class LocationSecondViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Address"
+        label.text = "Address".localized()
         label.font = UIFont(name: OPENSANS_SEMIBOLD, size: 10)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -124,9 +125,10 @@ class LocationSecondViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
+        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
     }
     
     func setMapViewToCurrentLocation() {
@@ -231,6 +233,9 @@ class LocationSecondViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc func backTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 

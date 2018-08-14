@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Localize_Swift
 
 class NotificationViewController: UIViewController {
     
@@ -17,7 +18,6 @@ class NotificationViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.text = NSLocalizedString("Notification", comment: "Notification")
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +60,7 @@ class NotificationViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = BACKGROUND_COLOR
         setNavigationBar()
-        
+
         collectionView.register(NotificationCell.self, forCellWithReuseIdentifier: notificationCellId)
         
         layout()
@@ -68,7 +68,12 @@ class NotificationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if (UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as! String == "ar") {
+            self.titleLabel.text = "الإشعارات"
+        }
+        else {
+            self.titleLabel.text = "Notification"
+        }
         // API
         self.getNotifications()
     }
@@ -113,7 +118,7 @@ class NotificationViewController: UIViewController {
     private func alert(title : String, message : String){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     

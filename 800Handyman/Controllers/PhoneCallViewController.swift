@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Localize_Swift
+
 class PhoneCallViewController: UIViewController {
     
     let backgroundImageView: UIImageView = {

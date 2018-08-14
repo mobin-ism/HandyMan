@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import Localize_Swift
 class ServiceViewController: UIViewController {
     
     // this data will come from HomeViewController
@@ -131,9 +131,10 @@ class ServiceViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
+        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
     }
     
     private func layout() {
@@ -206,6 +207,10 @@ class ServiceViewController: UIViewController {
         topImageView.sd_setImage(with: URL(string: self.servicesIcon[self.keyValue]))
         titleLabel.text = self.servicesName[self.keyValue]
         collectionView.reloadData()
+    }
+    
+    @objc func backTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

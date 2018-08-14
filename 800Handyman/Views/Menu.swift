@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class Menu: NSObject {
     
@@ -70,7 +71,14 @@ class Menu: NSObject {
     }()
     
     let cellId = "MenuCell"
-    let menuItems = ["Home", "Notification", "Service History", "Profile", "Language"]
+    //let menuItems = ["Home".localized(), "Notification".localized(), "Service History".localized(), "Profile".localized(), "Language".localized()]
+    
+    var home = "Home".localized()
+    var notification = "Notification".localized()
+    var serviceHistory = "Service History".localized()
+    var profile = "Profile".localized()
+    var language = "Language".localized()
+    
     let menuIcons = [#imageLiteral(resourceName: "home_slider_icon"), #imageLiteral(resourceName: "notification_slider_icon"), #imageLiteral(resourceName: "users_slider_icon"), #imageLiteral(resourceName: "phone_slider_icon"), #imageLiteral(resourceName: "chat_slider_icon")]
     var loginStatus : String = ""
     
@@ -83,16 +91,31 @@ class Menu: NSObject {
     func show(fromVC : UIViewController) {
         if Helper.Exists(key: IS_LOGGED_IN){
             if (UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool == true) {
-                self.loginStatus = "Logout"
+                self.loginStatus = "Logout".localized()
+                self.home = "Home".localized()
+                self.notification = "Notification".localized()
+                self.serviceHistory = "Service History".localized()
+                self.profile = "Profile".localized()
+                self.language = "Language".localized()
                 print("Logged In")
             }
             else if (UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool == false) {
-                self.loginStatus = "Login"
+                self.loginStatus = "Login".localized()
+                self.home = "Home".localized()
+                self.notification = "Notification".localized()
+                self.serviceHistory = "Service History".localized()
+                self.profile = "Profile".localized()
+                self.language = "Language".localized()
                 print("Logged Out")
             }
         }
         else {
-            self.loginStatus = "Login"
+            self.loginStatus = "Login".localized()
+            self.home = "Home".localized()
+            self.notification = "Notification".localized()
+            self.serviceHistory = "Service History".localized()
+            self.profile = "Profile".localized()
+            self.language = "Language".localized()
             UserDefaults.standard.set(false, forKey: IS_LOGGED_IN)
             print("Logged Out")
         }
@@ -178,17 +201,29 @@ extension Menu: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuItems.count + 1
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? MenuCell {
             //cell.icon = menuIcons[indexPath.row]
-            if indexPath.row == 5 {
-                cell.titleText = self.loginStatus
+            if indexPath.row == 0 {
+                cell.titleText = self.home
             }
-            else {
-                cell.titleText = menuItems[indexPath.row]
+            else if indexPath.row == 1 {
+                cell.titleText = self.notification
+            }
+            else if indexPath.row == 2 {
+                cell.titleText = self.serviceHistory
+            }
+            else if indexPath.row == 3 {
+                cell.titleText = self.profile
+            }
+            else if indexPath.row == 4 {
+                cell.titleText = self.language
+            }
+            else if indexPath.row == 5 {
+                cell.titleText = self.loginStatus
             }
             return cell
         } else {

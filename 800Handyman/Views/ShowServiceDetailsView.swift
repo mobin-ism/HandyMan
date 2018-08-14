@@ -10,6 +10,7 @@
 import UIKit
 import Alamofire
 import SDWebImage
+import Localize_Swift
 
 class ShowServiceDetailsView : UIViewController {
     
@@ -109,7 +110,7 @@ class ShowServiceDetailsView : UIViewController {
         let button = UIButton(type: .system)
         //button.setImage(#imageLiteral(resourceName: "down_arrow"), for: .normal)
         //button.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
-        button.setTitle("Edit", for: .normal)
+        button.setTitle("Edit".localized(), for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor.clear
         button.titleLabel?.font = UIFont(name: OPENSANS_REGULAR, size: 16)
@@ -128,7 +129,7 @@ class ShowServiceDetailsView : UIViewController {
         label.font = UIFont(name: OPENSANS_REGULAR, size: 13)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Edit"
+        label.text = "Edit".localized()
         label.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleEditButton))
         label.addGestureRecognizer(tap)
