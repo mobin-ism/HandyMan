@@ -42,7 +42,6 @@ class MenuCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         self.backgroundColor = UIColor.clear
         self.selectionStyle = .none
         setupSubviews()
@@ -51,6 +50,7 @@ class MenuCell: UITableViewCell {
     func setupSubviews() {
         //setupIconImageView()
         setupTitleLabel()
+        self.layoutIfNeeded()
     }
     
     func setupIconImageView() {
@@ -65,12 +65,12 @@ class MenuCell: UITableViewCell {
         self.addSubview(titleLabel)
         titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 

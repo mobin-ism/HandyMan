@@ -15,6 +15,7 @@ class ServiceViewController: UIViewController {
     
     var keyValue : Int!
     var selectedServiceId : Int!
+    var selectedLanguage : String?
     var serviceId    = [Int]()
     var servicesName = [String]()
     var servicesIcon = [String]()
@@ -106,16 +107,13 @@ class ServiceViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = BACKGROUND_COLOR
         setNavigationBar()
-        
         collectionView.register(ServiceChildCell.self, forCellWithReuseIdentifier: serviceChildCellId)
-        
         layout()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // API Calls
         self.getSubServices(selectedServiceId: self.selectedServiceId)
     }
@@ -130,10 +128,6 @@ class ServiceViewController: UIViewController {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
-        
-        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
     }
     
@@ -152,7 +146,12 @@ class ServiceViewController: UIViewController {
     private func setServiceMenu() {
         view.addSubview(serviceMenu)
         serviceMenu.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        serviceMenu.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        if  Helper.selectedLanguage == "en" {
+            serviceMenu.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        }
+        else if Helper.selectedLanguage == "ar" {
+            serviceMenu.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        }
         serviceMenu.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         serviceMenu.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.16).isActive = true
     }
@@ -161,7 +160,12 @@ class ServiceViewController: UIViewController {
         view.addSubview(verticalLine)
         verticalLine.topAnchor.constraint(equalTo: serviceMenu.topAnchor).isActive = true
         verticalLine.bottomAnchor.constraint(equalTo: serviceMenu.bottomAnchor).isActive = true
-        verticalLine.leftAnchor.constraint(equalTo: serviceMenu.rightAnchor).isActive = true
+        if Helper.selectedLanguage == "en" {
+            verticalLine.leftAnchor.constraint(equalTo: serviceMenu.rightAnchor).isActive = true
+        }
+        else if Helper.selectedLanguage == "ar" {
+            verticalLine.rightAnchor.constraint(equalTo: serviceMenu.leftAnchor).isActive = true
+        }
         verticalLine.widthAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
@@ -190,8 +194,15 @@ class ServiceViewController: UIViewController {
     private func setCollectionView() {
         view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: serviceMenu.rightAnchor, constant: 16).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        if Helper.selectedLanguage == "en" {
+            collectionView.leftAnchor.constraint(equalTo: serviceMenu.rightAnchor, constant: 16).isActive = true
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        }
+        else if Helper.selectedLanguage == "ar" {
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+            collectionView.rightAnchor.constraint(equalTo: serviceMenu.leftAnchor, constant: -16).isActive = true
+        }
+        
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     

@@ -11,8 +11,8 @@ import Localize_Swift
 
 class Menu: NSObject {
     
+    var selectedLanguage : String?
     var vc = UIViewController()
-    
     var homeController = HomeViewController()
     var notificationVC = NotificationViewController()
     var profileVC = ProfileViewController()
@@ -84,11 +84,13 @@ class Menu: NSObject {
     
     override init() {
         super.init()
-        
         tableView.register(MenuCell.self, forCellReuseIdentifier: cellId)
     }
     
     func show(fromVC : UIViewController) {
+        
+        self.selectedLanguage = UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as? String
+        
         if Helper.Exists(key: IS_LOGGED_IN){
             if (UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool == true) {
                 self.loginStatus = "Logout".localized()
@@ -145,14 +147,25 @@ class Menu: NSObject {
     func setupContainerView(window: UIWindow) {
         window.addSubview(containerView)
         let width = window.frame.width * 0.85
-        containerView.frame = CGRect(x: -window.frame.width, y: 0, width: width, height: window.frame.height)
         
+        guard let selectedLanguage = self.selectedLanguage else { return }
+        if selectedLanguage == "en" {
+            containerView.frame = CGRect(x: -window.frame.width, y: 0, width: width, height: window.frame.height)
+        }
+        else if selectedLanguage == "ar" {
+            containerView.frame = CGRect(x: window.frame.width, y: 0, width: width, height: window.frame.height)
+        }
         setupLogoImageView()
         setupCopyrightLabels()
         setupTableView()
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-            self.containerView.frame = CGRect(x: 0, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+            if  selectedLanguage == "en" {
+                self.containerView.frame = CGRect(x: 0, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+            }
+            else if selectedLanguage == "ar" {
+                self.containerView.frame = CGRect(x: (window.frame.width - self.containerView.frame.width), y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+            }
         }, completion: nil)
     }
     
@@ -187,7 +200,16 @@ class Menu: NSObject {
     @objc func hide() {
         if let window = UIApplication.shared.keyWindow {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.containerView.frame = CGRect(x: -window.frame.width, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+                
+                guard let selectedLanguage = self.selectedLanguage else { return }
+                if selectedLanguage == "en" {
+                    self.containerView.frame = CGRect(x: -window.frame.width, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+                }
+                
+                else if selectedLanguage == "ar" {
+                    self.containerView.frame = CGRect(x: window.frame.width, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+                }
+                
                 self.backgroundView.alpha = 0
             }, completion: nil)
         }
@@ -224,6 +246,14 @@ extension Menu: UITableViewDelegate, UITableViewDataSource {
             }
             else if indexPath.row == 5 {
                 cell.titleText = self.loginStatus
+            }
+            
+            if let selectedLanguage = self.selectedLanguage {
+                if selectedLanguage == "en" {
+                    cell.titleLabel.textAlignment = .left
+                }else if selectedLanguage == "ar" {
+                    cell.titleLabel.textAlignment = .right
+                }
             }
             return cell
         } else {

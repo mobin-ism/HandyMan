@@ -22,6 +22,10 @@ class Helper {
         return false
     }
     
+    public static var selectedLanguage : String {
+        return UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as! String
+    }
+    
     public static func getDateAndTime(timeInterval : Int, dateFormat : String) -> String {
         
         let date = Date(timeIntervalSince1970: TimeInterval(timeInterval / 1000))
