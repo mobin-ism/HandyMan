@@ -56,7 +56,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let locationTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Location".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -67,7 +67,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let areaNameLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -78,7 +78,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let addressLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -89,7 +89,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let streetLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -100,7 +100,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let apartmentLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -124,7 +124,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let dateAndTimeTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Date and Time".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -135,7 +135,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let dateAndTimeLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -158,7 +158,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let paymentTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Your payment method".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -169,7 +169,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let masterCardLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = NSLocalizedString("xxx-6039", comment: "xxx-6039")
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -266,7 +266,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let differentCreditCardLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Card".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -277,7 +277,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let visaCardLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Card On Delivery".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -288,7 +288,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     
     let cashOnDeliveryLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Cash On Delivery".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -383,10 +383,6 @@ class ReschedulePendingOrdersViewController : UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
-         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
         
     }
@@ -425,8 +421,8 @@ class ReschedulePendingOrdersViewController : UIViewController {
     private func setupScrollView() {
         view.addSubview(scrollView)
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
@@ -440,79 +436,79 @@ class ReschedulePendingOrdersViewController : UIViewController {
         let collectionViewHeight : CGFloat = CGFloat((self.listOfServices.count * 90) + (self.listOfServices.count * 8))
         scrollView.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight).isActive = true
     }
     
     private func setupLocationTitleLabel() {
         scrollView.addSubview(locationTitleLabel)
         locationTitleLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 30).isActive = true
-        locationTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        locationTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupLocationEditButton() {
         scrollView.addSubview(locationEditButton)
         locationEditButton.centerYAnchor.constraint(equalTo: locationTitleLabel.centerYAnchor).isActive = true
-        locationEditButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        locationEditButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupAreaNameLabel() {
         scrollView.addSubview(areaNameLabel)
-        areaNameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        areaNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         areaNameLabel.topAnchor.constraint(equalTo: locationTitleLabel.bottomAnchor, constant: 8).isActive = true
-        areaNameLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        areaNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupAddressLabel() {
         scrollView.addSubview(addressLabel)
-        addressLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        addressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         addressLabel.topAnchor.constraint(equalTo: areaNameLabel.bottomAnchor, constant: 5).isActive = true
-        addressLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        addressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupStreetLabel() {
         scrollView.addSubview(streetLabel)
-        streetLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        streetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         streetLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 5).isActive = true
-        streetLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        streetLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupApartmentLabel() {
         scrollView.addSubview(apartmentLabel)
-        apartmentLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        apartmentLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         apartmentLabel.topAnchor.constraint(equalTo: streetLabel.bottomAnchor, constant: 5).isActive = true
-        apartmentLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        apartmentLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupDateAndTimeTitleLabel() {
         scrollView.addSubview(dateAndTimeTitleLabel)
         dateAndTimeTitleLabel.topAnchor.constraint(equalTo: apartmentLabel.bottomAnchor, constant: 16).isActive = true
-        dateAndTimeTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        dateAndTimeTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupDateAndTimeEditButton() {
         scrollView.addSubview(dateTimeEditButton)
         dateTimeEditButton.centerYAnchor.constraint(equalTo: dateAndTimeTitleLabel.centerYAnchor).isActive = true
-        dateTimeEditButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        dateTimeEditButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupDateAndTimeLabel() {
         scrollView.addSubview(dateAndTimeLabel)
         dateAndTimeLabel.topAnchor.constraint(equalTo: dateAndTimeTitleLabel.bottomAnchor, constant: 8).isActive = true
-        dateAndTimeLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        dateAndTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupPaymentMethodsLabel() {
         scrollView.addSubview(paymentTitleLabel)
         paymentTitleLabel.topAnchor.constraint(equalTo: dateAndTimeLabel.bottomAnchor, constant: 16).isActive = true
-        paymentTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        paymentTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupMasterCardButton() {
         scrollView.addSubview(masterCardRadioButton)
         masterCardRadioButton.topAnchor.constraint(equalTo: paymentTitleLabel.bottomAnchor, constant: 16).isActive = true
-        masterCardRadioButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        masterCardRadioButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         masterCardRadioButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         masterCardRadioButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
     }
@@ -520,7 +516,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     private func setupMasterCardImageView() {
         scrollView.addSubview(masterImageView)
         masterImageView.centerYAnchor.constraint(equalTo: masterCardRadioButton.centerYAnchor).isActive = true
-        masterImageView.leftAnchor.constraint(equalTo: masterCardRadioButton.rightAnchor, constant: 5).isActive = true
+        masterImageView.leadingAnchor.constraint(equalTo: masterCardRadioButton.trailingAnchor, constant: 5).isActive = true
         masterImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         masterImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
     }
@@ -528,13 +524,13 @@ class ReschedulePendingOrdersViewController : UIViewController {
     private func setupMasterCardTitleLabel() {
         scrollView.addSubview(masterCardLabel)
         masterCardLabel.centerYAnchor.constraint(equalTo: masterCardRadioButton.centerYAnchor).isActive = true
-        masterCardLabel.leftAnchor.constraint(equalTo: masterImageView.rightAnchor, constant: 5).isActive = true
+        masterCardLabel.leadingAnchor.constraint(equalTo: masterImageView.trailingAnchor, constant: 5).isActive = true
     }
     
     private func setupDifferentCardButton() {
         scrollView.addSubview(differentCardRadioButton)
         differentCardRadioButton.topAnchor.constraint(equalTo: paymentTitleLabel.bottomAnchor, constant: 16).isActive = true
-        differentCardRadioButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        differentCardRadioButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         differentCardRadioButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         differentCardRadioButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
     }
@@ -542,7 +538,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     private func setupDifferentCardImageView() {
         scrollView.addSubview(differentCreditCardImageView)
         differentCreditCardImageView.centerYAnchor.constraint(equalTo: differentCardRadioButton.centerYAnchor).isActive = true
-        differentCreditCardImageView.leftAnchor.constraint(equalTo: differentCardRadioButton.rightAnchor, constant: 5).isActive = true
+        differentCreditCardImageView.leadingAnchor.constraint(equalTo: differentCardRadioButton.trailingAnchor, constant: 5).isActive = true
         differentCreditCardImageView.heightAnchor.constraint(equalToConstant: 15).isActive = true
         differentCreditCardImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
     }
@@ -550,13 +546,13 @@ class ReschedulePendingOrdersViewController : UIViewController {
     private func setupDifferentCardTitleLabel() {
         scrollView.addSubview(differentCreditCardLabel)
         differentCreditCardLabel.centerYAnchor.constraint(equalTo: differentCardRadioButton.centerYAnchor).isActive = true
-        differentCreditCardLabel.leftAnchor.constraint(equalTo: differentCreditCardImageView.rightAnchor, constant: 5).isActive = true
+        differentCreditCardLabel.leadingAnchor.constraint(equalTo: differentCreditCardImageView.trailingAnchor, constant: 5).isActive = true
     }
     
     private func setupVisaCardButton() {
         scrollView.addSubview(visaCardRadioButton)
         visaCardRadioButton.topAnchor.constraint(equalTo: differentCardRadioButton.bottomAnchor, constant: 8).isActive = true
-        visaCardRadioButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        visaCardRadioButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         visaCardRadioButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         visaCardRadioButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
     }
@@ -564,7 +560,7 @@ class ReschedulePendingOrdersViewController : UIViewController {
     private func setupVisaCardImageView() {
         scrollView.addSubview(visaCardImageView)
         visaCardImageView.centerYAnchor.constraint(equalTo: visaCardRadioButton.centerYAnchor).isActive = true
-        visaCardImageView.leftAnchor.constraint(equalTo: visaCardRadioButton.rightAnchor, constant: 5).isActive = true
+        visaCardImageView.leadingAnchor.constraint(equalTo: visaCardRadioButton.trailingAnchor, constant: 5).isActive = true
         visaCardImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         visaCardImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
     }
@@ -572,13 +568,13 @@ class ReschedulePendingOrdersViewController : UIViewController {
     private func setupVisaCardTitleLabel() {
         scrollView.addSubview(visaCardLabel)
         visaCardLabel.centerYAnchor.constraint(equalTo: visaCardRadioButton.centerYAnchor).isActive = true
-        visaCardLabel.leftAnchor.constraint(equalTo: visaCardImageView.rightAnchor, constant: 5).isActive = true
+        visaCardLabel.leadingAnchor.constraint(equalTo: visaCardImageView.trailingAnchor, constant: 5).isActive = true
     }
     
     private func setupCashOnDeliveryButton() {
         scrollView.addSubview(cashOnDelivertRadioButton)
         cashOnDelivertRadioButton.topAnchor.constraint(equalTo: differentCardRadioButton.bottomAnchor, constant: 8).isActive = true
-        cashOnDelivertRadioButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        cashOnDelivertRadioButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         cashOnDelivertRadioButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         cashOnDelivertRadioButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
     }
@@ -586,22 +582,22 @@ class ReschedulePendingOrdersViewController : UIViewController {
     private func setupCashOnDeliveryTitleLabel() {
         scrollView.addSubview(cashOnDeliveryLabel)
         cashOnDeliveryLabel.centerYAnchor.constraint(equalTo: cashOnDelivertRadioButton.centerYAnchor).isActive = true
-        cashOnDeliveryLabel.leftAnchor.constraint(equalTo: cashOnDelivertRadioButton.rightAnchor, constant: 5).isActive = true
+        cashOnDeliveryLabel.leadingAnchor.constraint(equalTo: cashOnDelivertRadioButton.trailingAnchor, constant: 5).isActive = true
     }
     
     private func setupNoteLabel() {
         scrollView.addSubview(noteLabel)
         noteLabel.topAnchor.constraint(equalTo: cashOnDelivertRadioButton.bottomAnchor, constant: 32).isActive = true
         noteLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        noteLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        noteLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        noteLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        noteLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupPayNowButtonButton() {
         scrollView.addSubview(payNowButton)
         payNowButton.topAnchor.constraint(equalTo: cashOnDelivertRadioButton.bottomAnchor, constant: 32).isActive = true
-        payNowButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        payNowButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        payNowButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        payNowButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         payNowButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     

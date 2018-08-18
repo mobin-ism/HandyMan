@@ -146,12 +146,7 @@ class ServiceViewController: UIViewController {
     private func setServiceMenu() {
         view.addSubview(serviceMenu)
         serviceMenu.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        if  Helper.selectedLanguage == "en" {
-            serviceMenu.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        }
-        else if Helper.selectedLanguage == "ar" {
-            serviceMenu.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        }
+        serviceMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         serviceMenu.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         serviceMenu.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.16).isActive = true
     }
@@ -160,12 +155,7 @@ class ServiceViewController: UIViewController {
         view.addSubview(verticalLine)
         verticalLine.topAnchor.constraint(equalTo: serviceMenu.topAnchor).isActive = true
         verticalLine.bottomAnchor.constraint(equalTo: serviceMenu.bottomAnchor).isActive = true
-        if Helper.selectedLanguage == "en" {
-            verticalLine.leftAnchor.constraint(equalTo: serviceMenu.rightAnchor).isActive = true
-        }
-        else if Helper.selectedLanguage == "ar" {
-            verticalLine.rightAnchor.constraint(equalTo: serviceMenu.leftAnchor).isActive = true
-        }
+        verticalLine.leadingAnchor.constraint(equalTo: serviceMenu.trailingAnchor).isActive = true
         verticalLine.widthAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
@@ -179,8 +169,8 @@ class ServiceViewController: UIViewController {
     private func setTopImageView() {
         topImageHolder.addSubview(topImageView)
         topImageView.topAnchor.constraint(equalTo: topImageHolder.topAnchor).isActive = true
-        topImageView.leftAnchor.constraint(equalTo: topImageHolder.leftAnchor).isActive = true
-        topImageView.rightAnchor.constraint(equalTo: topImageHolder.rightAnchor).isActive = true
+        topImageView.leadingAnchor.constraint(equalTo: topImageHolder.leadingAnchor).isActive = true
+        topImageView.trailingAnchor.constraint(equalTo: topImageHolder.trailingAnchor).isActive = true
         topImageView.bottomAnchor.constraint(equalTo: topImageHolder.bottomAnchor).isActive = true
     }
     
@@ -194,15 +184,8 @@ class ServiceViewController: UIViewController {
     private func setCollectionView() {
         view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
-        if Helper.selectedLanguage == "en" {
-            collectionView.leftAnchor.constraint(equalTo: serviceMenu.rightAnchor, constant: 16).isActive = true
-            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-        }
-        else if Helper.selectedLanguage == "ar" {
-            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-            collectionView.rightAnchor.constraint(equalTo: serviceMenu.leftAnchor, constant: -16).isActive = true
-        }
-        
+        collectionView.leadingAnchor.constraint(equalTo: serviceMenu.trailingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     

@@ -108,7 +108,7 @@
 "Street Name:" = "Street Name:";
 "Apartment No.:" = "Apartment No.:";
 "Customer Job Done" = "Customer Job Done";
-"Request ID" = "Request ID";
+"Request ID: " = "Request ID: ";
 "Status: " = "Status: ";
 "Completed" = "Completed";
 "Total Price" = "Total Price";
@@ -122,6 +122,7 @@
 "Remove" = "Remove";
 "Card" = "Card";
 "Phone No." = "Phone No.";
+"Email" = "Email";
 
 
 

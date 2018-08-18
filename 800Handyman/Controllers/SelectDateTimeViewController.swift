@@ -31,7 +31,7 @@ class SelectDateTimeViewController: UIViewController {
     
     let selectDateLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Select date".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -53,7 +53,7 @@ class SelectDateTimeViewController: UIViewController {
     
     let dateLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "MM-DD-YYYY".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
@@ -74,7 +74,7 @@ class SelectDateTimeViewController: UIViewController {
     
     let timeSlotLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Available Time Slot".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -186,8 +186,9 @@ class SelectDateTimeViewController: UIViewController {
     
     private func setSelectDateLabel() {
         view.addSubview(selectDateLabel)
-        selectDateLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         selectDateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
+        selectDateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        selectDateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setDateHolder() {
@@ -201,7 +202,8 @@ class SelectDateTimeViewController: UIViewController {
     private func setDateLabel() {
         dateHolder.addSubview(dateLabel)
         dateLabel.centerYAnchor.constraint(equalTo: dateHolder.centerYAnchor).isActive = true
-        dateLabel.leftAnchor.constraint(equalTo: dateHolder.leftAnchor, constant: 16).isActive = true
+        dateLabel.leadingAnchor.constraint(equalTo: dateHolder.leadingAnchor, constant: 16).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: dateHolder.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setDownArrowIcon() {
@@ -214,7 +216,8 @@ class SelectDateTimeViewController: UIViewController {
     
     private func setTimeSlotLabel() {
         view.addSubview(timeSlotLabel)
-        timeSlotLabel.leftAnchor.constraint(equalTo: selectDateLabel.leftAnchor).isActive = true
+        timeSlotLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        timeSlotLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         timeSlotLabel.topAnchor.constraint(equalTo: dateHolder.bottomAnchor, constant: 16).isActive = true
     }
     

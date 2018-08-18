@@ -40,7 +40,7 @@ class ProfileViewController: UIViewController {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_SEMIBOLD, size: 16)
         label.clipsToBounds = true
@@ -67,7 +67,7 @@ class ProfileViewController: UIViewController {
     
     let zoneLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .right
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
@@ -77,7 +77,7 @@ class ProfileViewController: UIViewController {
     
     let areaLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
@@ -111,7 +111,7 @@ class ProfileViewController: UIViewController {
     
     let cardLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.gray
         label.font = UIFont(name: OPENSANS_REGULAR, size: 10)
         label.text = "Credit card".localized()
@@ -122,7 +122,7 @@ class ProfileViewController: UIViewController {
     
     let cardNumberLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_SEMIBOLD, size: 20)
         label.text = "3939........4567"
@@ -218,15 +218,15 @@ class ProfileViewController: UIViewController {
     private func setBackgroundImage() {
         view.addSubview(backgroundImageView)
         backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundImageView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        backgroundImageView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     private func setProfileInfoHolder() {
         view.addSubview(profileInfoHolder)
-        profileInfoHolder.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        profileInfoHolder.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        profileInfoHolder.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        profileInfoHolder.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         profileInfoHolder.topAnchor.constraint(equalTo: view.topAnchor, constant: 16 * 6).isActive = true
         if Helper.isIphoneX {
             profileInfoHolder.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.22).isActive = true
@@ -252,7 +252,7 @@ class ProfileViewController: UIViewController {
     private func setVipIconView() {
         view.addSubview(vipIconView)
         vipIconView.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor).isActive = true
-        vipIconView.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 4).isActive = true
+        vipIconView.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 4).isActive = true
         vipIconView.heightAnchor.constraint(equalToConstant: 16).isActive = true
         vipIconView.widthAnchor.constraint(equalToConstant: 16).isActive = true
     }
@@ -268,40 +268,40 @@ class ProfileViewController: UIViewController {
     private func setZoneLabel() {
         view.addSubview(zoneLabel)
         zoneLabel.centerYAnchor.constraint(equalTo: verticalLine.centerYAnchor).isActive = true
-        zoneLabel.rightAnchor.constraint(equalTo: verticalLine.leftAnchor, constant: -8).isActive = true
+        zoneLabel.trailingAnchor.constraint(equalTo: verticalLine.leadingAnchor, constant: -8).isActive = true
     }
     
     private func setAreaLabel() {
         view.addSubview(areaLabel)
         areaLabel.centerYAnchor.constraint(equalTo: verticalLine.centerYAnchor).isActive = true
-        areaLabel.leftAnchor.constraint(equalTo: verticalLine.rightAnchor, constant: 8).isActive = true
+        areaLabel.leadingAnchor.constraint(equalTo: verticalLine.trailingAnchor, constant: 8).isActive = true
     }
     
     private func setCollectionView() {
         view.addSubview(collectionView)
-        collectionView.leftAnchor.constraint(equalTo: profileInfoHolder.leftAnchor).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: profileInfoHolder.rightAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: profileInfoHolder.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: profileInfoHolder.trailingAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: profileInfoHolder.bottomAnchor, constant: 16).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: 208).isActive = true
     }
     
     private func setCreditCardView() {
         view.addSubview(creditCardView)
-        creditCardView.leftAnchor.constraint(equalTo: profileInfoHolder.leftAnchor).isActive = true
-        creditCardView.rightAnchor.constraint(equalTo: profileInfoHolder.rightAnchor).isActive = true
+        creditCardView.leadingAnchor.constraint(equalTo: profileInfoHolder.leadingAnchor).isActive = true
+        creditCardView.trailingAnchor.constraint(equalTo: profileInfoHolder.trailingAnchor).isActive = true
         creditCardView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 8).isActive = true
         creditCardView.heightAnchor.constraint(equalToConstant: 64).isActive = true
     }
     
     private func setCardLabel() {
         creditCardView.addSubview(cardLabel)
-        cardLabel.leftAnchor.constraint(equalTo: creditCardView.leftAnchor, constant: 8).isActive = true
+        cardLabel.leadingAnchor.constraint(equalTo: creditCardView.leadingAnchor, constant: 8).isActive = true
         cardLabel.topAnchor.constraint(equalTo: creditCardView.topAnchor, constant: 8).isActive = true
     }
     
     private func setCardNumberLabel() {
         creditCardView.addSubview(cardNumberLabel)
-        cardNumberLabel.leftAnchor.constraint(equalTo: cardLabel.leftAnchor).isActive = true
+        cardNumberLabel.leadingAnchor.constraint(equalTo: cardLabel.leadingAnchor).isActive = true
         cardNumberLabel.topAnchor.constraint(equalTo: cardLabel.bottomAnchor).isActive = true
         cardNumberLabel.widthAnchor.constraint(equalTo: creditCardView.widthAnchor, multiplier: 0.5).isActive = true
     }
@@ -309,7 +309,7 @@ class ProfileViewController: UIViewController {
     private func setEditButton() {
         creditCardView.addSubview(editButton)
         editButton.centerYAnchor.constraint(equalTo: creditCardView.centerYAnchor).isActive = true
-        editButton.rightAnchor.constraint(equalTo: creditCardView.rightAnchor, constant: -8).isActive = true
+        editButton.trailingAnchor.constraint(equalTo: creditCardView.trailingAnchor, constant: -8).isActive = true
         editButton.heightAnchor.constraint(equalTo: creditCardView.heightAnchor, multiplier: 0.6).isActive = true
         editButton.widthAnchor.constraint(equalTo: creditCardView.widthAnchor, multiplier: 0.2).isActive = true
     }
@@ -317,7 +317,7 @@ class ProfileViewController: UIViewController {
     private func setAddNewButton() {
         creditCardView.addSubview(addNewButton)
         addNewButton.centerYAnchor.constraint(equalTo: creditCardView.centerYAnchor).isActive = true
-        addNewButton.rightAnchor.constraint(equalTo: editButton.leftAnchor, constant: -4).isActive = true
+        addNewButton.trailingAnchor.constraint(equalTo: editButton.leadingAnchor, constant: -4).isActive = true
         addNewButton.heightAnchor.constraint(equalTo: creditCardView.heightAnchor, multiplier: 0.6).isActive = true
         addNewButton.widthAnchor.constraint(equalTo: creditCardView.widthAnchor, multiplier: 0.25).isActive = true
     }
@@ -419,8 +419,8 @@ extension ProfileViewController {
                     
                 
                     self.nameLabel.text = profileDataResponse.data.member.name
-                    self.zoneLabel.text = "Phone: \(profileDataResponse.data.member.phoneNumber)"
-                    self.areaLabel.text = "Email: \(profileDataResponse.data.member.email)"
+                    self.zoneLabel.text = "Phone No.".localized() + ": \(profileDataResponse.data.member.phoneNumber)"
+                    self.areaLabel.text = "Email".localized() + ": \(profileDataResponse.data.member.email)"
                     self.mains[0]       = "\(profileDataResponse.data.member.totalSpent)"
                     self.mains[1]       = "\(profileDataResponse.data.member.loyaltyPoint)"
                     self.mains[2]       = "\(profileDataResponse.data.member.totalJob)"

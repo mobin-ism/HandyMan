@@ -41,9 +41,9 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let requestIDTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
-        label.text = "Request ID".localized()
+        label.text = "Request ID: ".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 16)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +52,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let requestIDLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 16)
         label.clipsToBounds = true
@@ -62,7 +62,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let orderStatusTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Status: ".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 16)
@@ -73,7 +73,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let orderStatusLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 16)
         label.clipsToBounds = true
@@ -98,7 +98,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let totalPriceTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Total Price".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -109,7 +109,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let totalPriceLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
         label.clipsToBounds = true
@@ -120,7 +120,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let locationTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Location".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -131,7 +131,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let areaNameLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -142,7 +142,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let addressLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -153,7 +153,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let streetLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -164,7 +164,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let apartmentLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.numberOfLines = 2
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -175,7 +175,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let dateAndTimeTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Date and Time".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -186,7 +186,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     let dateAndTimeLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -284,10 +284,6 @@ class PendingServiceDetailsListViewController : UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
         
-        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
-         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
         
     }
@@ -317,8 +313,8 @@ class PendingServiceDetailsListViewController : UIViewController {
     private func setupScrollView() {
         view.addSubview(scrollView)
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
@@ -331,99 +327,99 @@ class PendingServiceDetailsListViewController : UIViewController {
     private func setupRequestIDTitleLabel() {
         scrollView.addSubview(requestIDTitleLabel)
         requestIDTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
-        requestIDTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        requestIDTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupRequestIDLabel() {
         scrollView.addSubview(requestIDLabel)
         requestIDLabel.centerYAnchor.constraint(equalTo: requestIDTitleLabel.centerYAnchor).isActive = true
-        requestIDLabel.leftAnchor.constraint(equalTo: requestIDTitleLabel.rightAnchor, constant: 5).isActive = true
+        requestIDLabel.leadingAnchor.constraint(equalTo: requestIDTitleLabel.trailingAnchor, constant: 5).isActive = true
     }
     
     private func setupOrderStatusLabel() {
         scrollView.addSubview(orderStatusLabel)
         orderStatusLabel.centerYAnchor.constraint(equalTo: requestIDTitleLabel.centerYAnchor).isActive = true
-        orderStatusLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        orderStatusLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupOrderStatusTitleLabel() {
         scrollView.addSubview(orderStatusTitleLabel)
         orderStatusTitleLabel.centerYAnchor.constraint(equalTo: requestIDTitleLabel.centerYAnchor).isActive = true
-        orderStatusTitleLabel.rightAnchor.constraint(equalTo: orderStatusLabel.leftAnchor, constant: -5).isActive = true
+        orderStatusTitleLabel.trailingAnchor.constraint(equalTo: orderStatusLabel.leadingAnchor, constant: -5).isActive = true
     }
     
     private func setupCollecetionView() {
         let collectionViewHeight : CGFloat = CGFloat((self.listOfServices.count * 90) + (self.listOfServices.count * 8))
         scrollView.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: orderStatusTitleLabel.bottomAnchor, constant: 16).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight).isActive = true
     }
     
     private func setupTotalPriceTitleLabel() {
         scrollView.addSubview(totalPriceTitleLabel)
         totalPriceTitleLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 30).isActive = true
-        totalPriceTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        totalPriceTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupTotalPriceLabel() {
         scrollView.addSubview(totalPriceLabel)
         totalPriceLabel.centerYAnchor.constraint(equalTo: totalPriceTitleLabel.centerYAnchor).isActive = true
-        totalPriceLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        totalPriceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupLocationTitleLabel() {
         scrollView.addSubview(locationTitleLabel)
         locationTitleLabel.topAnchor.constraint(equalTo: totalPriceTitleLabel.bottomAnchor, constant: 16).isActive = true
-        locationTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        locationTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupAreaNameLabel() {
         scrollView.addSubview(areaNameLabel)
-        areaNameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        areaNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         areaNameLabel.topAnchor.constraint(equalTo: locationTitleLabel.bottomAnchor, constant: 8).isActive = true
-        areaNameLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        areaNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupAddressLabel() {
         scrollView.addSubview(addressLabel)
-        addressLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        addressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         addressLabel.topAnchor.constraint(equalTo: areaNameLabel.bottomAnchor, constant: 5).isActive = true
-        addressLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        addressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupStreetLabel() {
         scrollView.addSubview(streetLabel)
-        streetLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        streetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         streetLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 5).isActive = true
-        streetLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        streetLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupApartmentLabel() {
         scrollView.addSubview(apartmentLabel)
-        apartmentLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        apartmentLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         apartmentLabel.topAnchor.constraint(equalTo: streetLabel.bottomAnchor, constant: 5).isActive = true
-        apartmentLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        apartmentLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupDateAndTimeTitleLabel() {
         scrollView.addSubview(dateAndTimeTitleLabel)
         dateAndTimeTitleLabel.topAnchor.constraint(equalTo: apartmentLabel.bottomAnchor, constant: 16).isActive = true
-        dateAndTimeTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        dateAndTimeTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupDateAndTimeLabel() {
         scrollView.addSubview(dateAndTimeLabel)
         dateAndTimeLabel.topAnchor.constraint(equalTo: dateAndTimeTitleLabel.bottomAnchor, constant: 8).isActive = true
-        dateAndTimeLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        dateAndTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     
     private func setupOrderAgainButton() {
         scrollView.addSubview(cancelButton)
         cancelButton.topAnchor.constraint(equalTo: dateAndTimeLabel.bottomAnchor, constant: 32).isActive = true
-        cancelButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         cancelButton.widthAnchor.constraint(equalToConstant: view.frame.size.width / 2 - 16).isActive = true
         cancelButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
@@ -431,8 +427,8 @@ class PendingServiceDetailsListViewController : UIViewController {
     private func setupRateItButton() {
         scrollView.addSubview(rescheduleButton)
         rescheduleButton.centerYAnchor.constraint(equalTo: cancelButton.centerYAnchor).isActive = true
-        rescheduleButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-        rescheduleButton.leftAnchor.constraint(equalTo: cancelButton.rightAnchor, constant: 16).isActive = true
+        rescheduleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        rescheduleButton.leadingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 16).isActive = true
         rescheduleButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     

@@ -46,7 +46,7 @@ class ShowServiceDetailsView : UIViewController {
     
     lazy var serviceTitleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_BOLD, size: 16)
         label.clipsToBounds = true
@@ -56,7 +56,7 @@ class ShowServiceDetailsView : UIViewController {
     
     lazy var subServiceTitleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 11)
         label.clipsToBounds = true
@@ -67,7 +67,7 @@ class ShowServiceDetailsView : UIViewController {
     
     lazy var optionalNote: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
@@ -78,7 +78,7 @@ class ShowServiceDetailsView : UIViewController {
     
     lazy var priceTitleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 11)
         label.clipsToBounds = true
@@ -124,7 +124,7 @@ class ShowServiceDetailsView : UIViewController {
     
     lazy var editLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 13)
         label.clipsToBounds = true
@@ -199,8 +199,8 @@ class ShowServiceDetailsView : UIViewController {
             })
             // constraints
             backgroundView.topAnchor.constraint(equalTo: window.topAnchor).isActive = true
-            backgroundView.leftAnchor.constraint(equalTo: window.leftAnchor).isActive = true
-            backgroundView.rightAnchor.constraint(equalTo: window.rightAnchor).isActive = true
+            backgroundView.leadingAnchor.constraint(equalTo: window.leadingAnchor).isActive = true
+            backgroundView.trailingAnchor.constraint(equalTo: window.trailingAnchor).isActive = true
             backgroundView.bottomAnchor.constraint(equalTo: window.bottomAnchor).isActive = true
             
             // adding the container view
@@ -233,26 +233,27 @@ class ShowServiceDetailsView : UIViewController {
     private func  setUpScrollView() {
         containerView.addSubview(scrollView)
         scrollView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
     }
     private func setServiceUIImageView() {
         containerView.addSubview(serviceImageView)
         serviceImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16).isActive = true
-        serviceImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 16).isActive = true
+        serviceImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16).isActive = true
         serviceImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         serviceImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
     }
     private func setServiceTitleLabel() {
         containerView.addSubview(serviceTitleLabel)
         serviceTitleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16).isActive = true
-        serviceTitleLabel.leftAnchor.constraint(equalTo: serviceImageView.rightAnchor, constant: 10).isActive = true
+        serviceTitleLabel.leadingAnchor.constraint(equalTo: serviceImageView.trailingAnchor, constant: 10).isActive = true
+        serviceTitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -70).isActive = true
     }
     
     private func setExpandButton() {
         containerView.addSubview(expandButton)
-        expandButton.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -16).isActive = true
+        expandButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16).isActive = true
         expandButton.centerYAnchor.constraint(equalTo: serviceImageView.centerYAnchor).isActive = true
         expandButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         expandButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
@@ -267,14 +268,14 @@ class ShowServiceDetailsView : UIViewController {
     private func setSubServiceTitleLabel() {
         containerView.addSubview(subServiceTitleLabel)
         subServiceTitleLabel.topAnchor.constraint(equalTo: serviceTitleLabel.bottomAnchor, constant: 5).isActive = true
-        subServiceTitleLabel.leftAnchor.constraint(equalTo: serviceImageView.rightAnchor, constant: 10).isActive = true
-        subServiceTitleLabel.rightAnchor.constraint(equalTo: expandButton.leftAnchor, constant: -5).isActive = true
+        subServiceTitleLabel.leadingAnchor.constraint(equalTo: serviceImageView.trailingAnchor, constant: 10).isActive = true
+        subServiceTitleLabel.trailingAnchor.constraint(equalTo: expandButton.leadingAnchor, constant: -5).isActive = true
     }
     
     
     private func setPriceIconImageView() {
         containerView.addSubview(priceTagIconView)
-        priceTagIconView.leftAnchor.constraint(equalTo: serviceImageView.rightAnchor, constant: 10).isActive = true
+        priceTagIconView.leadingAnchor.constraint(equalTo: serviceImageView.trailingAnchor, constant: 10).isActive = true
         priceTagIconView.topAnchor.constraint(equalTo: subServiceTitleLabel.bottomAnchor, constant: 5).isActive = true
         priceTagIconView.heightAnchor.constraint(equalToConstant: 12).isActive = true
         priceTagIconView.widthAnchor.constraint(equalToConstant: 12).isActive = true
@@ -282,15 +283,15 @@ class ShowServiceDetailsView : UIViewController {
     private func setPriceLabel() {
         containerView.addSubview(priceTitleLabel)
         priceTitleLabel.centerYAnchor.constraint(equalTo: priceTagIconView.centerYAnchor).isActive = true
-        priceTitleLabel.leftAnchor.constraint(equalTo: priceTagIconView.rightAnchor, constant: 5).isActive = true
-        priceTitleLabel.rightAnchor.constraint(equalTo: expandButton.leftAnchor, constant: -5).isActive = true
+        priceTitleLabel.leadingAnchor.constraint(equalTo: priceTagIconView.trailingAnchor, constant: 5).isActive = true
+        priceTitleLabel.trailingAnchor.constraint(equalTo: expandButton.leadingAnchor, constant: -5).isActive = true
     }
     
     private func setOptionalNote() {
         containerView.addSubview(optionalNote)
         optionalNote.topAnchor.constraint(equalTo: serviceImageView.bottomAnchor, constant: 16).isActive = true
-        optionalNote.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 16).isActive = true
-        optionalNote.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -16).isActive = true
+        optionalNote.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16).isActive = true
+        optionalNote.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setCollectionView(){
@@ -299,8 +300,8 @@ class ShowServiceDetailsView : UIViewController {
         
         containerView.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: self.optionalNote.bottomAnchor, constant: 16).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: self.containerView.leftAnchor, constant: 16).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: self.containerView.rightAnchor, constant: -16).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -16).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor, constant: -16).isActive = true
     }
     

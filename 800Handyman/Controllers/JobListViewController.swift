@@ -121,8 +121,8 @@ class JobListViewController: UIViewController {
     private func setCollectionView() {
         view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
@@ -148,7 +148,9 @@ class JobListViewController: UIViewController {
         else if(index == 4) {
             // Modal for changing the Language view
             DispatchQueue.main.async {
-                self.present(LanguageSelectViewController(), animated: true, completion: nil)
+                self.present(LanguageSelectViewController(), animated: true, completion: {
+                    self.navigationController?.pushViewController(LoginViewController(), animated: false)
+                })
             }
         }
         else if(index == 5) {

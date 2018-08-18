@@ -71,7 +71,7 @@ class CustomerJobDone : UIViewController {
     
     let locationTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Address".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -82,7 +82,7 @@ class CustomerJobDone : UIViewController {
     
     let areaNameLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -93,7 +93,7 @@ class CustomerJobDone : UIViewController {
     
     let addressLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -103,7 +103,7 @@ class CustomerJobDone : UIViewController {
     
     let streetLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -113,7 +113,7 @@ class CustomerJobDone : UIViewController {
     
     let apartmentLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -136,7 +136,7 @@ class CustomerJobDone : UIViewController {
     
     let dateAndTimeTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Date and Time".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -147,7 +147,7 @@ class CustomerJobDone : UIViewController {
     
     let dateAndTimeLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -157,7 +157,7 @@ class CustomerJobDone : UIViewController {
     
     let jobIDTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Job ID".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -168,7 +168,7 @@ class CustomerJobDone : UIViewController {
     
     let jobIDLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -178,7 +178,7 @@ class CustomerJobDone : UIViewController {
     
     let taskCompletedTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Task Completed".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -189,7 +189,7 @@ class CustomerJobDone : UIViewController {
     
     let taskCompletedLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
         label.clipsToBounds = true
@@ -207,7 +207,7 @@ class CustomerJobDone : UIViewController {
     
     let rateOurServiceTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Rate Our Service".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -242,7 +242,7 @@ class CustomerJobDone : UIViewController {
     
     let noteTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Note".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -265,7 +265,7 @@ class CustomerJobDone : UIViewController {
     
     let tipsLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Do You Like To Pay Tips".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -303,7 +303,7 @@ class CustomerJobDone : UIViewController {
     
     let paymentTitleLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Your payment method".localized()
         label.font = UIFont(name: OPENSANS_BOLD, size : 17)
@@ -314,7 +314,7 @@ class CustomerJobDone : UIViewController {
     
     let masterCardLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = NSLocalizedString("xxx-6039", comment: "xxx-6039")
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -411,7 +411,7 @@ class CustomerJobDone : UIViewController {
     
     let differentCreditCardLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Different Credit Card".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -422,7 +422,7 @@ class CustomerJobDone : UIViewController {
     
     let visaCardLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Card On Delivery".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -433,7 +433,7 @@ class CustomerJobDone : UIViewController {
     
     let cashOnDeliveryLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Cash On Delivery".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size : 14)
@@ -554,8 +554,8 @@ class CustomerJobDone : UIViewController {
     private func setupScrollView() {
         view.addSubview(scrollView)
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
@@ -569,90 +569,91 @@ class CustomerJobDone : UIViewController {
         let collectionViewHeight : CGFloat = CGFloat((self.listOfServices.count * 90) + (self.listOfServices.count * 8))
         scrollView.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight).isActive = true
     }
     
     private func setupLocationTitleLabel() {
         scrollView.addSubview(locationTitleLabel)
         locationTitleLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 16).isActive = true
-        locationTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        locationTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupLocationEditButton() {
         scrollView.addSubview(locationEditButton)
         locationEditButton.centerYAnchor.constraint(equalTo: locationTitleLabel.centerYAnchor).isActive = true
-        locationEditButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        locationEditButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupAreaNameLabel() {
         scrollView.addSubview(areaNameLabel)
-        areaNameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        areaNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        areaNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         areaNameLabel.topAnchor.constraint(equalTo: locationTitleLabel.bottomAnchor, constant: 8).isActive = true
     }
     
     private func setupDateAndTimeTitleLabel() {
         scrollView.addSubview(dateAndTimeTitleLabel)
         dateAndTimeTitleLabel.topAnchor.constraint(equalTo: areaNameLabel.bottomAnchor, constant: 16).isActive = true
-        dateAndTimeTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        dateAndTimeTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupDateAndTimeEditButton() {
         scrollView.addSubview(dateTimeEditButton)
         dateTimeEditButton.centerYAnchor.constraint(equalTo: dateAndTimeTitleLabel.centerYAnchor).isActive = true
-        dateTimeEditButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        dateTimeEditButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupDateAndTimeLabel() {
         scrollView.addSubview(dateAndTimeLabel)
         dateAndTimeLabel.topAnchor.constraint(equalTo: dateAndTimeTitleLabel.bottomAnchor, constant: 8).isActive = true
-        dateAndTimeLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        dateAndTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupJobIDTitleLabel() {
         scrollView.addSubview(jobIDTitleLabel)
         jobIDTitleLabel.topAnchor.constraint(equalTo: dateAndTimeLabel.bottomAnchor, constant: 16).isActive = true
-        jobIDTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        jobIDTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupJobIDLabel() {
         scrollView.addSubview(jobIDLabel)
         jobIDLabel.topAnchor.constraint(equalTo: jobIDTitleLabel.bottomAnchor, constant: 8).isActive = true
-        jobIDLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        jobIDLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupTaskCompletedTitleLabel() {
         scrollView.addSubview(taskCompletedTitleLabel)
         taskCompletedTitleLabel.topAnchor.constraint(equalTo: jobIDLabel.bottomAnchor, constant: 16).isActive = true
-        taskCompletedTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        taskCompletedTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupTaskCompletedLabel() {
         scrollView.addSubview(taskCompletedLabel)
         taskCompletedLabel.topAnchor.constraint(equalTo: taskCompletedTitleLabel.bottomAnchor, constant: 8).isActive = true
-        taskCompletedLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        taskCompletedLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupHorizontalLine() {
         scrollView.addSubview(horizontalLine)
         horizontalLine.topAnchor.constraint(equalTo: taskCompletedLabel.bottomAnchor, constant: 16).isActive = true
-        horizontalLine.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        horizontalLine.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        horizontalLine.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        horizontalLine.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         horizontalLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
     private func setupRateUsTitleLabel() {
         scrollView.addSubview(rateOurServiceTitleLabel)
         rateOurServiceTitleLabel.topAnchor.constraint(equalTo: horizontalLine.bottomAnchor, constant: 16).isActive = true
-        rateOurServiceTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        rateOurServiceTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupContainerView() {
         scrollView.addSubview(containerView)
         containerView.topAnchor.constraint(equalTo: rateOurServiceTitleLabel.bottomAnchor, constant: 16).isActive = true
-        containerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        containerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
@@ -661,41 +662,41 @@ class CustomerJobDone : UIViewController {
         starRatingView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         starRatingView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
         starRatingView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        starRatingView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
+        starRatingView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8).isActive = true
     }
     
     private func setupNoteLabel() {
         scrollView.addSubview(noteTitleLabel)
         noteTitleLabel.topAnchor.constraint(equalTo: starRatingView.bottomAnchor, constant: 16).isActive = true
-        noteTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        noteTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupNoteTextView() {
         scrollView.addSubview(noteTextView)
         noteTextView.topAnchor.constraint(equalTo: noteTitleLabel.bottomAnchor, constant: 8).isActive = true
-        noteTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        noteTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        noteTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        noteTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         noteTextView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     private func setupTipsLabel() {
         scrollView.addSubview(tipsLabel)
         tipsLabel.topAnchor.constraint(equalTo: noteTextView.bottomAnchor, constant: 16).isActive = true
-        tipsLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        tipsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupHorizontalCollectionView() {
         scrollView.addSubview(horizontalCollectionView)
         horizontalCollectionView.topAnchor.constraint(equalTo: tipsLabel.bottomAnchor, constant: 8).isActive = true
-        horizontalCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        horizontalCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        horizontalCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        horizontalCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         horizontalCollectionView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     private func setupPayNowButtonButton() {
         scrollView.addSubview(payNowButton)
         payNowButton.topAnchor.constraint(equalTo: horizontalCollectionView.bottomAnchor, constant: 32).isActive = true
-        payNowButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        payNowButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        payNowButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        payNowButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         payNowButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     

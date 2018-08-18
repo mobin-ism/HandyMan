@@ -12,7 +12,7 @@ class ProfileInfoCell: MasterCollectionViewCell {
     
     let infoLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.gray
         label.font = UIFont(name: OPENSANS_REGULAR, size: 10)
         label.clipsToBounds = true
@@ -47,15 +47,15 @@ class ProfileInfoCell: MasterCollectionViewCell {
     
     private func setInfoLabel() {
         addSubview(infoLabel)
-        infoLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
         infoLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
     }
     
     private func setMainLabel() {
         addSubview(titleLabel)
-        titleLabel.textAlignment = .left
+        titleLabel.textAlignment = .natural
         titleLabel.font = UIFont(name: OPENSANS_SEMIBOLD, size: 20)
-        titleLabel.leftAnchor.constraint(equalTo: infoLabel.leftAnchor).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: infoLabel.leadingAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 0).isActive = true
     }
     
@@ -63,7 +63,7 @@ class ProfileInfoCell: MasterCollectionViewCell {
         addSubview(imageView)
         imageView.image = #imageLiteral(resourceName: "rightArrowSmall")
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        imageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 7).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 7 * 1.69).isActive = true
     }

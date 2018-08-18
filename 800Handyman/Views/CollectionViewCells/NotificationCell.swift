@@ -12,7 +12,7 @@ class NotificationCell: MasterCollectionViewCell {
     
     let dateLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 11)
         label.clipsToBounds = true
@@ -31,7 +31,7 @@ class NotificationCell: MasterCollectionViewCell {
     
     let timeLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 11)
         label.clipsToBounds = true
@@ -50,7 +50,7 @@ class NotificationCell: MasterCollectionViewCell {
     
     let notificationLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .justified
+        label.textAlignment = .natural
         label.textColor = UIColor.gray
         label.font = UIFont(name: OPENSANS_REGULAR, size: 11)
         label.numberOfLines = 0
@@ -100,17 +100,17 @@ class NotificationCell: MasterCollectionViewCell {
     
     private func setTitleLabel() {
         addSubview(titleLabel)
-        titleLabel.textAlignment = .left
+        titleLabel.textAlignment = .natural
         titleLabel.textColor = UIColor.black
         titleLabel.font = UIFont(name: OPENSANS_REGULAR, size: 14)
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
     }
     
     private func setTimeIcon() {
         addSubview(timeIconView)
-        timeIconView.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 8).isActive = true
+        timeIconView.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 8).isActive = true
         timeIconView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
         timeIconView.widthAnchor.constraint(equalToConstant: 12).isActive = true
         timeIconView.heightAnchor.constraint(equalToConstant: 12).isActive = true
@@ -119,12 +119,12 @@ class NotificationCell: MasterCollectionViewCell {
     private func setTimeLabel() {
         addSubview(timeLabel)
         timeLabel.centerYAnchor.constraint(equalTo: timeIconView.centerYAnchor).isActive = true
-        timeLabel.leftAnchor.constraint(equalTo: timeIconView.rightAnchor, constant: 2).isActive = true
+        timeLabel.leadingAnchor.constraint(equalTo: timeIconView.trailingAnchor, constant: 2).isActive = true
     }
     
     private func setDateIcon() {
         addSubview(dateIconView)
-        dateIconView.leftAnchor.constraint(equalTo: timeLabel.rightAnchor, constant: 16).isActive = true
+        dateIconView.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor, constant: 16).isActive = true
         dateIconView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
         dateIconView.widthAnchor.constraint(equalToConstant: 12).isActive = true
         dateIconView.heightAnchor.constraint(equalToConstant: 12).isActive = true
@@ -133,14 +133,14 @@ class NotificationCell: MasterCollectionViewCell {
     private func setDateLabel() {
         addSubview(dateLabel)
         dateLabel.centerYAnchor.constraint(equalTo: timeIconView.centerYAnchor).isActive = true
-        dateLabel.leftAnchor.constraint(equalTo: dateIconView.rightAnchor, constant: 2).isActive = true
+        dateLabel.leadingAnchor.constraint(equalTo: dateIconView.trailingAnchor, constant: 2).isActive = true
     }
     
     private func setNotificationLabel() {
         addSubview(notificationLabel)
-        notificationLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
+        notificationLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         notificationLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
-        notificationLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        notificationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
         notificationLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
     }
     

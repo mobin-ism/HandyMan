@@ -12,7 +12,7 @@ class SelectorCell: UITableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
         label.clipsToBounds = true
@@ -41,8 +41,8 @@ class SelectorCell: UITableViewCell {
     func setupTitleLabel() {
         self.addSubview(titleLabel)
         titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

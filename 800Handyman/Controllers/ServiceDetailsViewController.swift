@@ -83,7 +83,7 @@ class ServiceDetailsViewController: UIViewController {
     
     let jobSubTitleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.numberOfLines = 0
@@ -302,8 +302,8 @@ class ServiceDetailsViewController: UIViewController {
     private func setScrollView() {
         view.addSubview(scrollView)
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
@@ -315,19 +315,19 @@ class ServiceDetailsViewController: UIViewController {
     
     private func setJobTitleLabel() {
         scrollView.addSubview(jobTitleLabel)
-        jobTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        jobTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         jobTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
     }
     
     private func setPriceLabel() {
         scrollView.addSubview(priceLabel)
-        priceLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        priceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         priceLabel.centerYAnchor.constraint(equalTo: jobTitleLabel.centerYAnchor).isActive = true
     }
     
     private func setPriceTagIcon(){
         scrollView.addSubview(priceTag)
-        priceTag.rightAnchor.constraint(equalTo: priceLabel.leftAnchor, constant: -5).isActive = true
+        priceTag.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -5).isActive = true
         priceTag.widthAnchor.constraint(equalToConstant: 16).isActive = true
         priceTag.heightAnchor.constraint(equalToConstant: 16).isActive = true
         priceTag.centerYAnchor.constraint(equalTo: priceLabel.centerYAnchor).isActive = true
@@ -335,22 +335,22 @@ class ServiceDetailsViewController: UIViewController {
     
     private func setJobSubTitleLabel() {
         scrollView.addSubview(jobSubTitleLabel)
-        jobSubTitleLabel.leftAnchor.constraint(equalTo: jobTitleLabel.leftAnchor).isActive = true
+        jobSubTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         jobSubTitleLabel.topAnchor.constraint(equalTo: jobTitleLabel.bottomAnchor, constant: 8).isActive = true
-        jobSubTitleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        jobSubTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setDescriptionLabel() {
         scrollView.addSubview(descriptionLabel)
-        descriptionLabel.leftAnchor.constraint(equalTo: jobTitleLabel.leftAnchor).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: jobTitleLabel.leadingAnchor).isActive = true
         descriptionLabel.topAnchor.constraint(equalTo: jobSubTitleLabel.bottomAnchor, constant: 16).isActive = true
     }
     
     private func setDescriptionTextField() {
         scrollView.addSubview(descriptionTextField)
         descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8).isActive = true
-        descriptionTextField.leftAnchor.constraint(equalTo: jobTitleLabel.leftAnchor).isActive = true
-        descriptionTextField.rightAnchor.constraint(equalTo: jobSubTitleLabel.rightAnchor).isActive = true
+        descriptionTextField.leadingAnchor.constraint(equalTo: jobTitleLabel.leadingAnchor).isActive = true
+        descriptionTextField.trailingAnchor.constraint(equalTo: jobSubTitleLabel.trailingAnchor).isActive = true
         descriptionTextField.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.1).isActive = true
     }
     
@@ -359,15 +359,15 @@ class ServiceDetailsViewController: UIViewController {
         let rows: CGFloat = (CGFloat(numberOfItems)/3).rounded(.up)
         _ = (view.frame.width / 3) * (rows) - 32
         collectionView.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 50).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: jobTitleLabel.leftAnchor).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: jobSubTitleLabel.rightAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: jobTitleLabel.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: jobSubTitleLabel.trailingAnchor).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: 110).isActive = true
     }
     
     private func setBottomIndicatorArrow() {
         scrollView.addSubview(gifArrow)
         gifArrow.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor).isActive = true
-        gifArrow.leftAnchor.constraint(equalTo: collectionView.rightAnchor, constant: -20).isActive = true
+        gifArrow.leadingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -20).isActive = true
         gifArrow.heightAnchor.constraint(equalToConstant: 40).isActive = true
         gifArrow.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
@@ -375,30 +375,30 @@ class ServiceDetailsViewController: UIViewController {
     private func setAddNewImageButton(){
         scrollView.addSubview(addImageButton)
         addImageButton.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: -25).isActive = true
-        addImageButton.rightAnchor.constraint(equalTo: jobSubTitleLabel.rightAnchor, constant: -10).isActive = true
+        addImageButton.trailingAnchor.constraint(equalTo: jobSubTitleLabel.trailingAnchor, constant: -10).isActive = true
         addImageButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         addImageButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     private func setSpecialNoteLabel() {
         scrollView.addSubview(specialNoteLabel)
-        specialNoteLabel.leftAnchor.constraint(equalTo: jobTitleLabel.leftAnchor).isActive = true
+        specialNoteLabel.leadingAnchor.constraint(equalTo: jobTitleLabel.leadingAnchor).isActive = true
         specialNoteLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 12).isActive = true
     }
     
     private func setSpecialNoteTextField() {
         scrollView.addSubview(specialNoteTextField)
         specialNoteTextField.topAnchor.constraint(equalTo: specialNoteLabel.bottomAnchor, constant: 8).isActive = true
-        specialNoteTextField.leftAnchor.constraint(equalTo: jobTitleLabel.leftAnchor).isActive = true
-        specialNoteTextField.rightAnchor.constraint(equalTo: jobSubTitleLabel.rightAnchor).isActive = true
+        specialNoteTextField.leadingAnchor.constraint(equalTo: jobTitleLabel.leadingAnchor).isActive = true
+        specialNoteTextField.trailingAnchor.constraint(equalTo: jobSubTitleLabel.trailingAnchor).isActive = true
         specialNoteTextField.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.1).isActive = true
     }
     
     private func setNextButton() {
         scrollView.addSubview(nextButton)
         nextButton.topAnchor.constraint(equalTo: specialNoteTextField.bottomAnchor, constant: 16).isActive = true
-        nextButton.leftAnchor.constraint(equalTo: jobTitleLabel.leftAnchor).isActive = true
-        nextButton.rightAnchor.constraint(equalTo: jobSubTitleLabel.rightAnchor).isActive = true
+        nextButton.leadingAnchor.constraint(equalTo: jobTitleLabel.leadingAnchor).isActive = true
+        nextButton.trailingAnchor.constraint(equalTo: jobSubTitleLabel.trailingAnchor).isActive = true
         nextButton.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.1).isActive = true
         
     }
@@ -406,7 +406,7 @@ class ServiceDetailsViewController: UIViewController {
     private func setAnotherServiceButton() {
         scrollView.addSubview(addAnotherServiceButton)
         addAnotherServiceButton.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: 16).isActive = true
-        addAnotherServiceButton.leftAnchor.constraint(equalTo: jobTitleLabel.leftAnchor).isActive = true
+        addAnotherServiceButton.leadingAnchor.constraint(equalTo: jobTitleLabel.leadingAnchor).isActive = true
         addAnotherServiceButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.45).isActive = true
         addAnotherServiceButton.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.1).isActive = true
         
@@ -415,7 +415,7 @@ class ServiceDetailsViewController: UIViewController {
     private func setCancelButton() {
         scrollView.addSubview(cancelButton)
         cancelButton.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: 16).isActive = true
-        cancelButton.rightAnchor.constraint(equalTo: jobSubTitleLabel.rightAnchor).isActive = true
+        cancelButton.trailingAnchor.constraint(equalTo: jobSubTitleLabel.trailingAnchor).isActive = true
         cancelButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.45).isActive = true
         cancelButton.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.1).isActive = true
 

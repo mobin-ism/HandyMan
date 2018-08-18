@@ -37,11 +37,12 @@ class TimeSelectCell: MasterCollectionViewCell {
     
     private func setTitleLabel() {
         addSubview(titleLabel)
-        titleLabel.textAlignment = .left
+        titleLabel.textAlignment = .natural
         titleLabel.textColor = UIColor.black
         titleLabel.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setImageView() {
@@ -49,7 +50,7 @@ class TimeSelectCell: MasterCollectionViewCell {
         imageView.image = #imageLiteral(resourceName: "checkIcon")
         imageView.alpha = 0
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        imageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 16).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 16).isActive = true
     }

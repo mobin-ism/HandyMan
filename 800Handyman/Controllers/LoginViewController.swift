@@ -34,7 +34,7 @@ class LoginViewController : UIViewController{
     
     let namelabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "Name".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
@@ -45,7 +45,7 @@ class LoginViewController : UIViewController{
     
     let phoneNumberLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "Phone no.".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
@@ -56,7 +56,7 @@ class LoginViewController : UIViewController{
     
     let emailAddressLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "E-mail address (Optional)".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
@@ -85,7 +85,7 @@ class LoginViewController : UIViewController{
     
     let orLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "Or".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
@@ -96,7 +96,7 @@ class LoginViewController : UIViewController{
     
     let haveAnAccountLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "Have an account? Login".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
@@ -107,7 +107,7 @@ class LoginViewController : UIViewController{
     
     let loginLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "Log in".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
@@ -118,7 +118,7 @@ class LoginViewController : UIViewController{
     
     let phoneNumberForLoginLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "Phone No.".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 16)
@@ -330,8 +330,8 @@ class LoginViewController : UIViewController{
     private func setScrollView() {
         view.addSubview(scrollView)
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
@@ -346,16 +346,16 @@ class LoginViewController : UIViewController{
         
         scrollView.addSubview(namelabel)
         namelabel.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 25).isActive = true
-        namelabel.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 16).isActive = true
-        namelabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        namelabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        namelabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setupNameTextField(){
         
         scrollView.addSubview(nameTextField)
         nameTextField.topAnchor.constraint(equalTo: namelabel.bottomAnchor, constant: 10).isActive = true
-        nameTextField.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 16).isActive = true
-        nameTextField.rightAnchor.constraint(equalTo: namelabel.rightAnchor).isActive = true
+        nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        nameTextField.trailingAnchor.constraint(equalTo: namelabel.trailingAnchor).isActive = true
         nameTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
@@ -363,16 +363,16 @@ class LoginViewController : UIViewController{
         
         scrollView.addSubview(phoneNumberLabel)
         phoneNumberLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 10).isActive = true
-        phoneNumberLabel.leftAnchor.constraint(equalTo: nameTextField.leftAnchor).isActive = true
-        phoneNumberLabel.rightAnchor.constraint(equalTo: nameTextField.rightAnchor).isActive = true
+        phoneNumberLabel.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor).isActive = true
+        phoneNumberLabel.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor).isActive = true
     }
     
     private func setupPhoneNoTextField(){
         
         scrollView.addSubview(phoneNoTextField)
         phoneNoTextField.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 10).isActive = true
-        phoneNoTextField.leftAnchor.constraint(equalTo: nameTextField.leftAnchor).isActive = true
-        phoneNoTextField.rightAnchor.constraint(equalTo: nameTextField.rightAnchor).isActive = true
+        phoneNoTextField.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor).isActive = true
+        phoneNoTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor).isActive = true
         phoneNoTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
@@ -380,16 +380,16 @@ class LoginViewController : UIViewController{
         
         scrollView.addSubview(emailAddressLabel)
         emailAddressLabel.topAnchor.constraint(equalTo: phoneNoTextField.bottomAnchor, constant: 10).isActive = true
-        emailAddressLabel.leftAnchor.constraint(equalTo: nameTextField.leftAnchor).isActive = true
-        emailAddressLabel.rightAnchor.constraint(equalTo: nameTextField.rightAnchor).isActive = true
+        emailAddressLabel.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor).isActive = true
+        emailAddressLabel.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor).isActive = true
     }
     
     private func setupEmailTextField(){
         
         scrollView.addSubview(emailTextField)
         emailTextField.topAnchor.constraint(equalTo: emailAddressLabel.bottomAnchor, constant: 10).isActive = true
-        emailTextField.leftAnchor.constraint(equalTo: nameTextField.leftAnchor).isActive = true
-        emailTextField.rightAnchor.constraint(equalTo: nameTextField.rightAnchor).isActive = true
+        emailTextField.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor).isActive = true
+        emailTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor).isActive = true
         emailTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
@@ -397,23 +397,23 @@ class LoginViewController : UIViewController{
         
         scrollView.addSubview(submitButton)
         submitButton.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 10).isActive = true
-        submitButton.leftAnchor.constraint(equalTo: nameTextField.leftAnchor).isActive = true
-        submitButton.rightAnchor.constraint(equalTo: nameTextField.rightAnchor).isActive = true
+        submitButton.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor).isActive = true
+        submitButton.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor).isActive = true
         submitButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
     private func setupPhoneNumberForLoginLabel(){
         scrollView.addSubview(phoneNumberForLoginLabel)
         phoneNumberForLoginLabel.topAnchor.constraint(equalTo: haveAnAccountLabel.bottomAnchor, constant: 10).isActive = true
-        phoneNumberForLoginLabel.leftAnchor.constraint(equalTo: nameTextField.leftAnchor).isActive = true
-        phoneNumberForLoginLabel.rightAnchor.constraint(equalTo: nameTextField.rightAnchor).isActive = true
+        phoneNumberForLoginLabel.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor).isActive = true
+        phoneNumberForLoginLabel.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor).isActive = true
     }
     private func setupPhoneNoForLoginTextField(){
         
         scrollView.addSubview(phoneNoForLoginTextField)
         phoneNoForLoginTextField.topAnchor.constraint(equalTo: phoneNumberForLoginLabel.bottomAnchor, constant: 10).isActive = true
-        phoneNoForLoginTextField.leftAnchor.constraint(equalTo: nameTextField.leftAnchor).isActive = true
-        phoneNoForLoginTextField.rightAnchor.constraint(equalTo: nameTextField.rightAnchor).isActive = true
+        phoneNoForLoginTextField.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor).isActive = true
+        phoneNoForLoginTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor).isActive = true
         phoneNoForLoginTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
@@ -421,8 +421,8 @@ class LoginViewController : UIViewController{
         
         scrollView.addSubview(loginButton)
         loginButton.topAnchor.constraint(equalTo: phoneNoForLoginTextField.bottomAnchor, constant: 10).isActive = true
-        loginButton.leftAnchor.constraint(equalTo: nameTextField.leftAnchor).isActive = true
-        loginButton.rightAnchor.constraint(equalTo: nameTextField.rightAnchor).isActive = true
+        loginButton.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor).isActive = true
+        loginButton.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
@@ -437,8 +437,8 @@ class LoginViewController : UIViewController{
         
         scrollView.addSubview(leftHorizontalLine)
         leftHorizontalLine.centerYAnchor.constraint(equalTo: orLabel.centerYAnchor).isActive = true
-        leftHorizontalLine.leftAnchor.constraint(equalTo: nameTextField.leftAnchor).isActive = true
-        leftHorizontalLine.rightAnchor.constraint(equalTo: orLabel.leftAnchor, constant: -10).isActive = true
+        leftHorizontalLine.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor).isActive = true
+        leftHorizontalLine.trailingAnchor.constraint(equalTo: orLabel.leadingAnchor, constant: -10).isActive = true
         leftHorizontalLine.heightAnchor.constraint(equalToConstant: 2).isActive = true
     }
     
@@ -446,8 +446,8 @@ class LoginViewController : UIViewController{
         
         scrollView.addSubview(rightHorizontalLine)
         rightHorizontalLine.centerYAnchor.constraint(equalTo: orLabel.centerYAnchor).isActive = true
-        rightHorizontalLine.leftAnchor.constraint(equalTo: orLabel.rightAnchor, constant: 10).isActive = true
-        rightHorizontalLine.rightAnchor.constraint(equalTo: nameTextField.rightAnchor).isActive = true
+        rightHorizontalLine.leadingAnchor.constraint(equalTo: orLabel.trailingAnchor, constant: 10).isActive = true
+        rightHorizontalLine.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor).isActive = true
         rightHorizontalLine.heightAnchor.constraint(equalToConstant: 2).isActive = true
     }
     

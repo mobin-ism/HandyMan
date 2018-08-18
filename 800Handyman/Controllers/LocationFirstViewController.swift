@@ -50,7 +50,7 @@ class LocationFirstViewController: UIViewController{
     
     let areaLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Area".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -61,7 +61,7 @@ class LocationFirstViewController: UIViewController{
     
     let addressNameLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Address Name (Optional)".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -72,7 +72,7 @@ class LocationFirstViewController: UIViewController{
     
     let addressTypeLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Address Type".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -83,7 +83,7 @@ class LocationFirstViewController: UIViewController{
     
     let streetLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Street / Building".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -94,7 +94,7 @@ class LocationFirstViewController: UIViewController{
     
     let villaLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Apartment no / Villa no".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -115,7 +115,7 @@ class LocationFirstViewController: UIViewController{
     
     let areaNameLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Select An Area".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
@@ -144,6 +144,7 @@ class LocationFirstViewController: UIViewController{
         field.textColor = UIColor.black
         //field.placeholder = "Facilisis"
         field.clipsToBounds = true
+        field.textAlignment = .natural
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
@@ -156,6 +157,7 @@ class LocationFirstViewController: UIViewController{
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
         //field.placeholder = "Apartment"
+        field.textAlignment = .natural
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -169,6 +171,7 @@ class LocationFirstViewController: UIViewController{
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
         //field.placeholder = "Maecenas"
+        field.textAlignment = .natural
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -182,6 +185,7 @@ class LocationFirstViewController: UIViewController{
         field.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         field.textColor = UIColor.black
         //field.placeholder = "45, LPT"
+        field.textAlignment = .natural
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -258,10 +262,6 @@ class LocationFirstViewController: UIViewController{
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
-        
-        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
     }
     
@@ -322,8 +322,10 @@ class LocationFirstViewController: UIViewController{
     
     private func setAreaLabel() {
         scrollView.addSubview(areaLabel)
-        areaLabel.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 16).isActive = true
         areaLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16).isActive = true
+        areaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        areaLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        
     }
     
     private func setAreaHolder() {
@@ -337,7 +339,7 @@ class LocationFirstViewController: UIViewController{
     private func setDownArrowIcon() {
         areaHolder.addSubview(downArrowIcon)
         downArrowIcon.centerYAnchor.constraint(equalTo: areaHolder.centerYAnchor).isActive = true
-        downArrowIcon.rightAnchor.constraint(equalTo: areaHolder.rightAnchor, constant: -16).isActive = true
+        downArrowIcon.trailingAnchor.constraint(equalTo: areaHolder.trailingAnchor, constant: -16).isActive = true
         downArrowIcon.widthAnchor.constraint(equalToConstant: 11).isActive = true
         downArrowIcon.heightAnchor.constraint(equalToConstant: 11 * 0.6).isActive = true
     }
@@ -345,15 +347,16 @@ class LocationFirstViewController: UIViewController{
     private func setAreaNameLabel() {
         areaHolder.addSubview(areaNameLabel)
         areaNameLabel.centerYAnchor.constraint(equalTo: areaHolder.centerYAnchor).isActive = true
-        areaNameLabel.leftAnchor.constraint(equalTo: areaHolder.leftAnchor, constant: 16).isActive = true
-        areaNameLabel.rightAnchor.constraint(equalTo: downArrowIcon.leftAnchor).isActive = true
+        areaNameLabel.leadingAnchor.constraint(equalTo: areaHolder.leadingAnchor, constant: 16).isActive = true
+        areaNameLabel.trailingAnchor.constraint(equalTo: downArrowIcon.trailingAnchor).isActive = true
         areaNameLabel.heightAnchor.constraint(equalTo: areaHolder.heightAnchor).isActive = true
     }
     
     private func setAddressNameLabel() {
         scrollView.addSubview(addressNameLabel)
         addressNameLabel.topAnchor.constraint(equalTo: areaHolder.bottomAnchor, constant: 8).isActive = true
-        addressNameLabel.leftAnchor.constraint(equalTo: areaLabel.leftAnchor).isActive = true
+        addressNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        addressNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setAddressNameTextField() {
@@ -367,7 +370,8 @@ class LocationFirstViewController: UIViewController{
     private func setAddressTypeLabel() {
         scrollView.addSubview(addressTypeLabel)
         addressTypeLabel.topAnchor.constraint(equalTo: addressNameTextField.bottomAnchor, constant: 8).isActive = true
-        addressTypeLabel.leftAnchor.constraint(equalTo: areaLabel.leftAnchor).isActive = true
+        addressTypeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        addressTypeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setAddressTypeTextField() {
@@ -381,7 +385,8 @@ class LocationFirstViewController: UIViewController{
     private func setStreetLabel() {
         scrollView.addSubview(streetLabel)
         streetLabel.topAnchor.constraint(equalTo: addressTypeTextField.bottomAnchor, constant: 8).isActive = true
-        streetLabel.leftAnchor.constraint(equalTo: areaLabel.leftAnchor).isActive = true
+        streetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        streetLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setStreetTextField() {
@@ -395,7 +400,8 @@ class LocationFirstViewController: UIViewController{
     private func setVillaLabel() {
         scrollView.addSubview(villaLabel)
         villaLabel.topAnchor.constraint(equalTo: streetTextField.bottomAnchor, constant: 8).isActive = true
-        villaLabel.leftAnchor.constraint(equalTo: areaLabel.leftAnchor).isActive = true
+        villaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        villaLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setVillaTextField() {

@@ -52,7 +52,7 @@ class EditLocationFirstViewController: UIViewController{
     
     let areaLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Area".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -63,7 +63,7 @@ class EditLocationFirstViewController: UIViewController{
     
     let addressNameLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Address Name (Optional)".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -74,7 +74,7 @@ class EditLocationFirstViewController: UIViewController{
     
     let addressTypeLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Address Type".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -85,7 +85,7 @@ class EditLocationFirstViewController: UIViewController{
     
     let streetLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Street / Building".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -96,7 +96,7 @@ class EditLocationFirstViewController: UIViewController{
     
     let villaLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Apartment no / Villa no".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -117,7 +117,7 @@ class EditLocationFirstViewController: UIViewController{
     
     let areaNameLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Select An Area".localized()
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
@@ -310,22 +310,23 @@ class EditLocationFirstViewController: UIViewController{
     
     private func setAreaLabel() {
         scrollView.addSubview(areaLabel)
-        areaLabel.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 16).isActive = true
         areaLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16).isActive = true
+        areaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        areaLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setAreaHolder() {
         scrollView.addSubview(areaHolder)
-        areaHolder.leftAnchor.constraint(equalTo: areaLabel.leftAnchor).isActive = true
+        areaHolder.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         areaHolder.topAnchor.constraint(equalTo: areaLabel.bottomAnchor, constant: 8).isActive = true
-        areaHolder.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        areaHolder.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         areaHolder.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     private func setDownArrowIcon() {
         areaHolder.addSubview(downArrowIcon)
         downArrowIcon.centerYAnchor.constraint(equalTo: areaHolder.centerYAnchor).isActive = true
-        downArrowIcon.rightAnchor.constraint(equalTo: areaHolder.rightAnchor, constant: -16).isActive = true
+        downArrowIcon.trailingAnchor.constraint(equalTo: areaHolder.trailingAnchor, constant: -16).isActive = true
         downArrowIcon.widthAnchor.constraint(equalToConstant: 11).isActive = true
         downArrowIcon.heightAnchor.constraint(equalToConstant: 11 * 0.6).isActive = true
     }
@@ -333,72 +334,76 @@ class EditLocationFirstViewController: UIViewController{
     private func setAreaNameLabel() {
         areaHolder.addSubview(areaNameLabel)
         areaNameLabel.centerYAnchor.constraint(equalTo: areaHolder.centerYAnchor).isActive = true
-        areaNameLabel.leftAnchor.constraint(equalTo: areaHolder.leftAnchor, constant: 16).isActive = true
-        areaNameLabel.rightAnchor.constraint(equalTo: downArrowIcon.leftAnchor).isActive = true
+        areaNameLabel.leadingAnchor.constraint(equalTo: areaHolder.leadingAnchor, constant: 16).isActive = true
+        areaNameLabel.trailingAnchor.constraint(equalTo: downArrowIcon.leadingAnchor).isActive = true
         areaNameLabel.heightAnchor.constraint(equalTo: areaHolder.heightAnchor).isActive = true
     }
     
     private func setAddressNameLabel() {
         scrollView.addSubview(addressNameLabel)
         addressNameLabel.topAnchor.constraint(equalTo: areaHolder.bottomAnchor, constant: 8).isActive = true
-        addressNameLabel.leftAnchor.constraint(equalTo: areaLabel.leftAnchor).isActive = true
+        addressNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        addressNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setAddressNameTextField() {
         scrollView.addSubview(addressNameTextField)
         addressNameTextField.topAnchor.constraint(equalTo: addressNameLabel.bottomAnchor, constant: 8).isActive = true
-        addressNameTextField.leftAnchor.constraint(equalTo: areaHolder.leftAnchor).isActive = true
-        addressNameTextField.rightAnchor.constraint(equalTo: areaHolder.rightAnchor).isActive = true
+        addressNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        addressNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         addressNameTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     private func setAddressTypeLabel() {
         scrollView.addSubview(addressTypeLabel)
         addressTypeLabel.topAnchor.constraint(equalTo: addressNameTextField.bottomAnchor, constant: 8).isActive = true
-        addressTypeLabel.leftAnchor.constraint(equalTo: areaLabel.leftAnchor).isActive = true
+        addressTypeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        addressTypeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setAddressTypeTextField() {
         scrollView.addSubview(addressTypeTextField)
         addressTypeTextField.topAnchor.constraint(equalTo: addressTypeLabel.bottomAnchor, constant: 8).isActive = true
-        addressTypeTextField.leftAnchor.constraint(equalTo: areaHolder.leftAnchor).isActive = true
-        addressTypeTextField.rightAnchor.constraint(equalTo: areaHolder.rightAnchor).isActive = true
+        addressTypeTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        addressTypeTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         addressTypeTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     private func setStreetLabel() {
         scrollView.addSubview(streetLabel)
         streetLabel.topAnchor.constraint(equalTo: addressTypeTextField.bottomAnchor, constant: 8).isActive = true
-        streetLabel.leftAnchor.constraint(equalTo: areaLabel.leftAnchor).isActive = true
+        streetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        streetLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setStreetTextField() {
         scrollView.addSubview(streetTextField)
         streetTextField.topAnchor.constraint(equalTo: streetLabel.bottomAnchor, constant: 8).isActive = true
-        streetTextField.leftAnchor.constraint(equalTo: areaHolder.leftAnchor).isActive = true
-        streetTextField.rightAnchor.constraint(equalTo: areaHolder.rightAnchor).isActive = true
+        streetTextField.leadingAnchor.constraint(equalTo: areaHolder.leadingAnchor).isActive = true
+        streetTextField.trailingAnchor.constraint(equalTo: areaHolder.trailingAnchor).isActive = true
         streetTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     private func setVillaLabel() {
         scrollView.addSubview(villaLabel)
         villaLabel.topAnchor.constraint(equalTo: streetTextField.bottomAnchor, constant: 8).isActive = true
-        villaLabel.leftAnchor.constraint(equalTo: areaLabel.leftAnchor).isActive = true
+        villaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        villaLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setVillaTextField() {
         scrollView.addSubview(villaTextField)
         villaTextField.topAnchor.constraint(equalTo: villaLabel.bottomAnchor, constant: 8).isActive = true
-        villaTextField.leftAnchor.constraint(equalTo: areaHolder.leftAnchor).isActive = true
-        villaTextField.rightAnchor.constraint(equalTo: areaHolder.rightAnchor).isActive = true
+        villaTextField.leadingAnchor.constraint(equalTo: areaHolder.leadingAnchor).isActive = true
+        villaTextField.trailingAnchor.constraint(equalTo: areaHolder.trailingAnchor).isActive = true
         villaTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     private func setNextButton() {
         scrollView.addSubview(nextButton)
         nextButton.topAnchor.constraint(equalTo: villaTextField.bottomAnchor, constant: 16).isActive = true
-        nextButton.leftAnchor.constraint(equalTo: villaTextField.leftAnchor).isActive = true
-        nextButton.rightAnchor.constraint(equalTo: villaTextField.rightAnchor).isActive = true
+        nextButton.leadingAnchor.constraint(equalTo: villaTextField.leadingAnchor).isActive = true
+        nextButton.trailingAnchor.constraint(equalTo: villaTextField.trailingAnchor).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     

@@ -71,7 +71,7 @@ class LocationSecondViewController: UIViewController {
     
     let addressLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Address".localized()
         label.font = UIFont(name: OPENSANS_SEMIBOLD, size: 10)
@@ -82,7 +82,7 @@ class LocationSecondViewController: UIViewController {
     
     let addressLineOne: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "P Block, Emaar Business Park"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -93,7 +93,7 @@ class LocationSecondViewController: UIViewController {
     
     let addressLineTwo: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "341 Jake Island Suite 419"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
@@ -162,16 +162,16 @@ class LocationSecondViewController: UIViewController {
     
     private func setLocationConfirmButton() {
         view.addSubview(locationConfirmButton)
-        locationConfirmButton.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -4).isActive = true
-        locationConfirmButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        locationConfirmButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -4).isActive = true
+        locationConfirmButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         locationConfirmButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32).isActive = true
         locationConfirmButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
     private func setBackButton() {
         view.addSubview(backButton)
-        backButton.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: 4).isActive = true
-        backButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 4).isActive = true
+        backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         backButton.bottomAnchor.constraint(equalTo: locationConfirmButton.bottomAnchor).isActive = true
         backButton.topAnchor.constraint(equalTo: locationConfirmButton.topAnchor).isActive = true
     }
@@ -194,20 +194,23 @@ class LocationSecondViewController: UIViewController {
     
     private func setAddressLabel() {
         addressView.addSubview(addressLabel)
-        addressLabel.leftAnchor.constraint(equalTo: addressView.leftAnchor, constant: 16).isActive = true
+        addressLabel.leadingAnchor.constraint(equalTo: addressView.leadingAnchor, constant: 16).isActive = true
+        addressLabel.trailingAnchor.constraint(equalTo: addressView.trailingAnchor, constant: -16).isActive = true
         addressLabel.topAnchor.constraint(equalTo: addressView.topAnchor, constant: 20).isActive = true
     }
     
     private func setAddressLineOne() {
         addressView.addSubview(addressLineOne)
-        addressLineOne.leftAnchor.constraint(equalTo: addressLabel.leftAnchor).isActive = true
         addressLineOne.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 8).isActive = true
+        addressLineOne.leadingAnchor.constraint(equalTo: addressView.leadingAnchor, constant: 16).isActive = true
+        addressLineOne.trailingAnchor.constraint(equalTo: addressView.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setAddressLineTwo() {
         addressView.addSubview(addressLineTwo)
-        addressLineTwo.leftAnchor.constraint(equalTo: addressLabel.leftAnchor).isActive = true
         addressLineTwo.topAnchor.constraint(equalTo: addressLineOne.bottomAnchor, constant: 2).isActive = true
+        addressLineTwo.leadingAnchor.constraint(equalTo: addressView.leadingAnchor, constant: 16).isActive = true
+        addressLineTwo.trailingAnchor.constraint(equalTo: addressView.trailingAnchor, constant: -16).isActive = true
     }
     
     @objc private func handleLocationConfirmedButton(){

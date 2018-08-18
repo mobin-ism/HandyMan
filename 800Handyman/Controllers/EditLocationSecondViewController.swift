@@ -64,7 +64,7 @@ class EditLocationSecondViewController: UIViewController {
     
     let addressLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.text = "Address".localized()
         label.font = UIFont(name: OPENSANS_SEMIBOLD, size: 10)
@@ -75,7 +75,7 @@ class EditLocationSecondViewController: UIViewController {
     
     let addressLineOne: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "P Block, Emaar Business Park"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 14)
@@ -86,7 +86,7 @@ class EditLocationSecondViewController: UIViewController {
     
     let addressLineTwo: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         //label.text = "341 Jake Island Suite 419"
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
@@ -116,10 +116,6 @@ class EditLocationSecondViewController: UIViewController {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
-        
-        /*navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "leftArrowIcon")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)*/
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrowIcon"), style: .plain, target: self, action: #selector(backTapped))
     }
     
@@ -144,51 +140,54 @@ class EditLocationSecondViewController: UIViewController {
     
     private func setLocationConfirmButton() {
         view.addSubview(locationConfirmButton)
-        locationConfirmButton.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -4).isActive = true
-        locationConfirmButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        locationConfirmButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -4).isActive = true
+        locationConfirmButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         locationConfirmButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32).isActive = true
         locationConfirmButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
     private func setBackButton() {
         view.addSubview(backButton)
-        backButton.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: 4).isActive = true
-        backButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 4).isActive = true
+        backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         backButton.bottomAnchor.constraint(equalTo: locationConfirmButton.bottomAnchor).isActive = true
         backButton.topAnchor.constraint(equalTo: locationConfirmButton.topAnchor).isActive = true
     }
     
     private func setAddressView() {
         view.addSubview(addressView)
-        addressView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        addressView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        addressView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        addressView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         addressView.bottomAnchor.constraint(equalTo: locationConfirmButton.topAnchor, constant: -16).isActive = true
         addressView.heightAnchor.constraint(equalToConstant: 48 * 2).isActive = true
     }
     
     private func setMapView() {
         view.addSubview(mapView)
-        mapView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        mapView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         mapView.bottomAnchor.constraint(equalTo: addressView.topAnchor).isActive = true
         mapView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
     
     private func setAddressLabel() {
         addressView.addSubview(addressLabel)
-        addressLabel.leftAnchor.constraint(equalTo: addressView.leftAnchor, constant: 16).isActive = true
+        addressLabel.leadingAnchor.constraint(equalTo: addressView.leadingAnchor, constant: 16).isActive = true
+        addressLabel.trailingAnchor.constraint(equalTo: addressView.trailingAnchor, constant: -16).isActive = true
         addressLabel.topAnchor.constraint(equalTo: addressView.topAnchor, constant: 20).isActive = true
     }
     
     private func setAddressLineOne() {
         addressView.addSubview(addressLineOne)
-        addressLineOne.leftAnchor.constraint(equalTo: addressLabel.leftAnchor).isActive = true
+        addressLineOne.leadingAnchor.constraint(equalTo: addressLabel.leadingAnchor).isActive = true
+        addressLineOne.trailingAnchor.constraint(equalTo: addressView.trailingAnchor, constant: -16).isActive = true
         addressLineOne.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 8).isActive = true
     }
     
     private func setAddressLineTwo() {
         addressView.addSubview(addressLineTwo)
-        addressLineTwo.leftAnchor.constraint(equalTo: addressLabel.leftAnchor).isActive = true
+        addressLineTwo.leadingAnchor.constraint(equalTo: addressLabel.leadingAnchor).isActive = true
+        addressLineTwo.trailingAnchor.constraint(equalTo: addressLabel.trailingAnchor, constant: -16).isActive = true
         addressLineTwo.topAnchor.constraint(equalTo: addressLineOne.bottomAnchor, constant: 2).isActive = true
     }
     

@@ -11,7 +11,7 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
     
     let serviceTitleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_BOLD, size: 16)
         label.clipsToBounds = true
@@ -21,7 +21,7 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
     
     let subServiceTitleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 11)
         label.clipsToBounds = true
@@ -31,7 +31,7 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
     
     let priceTitleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 11)
         label.clipsToBounds = true
@@ -137,7 +137,7 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
     private func setServiceUIImageView() {
         self.addSubview(serviceImageView)
         serviceImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        serviceImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
+        serviceImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         serviceImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         serviceImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
     }
@@ -145,17 +145,19 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
         
         self.addSubview(serviceTitleLabel)
         serviceTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        serviceTitleLabel.leftAnchor.constraint(equalTo: serviceImageView.rightAnchor, constant: 10).isActive = true
+        serviceTitleLabel.leadingAnchor.constraint(equalTo: serviceImageView.trailingAnchor, constant: 10).isActive = true
+        serviceTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -70).isActive = true
     }
     private func setSubServiceTitleLabel() {
         
         self.addSubview(subServiceTitleLabel)
         subServiceTitleLabel.topAnchor.constraint(equalTo: serviceTitleLabel.bottomAnchor, constant: 5).isActive = true
-        subServiceTitleLabel.leftAnchor.constraint(equalTo: serviceImageView.rightAnchor, constant: 10).isActive = true
+        subServiceTitleLabel.leadingAnchor.constraint(equalTo: serviceImageView.trailingAnchor, constant: 10).isActive = true
+        subServiceTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -70).isActive = true
     }
     private func setExpandButton() {
         self.addSubview(expandButton)
-        expandButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+        expandButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
         expandButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         expandButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         expandButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
@@ -163,7 +165,7 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
     
     private func setERemoveButton() {
         self.addSubview(removeButton)
-        removeButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+        removeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
         removeButton.topAnchor.constraint(equalTo: expandButton.bottomAnchor).isActive = true
         removeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         removeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
@@ -171,14 +173,15 @@ class ServiceDetailsListViewCell: UICollectionViewCell {
     private func setPriceIconImageView() {
         self.addSubview(priceTagIconView)
         priceTagIconView.topAnchor.constraint(equalTo: subServiceTitleLabel.bottomAnchor, constant: 5).isActive = true
-        priceTagIconView.leftAnchor.constraint(equalTo: serviceImageView.rightAnchor, constant: 10).isActive = true
+        priceTagIconView.leadingAnchor.constraint(equalTo: serviceImageView.trailingAnchor, constant: 10).isActive = true
         priceTagIconView.heightAnchor.constraint(equalToConstant: 12).isActive = true
         priceTagIconView.widthAnchor.constraint(equalToConstant: 12).isActive = true
     }
     private func setPriceLabel() {
         self.addSubview(priceTitleLabel)
         priceTitleLabel.centerYAnchor.constraint(equalTo: priceTagIconView.centerYAnchor).isActive = true
-        priceTitleLabel.leftAnchor.constraint(equalTo: priceTagIconView.rightAnchor, constant: 5).isActive = true
+        priceTitleLabel.leadingAnchor.constraint(equalTo: priceTagIconView.trailingAnchor, constant: 5).isActive = true
+        priceTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 5).isActive = true
     }
     
 }

@@ -104,8 +104,8 @@ class NotificationViewController: UIViewController {
     private func setCollectionView() {
         view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
@@ -234,6 +234,7 @@ extension NotificationViewController {
                     for eachNotification in notificationList.data.notifications {
                         
                         let container = NotificationNSObject(notificationId: eachNotification.notificationId, title: eachNotification.title, message: eachNotification.message, date: Helper.getDateAndTime(timeInterval: eachNotification.lastModified, dateFormat: "dd-MM-YYYY"), time: Helper.getDateAndTime(timeInterval: eachNotification.lastModified, dateFormat: "hh:mm a"))
+                
                         self.notifications.append(eachNotification.title)
                         self.listOfNotifications.append(container)
                         self.collectionView.reloadData()

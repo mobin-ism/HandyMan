@@ -107,7 +107,7 @@
 "Street Name:" = "اسم الشارع:";
 "Apartment No.:" = "شقة رقم:";
 "Customer Job Done" = "مهمة العميل تم";
-"Request ID" = "طلب معرف";
+"Request ID: " = "طلب معرف";
 "Status: " = "الحالة: ";
 "Completed" = "منجز";
 "Total Price" = "السعر الكلي";
@@ -122,3 +122,4 @@
 "Card" = "بطاقة";
 "Phone No." = "رقم الهاتف.";
 "Phone no." = "رقم الهاتف.";
+"Email" = "البريد الإلكتروني";

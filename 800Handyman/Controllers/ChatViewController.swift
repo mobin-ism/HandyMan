@@ -51,7 +51,7 @@ class ChatViewController: UIViewController {
     
     lazy var replyTextField: PaddedTextField = {
         let field = PaddedTextField()
-        field.textAlignment = .left
+        field.textAlignment = .natural
         field.font = UIFont.systemFont(ofSize: 14)
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -199,15 +199,15 @@ class ChatViewController: UIViewController {
     private func setCollectionView() {
         view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 16).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.replyContainer.topAnchor, constant: -10).isActive = true
     }
     
     private func setupReplyContainer() {
         view.addSubview(replyContainer)
-        replyContainer.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        replyContainer.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        replyContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        replyContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         replyContainerBottomConstraint = replyContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         replyContainerBottomConstraint.isActive = true
         replyContainer.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -219,7 +219,7 @@ class ChatViewController: UIViewController {
     private func setupReplyButton() {
         replyContainer.addSubview(replyButton)
         replyButton.centerYAnchor.constraint(equalTo: replyContainer.centerYAnchor).isActive = true
-        replyButton.rightAnchor.constraint(equalTo: replyContainer.rightAnchor, constant: -10).isActive = true
+        replyButton.trailingAnchor.constraint(equalTo: replyContainer.trailingAnchor, constant: -10).isActive = true
         replyButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         replyButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
@@ -227,9 +227,9 @@ class ChatViewController: UIViewController {
     private func setupReplyTextField() {
         replyContainer.addSubview(replyTextField)
         replyTextField.centerYAnchor.constraint(equalTo: replyContainer.centerYAnchor).isActive = true
-        replyTextField.leftAnchor.constraint(equalTo: replyContainer.leftAnchor, constant: 5).isActive = true
+        replyTextField.leadingAnchor.constraint(equalTo: replyContainer.leadingAnchor, constant: 5).isActive = true
         replyTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        replyTextField.rightAnchor.constraint(equalTo: replyButton.leftAnchor, constant: -5).isActive = true
+        replyTextField.trailingAnchor.constraint(equalTo: replyButton.leadingAnchor, constant: -5).isActive = true
     }
     
     private func setupActivityIndicator(){

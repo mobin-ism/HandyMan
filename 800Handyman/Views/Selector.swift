@@ -65,8 +65,8 @@ class Selector : NSObject {
             })
             // constraints
             backgroundView.topAnchor.constraint(equalTo: window.topAnchor).isActive = true
-            backgroundView.leftAnchor.constraint(equalTo: window.leftAnchor).isActive = true
-            backgroundView.rightAnchor.constraint(equalTo: window.rightAnchor).isActive = true
+            backgroundView.leadingAnchor.constraint(equalTo: window.leadingAnchor).isActive = true
+            backgroundView.trailingAnchor.constraint(equalTo: window.trailingAnchor).isActive = true
             backgroundView.bottomAnchor.constraint(equalTo: window.bottomAnchor).isActive = true
             
             // adding the container view
@@ -90,8 +90,8 @@ class Selector : NSObject {
     func setupTableView() {
         containerView.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0).isActive = true
-        tableView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 0).isActive = true
-        tableView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0).isActive = true
     }
     
