@@ -17,12 +17,12 @@
 		08390B6F2085D95400321735 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B6E2085D95400321735 /* Selector.swift */; };
 		08390B752085DB0B00321735 /* SelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B742085DB0B00321735 /* SelectorCell.swift */; };
 		08390B772085F94F00321735 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08390B762085F94F00321735 /* AddressModel.swift */; };
+		083DF8A2212A9ABD005629BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 083DF8A1212A9ABD005629BB /* GoogleService-Info.plist */; };
 		083F1AC220A2CB76009954AC /* ServiceDetailsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F1AC120A2CB76009954AC /* ServiceDetailsListViewController.swift */; };
 		083F1AC420A2D243009954AC /* ServiceDetailsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F1AC320A2D243009954AC /* ServiceDetailsListViewCell.swift */; };
 		083F1AC620A2E3D4009954AC /* ShowServiceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F1AC520A2E3D4009954AC /* ShowServiceDetailsView.swift */; };
 		0840BD65208F0DC6000FC497 /* SenderMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */; };
 		0840BD67208F338F000FC497 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840BD66208F338F000FC497 /* ChatModel.swift */; };
-		08469672211C3206002F8DFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08469671211C3206002F8DFB /* GoogleService-Info.plist */; };
 		0851166A208C830400E81C61 /* JobListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08511669208C830400E81C61 /* JobListModel.swift */; };
 		0855D62E20849032002BB7A7 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62D20849032002BB7A7 /* DeviceModel.swift */; };
 		0855D6302084BEA0002BB7A7 /* AddingServiceRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */; };
@@ -101,13 +101,13 @@
 		08390B6E2085D95400321735 /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		08390B742085DB0B00321735 /* SelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorCell.swift; sourceTree = "<group>"; };
 		08390B762085F94F00321735 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
+		083DF8A1212A9ABD005629BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		083F1AC120A2CB76009954AC /* ServiceDetailsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsListViewController.swift; sourceTree = "<group>"; };
 		083F1AC320A2D243009954AC /* ServiceDetailsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsListViewCell.swift; sourceTree = "<group>"; };
 		083F1AC520A2E3D4009954AC /* ShowServiceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowServiceDetailsView.swift; sourceTree = "<group>"; };
 		0840BD64208F0DC6000FC497 /* SenderMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageCell.swift; sourceTree = "<group>"; };
 		0840BD66208F338F000FC497 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		08469670211C2E7A002F8DFB /* 800Handyman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = 800Handyman.entitlements; sourceTree = "<group>"; };
-		08469671211C3206002F8DFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		08511669208C830400E81C61 /* JobListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListModel.swift; sourceTree = "<group>"; };
 		0855D62D20849032002BB7A7 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		0855D62F2084BEA0002BB7A7 /* AddingServiceRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingServiceRequestModel.swift; sourceTree = "<group>"; };
@@ -232,8 +232,8 @@
 		776588DD2073823C00876E3E /* 800Handyman */ = {
 			isa = PBXGroup;
 			children = (
-				08469671211C3206002F8DFB /* GoogleService-Info.plist */,
 				08469670211C2E7A002F8DFB /* 800Handyman.entitlements */,
+				083DF8A1212A9ABD005629BB /* GoogleService-Info.plist */,
 				776588F42073858800876E3E /* Utility */,
 				776588F32073857F00876E3E /* Resources */,
 				776588F22073857900876E3E /* Models */,
@@ -457,12 +457,12 @@
 			files = (
 				776588E92073823C00876E3E /* LaunchScreen.storyboard in Resources */,
 				08236FEB211AFEA000EA41D6 /* bottom-arrow.gif in Resources */,
-				08469672211C3206002F8DFB /* GoogleService-Info.plist in Resources */,
 				7765890A20739D7700876E3E /* OpenSans-SemiBold.ttf in Resources */,
 				77185424207A89270006BEEC /* OpenSans-LightItalic.ttf in Resources */,
 				0864E35421219FDF00B107A8 /* Localizable.strings in Resources */,
 				7765890B20739D7700876E3E /* OpenSans-Regular.ttf in Resources */,
 				77185422207A89160006BEEC /* OpenSans-Bold.ttf in Resources */,
+				083DF8A2212A9ABD005629BB /* GoogleService-Info.plist in Resources */,
 				776588E62073823C00876E3E /* Assets.xcassets in Resources */,
 				08236FED211B003000EA41D6 /* scroll-down.gif in Resources */,
 			);
