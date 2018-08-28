@@ -54,11 +54,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let notificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
         application.registerForRemoteNotifications()
         application.registerUserNotificationSettings(notificationSettings)
+        
+        // firebase token id
+        UserDefaults.standard.set(InstanceID.instanceID().token()!, forKey: FIREBASE_TOKEN)
         return true
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print(userInfo)
     }
+    
+    
 }
 

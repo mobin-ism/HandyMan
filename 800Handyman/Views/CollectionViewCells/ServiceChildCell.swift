@@ -28,7 +28,7 @@ class ServiceChildCell: MasterCollectionViewCell {
     
     let subTitleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
@@ -54,7 +54,7 @@ class ServiceChildCell: MasterCollectionViewCell {
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
@@ -64,7 +64,7 @@ class ServiceChildCell: MasterCollectionViewCell {
     
     let serviceHourLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor.black
         label.font = UIFont(name: OPENSANS_REGULAR, size: 12)
         label.clipsToBounds = true
@@ -128,15 +128,15 @@ class ServiceChildCell: MasterCollectionViewCell {
     override func layout() {
         addSubview(leftHolder)
         leftHolder.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        leftHolder.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        leftHolder.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         leftHolder.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        leftHolder.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        leftHolder.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
         
         addSubview(rightHolder)
         rightHolder.topAnchor.constraint(equalTo: leftHolder.topAnchor).isActive = true
-        rightHolder.leftAnchor.constraint(equalTo: leftHolder.rightAnchor, constant: 8).isActive = true
+        rightHolder.leadingAnchor.constraint(equalTo: leftHolder.trailingAnchor, constant: 8).isActive = true
         rightHolder.bottomAnchor.constraint(equalTo: leftHolder.bottomAnchor).isActive = true
-        rightHolder.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
+        rightHolder.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2).isActive = true
         
         setTitleLabel()
         setSubTitleLabel()
@@ -149,25 +149,26 @@ class ServiceChildCell: MasterCollectionViewCell {
     
     private func setTitleLabel() {
         leftHolder.addSubview(titleLabel)
-        titleLabel.textAlignment = .left
+        titleLabel.textAlignment = .natural
         titleLabel.textColor = UIColor.black
         titleLabel.font = UIFont(name: OPENSANS_REGULAR, size: 14)
+        titleLabel.numberOfLines = 0
         titleLabel.topAnchor.constraint(equalTo: leftHolder.topAnchor, constant: 8).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: leftHolder.leftAnchor, constant: 8).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: leftHolder.rightAnchor, constant: -8).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leftHolder.leadingAnchor, constant: 8).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: leftHolder.trailingAnchor, constant: -8).isActive = true
     }
     
     private func setSubTitleLabel() {
         leftHolder.addSubview(subTitleLabel)
-        subTitleLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
-        subTitleLabel.rightAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
+        subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        subTitleLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
         subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
     }
     
     private func setIconOne() {
         rightHolder.addSubview(iconOne)
-        iconOne.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
-        iconOne.leftAnchor.constraint(equalTo: rightHolder.leftAnchor, constant: 0).isActive = true
+        iconOne.topAnchor.constraint(equalTo: rightHolder.topAnchor, constant: 8).isActive = true
+        iconOne.leadingAnchor.constraint(equalTo: rightHolder.leadingAnchor, constant: 0).isActive = true
         iconOne.widthAnchor.constraint(equalToConstant: 16).isActive = true
         iconOne.heightAnchor.constraint(equalToConstant: 16).isActive = true
     }
@@ -175,13 +176,13 @@ class ServiceChildCell: MasterCollectionViewCell {
     private func setPricelabel() {
         rightHolder.addSubview(priceLabel)
         priceLabel.centerYAnchor.constraint(equalTo: iconOne.centerYAnchor).isActive = true
-        priceLabel.leftAnchor.constraint(equalTo: iconOne.rightAnchor, constant: 4).isActive = true
-        priceLabel.rightAnchor.constraint(equalTo: rightHolder.rightAnchor, constant: -8).isActive = true
+        priceLabel.leadingAnchor.constraint(equalTo: iconOne.trailingAnchor, constant: 4).isActive = true
+        priceLabel.trailingAnchor.constraint(equalTo: rightHolder.trailingAnchor, constant: -8).isActive = true
     }
     
     private func setIconTwo() {
         rightHolder.addSubview(iconTwo)
-        iconTwo.leftAnchor.constraint(equalTo: iconOne.leftAnchor).isActive = true
+        iconTwo.leadingAnchor.constraint(equalTo: iconOne.leadingAnchor).isActive = true
         iconTwo.topAnchor.constraint(equalTo: iconOne.bottomAnchor, constant: 8).isActive = true
         iconTwo.widthAnchor.constraint(equalToConstant: 16).isActive = true
         iconTwo.heightAnchor.constraint(equalToConstant: 16).isActive = true
@@ -190,14 +191,14 @@ class ServiceChildCell: MasterCollectionViewCell {
     private func setServiceHourLabel() {
         rightHolder.addSubview(serviceHourLabel)
         serviceHourLabel.centerYAnchor.constraint(equalTo: iconTwo.centerYAnchor).isActive = true
-        serviceHourLabel.leftAnchor.constraint(equalTo: iconTwo.rightAnchor, constant: 4).isActive = true
-        serviceHourLabel.rightAnchor.constraint(equalTo: rightHolder.rightAnchor, constant: -8).isActive = true
+        serviceHourLabel.leadingAnchor.constraint(equalTo: iconTwo.trailingAnchor, constant: 4).isActive = true
+        serviceHourLabel.trailingAnchor.constraint(equalTo: rightHolder.trailingAnchor, constant: -8).isActive = true
     }
     
     private func setRightArrowIcon() {
         addSubview(rightArrowIcon)
         rightArrowIcon.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        rightArrowIcon.leftAnchor.constraint(equalTo: rightHolder.rightAnchor).isActive = true
+        rightArrowIcon.leadingAnchor.constraint(equalTo: rightHolder.trailingAnchor).isActive = true
         rightArrowIcon.widthAnchor.constraint(equalToConstant: 7).isActive = true
         rightArrowIcon.heightAnchor.constraint(equalToConstant: 7 * 1.69).isActive = true
     }

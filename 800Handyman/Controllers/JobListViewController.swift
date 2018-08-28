@@ -241,6 +241,7 @@ extension JobListViewController {
                 return
             }
             
+            print(response)
             if !self.listOfJobs.isEmpty {
                 self.listOfJobs.removeAll()
             }

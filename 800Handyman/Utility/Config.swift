@@ -21,6 +21,7 @@ let IS_ANOTHER_SERVICE_REQUEST = "is_another_service_request"
 let IS_LOGGED_IN      = "is_logged_in"
 let SELECTED_LANGUAGE = "Selected_Language"
 let DEVICE_ID         = "Device_Id"
+let FIREBASE_TOKEN         = "Firebase_token"
 let SHOW_THANK_YOU_MESSAGE = "show_thank_you_message"
 
 let NAV_GRADIENT_TOP = UIColor(red:1.00, green:0.92, blue:0.00, alpha:1.0)

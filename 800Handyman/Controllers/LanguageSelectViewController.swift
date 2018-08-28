@@ -147,7 +147,7 @@ class LanguageSelectViewController: UIViewController {
         
         UserDefaults.standard.set("en", forKey: SELECTED_LANGUAGE)
         UIView.appearance().semanticContentAttribute = .forceLeftToRight
-        self.registerDeviceToken()
+        self.registerFirebaseTokenAndDeviceToken()
         Localize.setCurrentLanguage("en")
         dismiss(animated: true, completion: nil)
     }
@@ -156,7 +156,7 @@ class LanguageSelectViewController: UIViewController {
         
         UserDefaults.standard.set("ar", forKey: SELECTED_LANGUAGE)
         UIView.appearance().semanticContentAttribute = .forceRightToLeft
-        self.registerDeviceToken()
+        self.registerFirebaseTokenAndDeviceToken()
         Localize.setCurrentLanguage("ar")
         dismiss(animated: true, completion: nil)
     }
@@ -178,11 +178,11 @@ class LanguageSelectViewController: UIViewController {
         // Present the controller
         self.present(alertController, animated: true, completion: nil)
     }
-    func registerDeviceToken(){
-        print(UserDefaults.standard.value(forKey: DEVICE_ID) as! String)
+    func registerFirebaseTokenAndDeviceToken(){
         self.activityIndicator.startAnimating()
-        guard let url = URL(string: "\(API_URL)api/v1/member/device/register") else { return }
-        let params = ["DeviceId": UserDefaults.standard.value(forKey: DEVICE_ID) as! String] as [String : Any]
+        guard let url = URL(string: "\(API_URL)api/v1/member/firebase/registration") else { return }
+        let params = ["DeviceId": UserDefaults.standard.value(forKey: DEVICE_ID) as! String,
+                      "FirebaseToken" : UserDefaults.standard.value(forKey: FIREBASE_TOKEN) as! String] as [String : Any]
         Alamofire.request(url,method: .post, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type": "application/x-www-form-urlencoded", "Authorization" : AUTH_KEY]).responseJSON(completionHandler: {
             response in
             guard response.result.isSuccess else {

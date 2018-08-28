@@ -120,7 +120,12 @@ class ServiceViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        topImageHolder.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: serviceMenu.frame.width / 2).isActive = true
+        if Helper.selectedLanguage == "en" {
+         topImageHolder.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: serviceMenu.frame.width / 2).isActive = true
+        }
+        else if Helper.selectedLanguage == "ar" {
+            topImageHolder.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -(serviceMenu.frame.width / 2)).isActive = true
+        }
         topImageHolder.layer.cornerRadius = topImageHolder.frame.height / 2
     }
     
@@ -149,6 +154,7 @@ class ServiceViewController: UIViewController {
         serviceMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         serviceMenu.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         serviceMenu.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.16).isActive = true
+        
     }
     
     private func setVerticalLine() {
@@ -309,7 +315,12 @@ extension ServiceViewController {
                             for subService in service.child {
                                 self.subServicesId.append(subService.serviceId)
                                 self.subServicesTitle.append(subService.title)
-                                self.subServicesSubTitle.append(subService.subTitle)
+                                if let subTitle = subService.subTitle {
+                                    self.subServicesSubTitle.append(subTitle)
+                                }
+                                else {
+                                    self.subServicesSubTitle.append("")
+                                }
                                 self.subServicesRate.append(subService.serviceRate)
                                 self.subServicesRequiredHours.append(subService.requiredHours)
                             }

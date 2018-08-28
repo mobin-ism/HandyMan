@@ -13,7 +13,7 @@ import Localize_Swift
 class PendingServiceDetailsListViewController : UIViewController {
     
     var selectedDateAndTime : String = "--:--"
-    
+    var serviceRate : Int = 0
     var listOfServices = [NSObject]()
     var selectedItem : Int?
     
@@ -600,6 +600,10 @@ extension PendingServiceDetailsListViewController {
                         
                         let container = GetServicesListObject(serviceRequestDetailId: eachService.serviceRequestDetailId, serviceParentIcon: eachService.serviceParentIcon, serviceParentTitle: eachService.serviceParentTitle, serviceTitle: eachService.serviceTitle, serviceRate: eachService.serviceRate, thumbnails: eachService.thumbnails)
                         
+                        if let eachServiceRate = Int(eachService.serviceRate) {
+                            self.serviceRate = self.serviceRate + eachServiceRate
+                        }
+                        
                         self.listOfServices.append(container)
                     }
                     self.orderStatusLabel.text = serviceList.data.serviceRequest.status
@@ -608,6 +612,7 @@ extension PendingServiceDetailsListViewController {
                     self.streetLabel.text = "Street Name:".localized() + "\(serviceList.data.serviceRequest.location.street)"
                     self.apartmentLabel.text = "Apartment No.:".localized() + "\(serviceList.data.serviceRequest.location.apartmentNo)"
                     self.dateAndTimeLabel.text = self.selectedDateAndTime
+                    self.totalPriceLabel.text = "\(self.serviceRate) AED"
                 } catch let err {
                     print(err)
                 }

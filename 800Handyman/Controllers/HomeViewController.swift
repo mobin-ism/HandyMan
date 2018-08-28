@@ -283,7 +283,7 @@ extension HomeViewController {
     
     func getServicesJSON() {
         self.activityIndicator.startAnimating()
-        guard let url = URL(string: "\(API_URL)api/v1/member/services/\(UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as! String)") else { return }
+        guard let url = URL(string: "\(API_URL)api/v1/member/services?language=\(UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as! String)") else { return }
         Alamofire.request(url,method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": AUTH_KEY]).responseJSON(completionHandler: {
             response in
             guard response.result.isSuccess else {
@@ -291,6 +291,7 @@ extension HomeViewController {
                 self.activityIndicator.stopAnimating()
                 return
             }
+            print(response)
             
             if let json = response.data {
                 
