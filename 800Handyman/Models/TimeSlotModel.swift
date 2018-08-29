@@ -21,11 +21,13 @@ struct TimeSlotData : Decodable {
 struct TimeSlots : Decodable {
     
     let timeRange : String
+    let agentId   : Int
 }
 
 class TimeSlotNSObject : NSObject {
     
     private var _timeSlot : String
+    private var _agentId  : Int
     
     var timeSlot : String {
         get{
@@ -33,9 +35,16 @@ class TimeSlotNSObject : NSObject {
         }
     }
     
-    init(timeSlot : String){
+    var agentId : Int {
+        get{
+            return _agentId
+        }
+    }
+    
+    init(timeSlot : String, agentId : Int){
         
         self._timeSlot = timeSlot
+        self._agentId = agentId
     }
     
 }

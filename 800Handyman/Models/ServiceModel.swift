@@ -33,6 +33,6 @@ struct Child : Decodable {
     let title : String
     let subTitle : String?
     let serviceRate : String
-    let requiredHours : String
+    let requiredHours : String?
 }
 

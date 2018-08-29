@@ -322,7 +322,12 @@ extension ServiceViewController {
                                     self.subServicesSubTitle.append("")
                                 }
                                 self.subServicesRate.append(subService.serviceRate)
-                                self.subServicesRequiredHours.append(subService.requiredHours)
+                                if let eachServiceRate = subService.requiredHours {
+                                    self.subServicesRequiredHours.append(eachServiceRate)
+                                }
+                                else {
+                                    self.subServicesRequiredHours.append("")
+                                }
                             }
                         }
                     }

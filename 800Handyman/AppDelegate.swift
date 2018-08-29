@@ -47,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         FirebaseApp.configure()
         
-        
         // push notification settings
         
         let notificationTypes : UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
@@ -56,14 +55,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         application.registerUserNotificationSettings(notificationSettings)
         
         // firebase token id
-        UserDefaults.standard.set(InstanceID.instanceID().token()!, forKey: FIREBASE_TOKEN)
+        if let firebaseToken = InstanceID.instanceID().token() {
+            UserDefaults.standard.set(firebaseToken, forKey: FIREBASE_TOKEN)
+            //print(firebaseToken)
+        }
+        else {
+            UserDefaults.standard.set("", forKey: FIREBASE_TOKEN)
+            print("No token generated")
+        }
         return true
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print(userInfo)
     }
-    
-    
 }
 

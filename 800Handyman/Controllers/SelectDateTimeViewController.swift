@@ -14,6 +14,7 @@ class SelectDateTimeViewController: UIViewController {
     
     var selectedDate : String?
     var selectedTime : String?
+    var selectedAgentId : Int?
     var selectedTimeAndDate : String = "Not Selected Yet".localized()
     var timeSlots = [NSObject]()
     var counter = 0
@@ -288,6 +289,9 @@ extension SelectDateTimeViewController: UICollectionViewDelegate, UICollectionVi
         }
 
         if let data = timeSlots as? [TimeSlotNSObject] {
+            if  indexPath.row == 0 {
+                cell.isSelected = true
+            }
             cell.mainText = "\(data[indexPath.row].timeSlot)"
         }
         
@@ -300,9 +304,10 @@ extension SelectDateTimeViewController: UICollectionViewDelegate, UICollectionVi
         cell.isSelected = true
         if let data = timeSlots as? [TimeSlotNSObject] {
             self.selectedTime = "\(data[indexPath.row].timeSlot)"
-            
+            self.selectedAgentId = data[indexPath.row].agentId
             guard let selectedDate = self.selectedDate else { return }
             self.selectedTimeAndDate = "\(selectedDate) | \(data[indexPath.row].timeSlot)"
+            print(self.selectedAgentId!)
         }
     }
     
@@ -334,7 +339,7 @@ extension SelectDateTimeViewController {
         guard let selectedDate = self.selectedDate else { return }
         
         self.activityIndicator.startAnimating()
-        guard let url = URL(string: "\(API_URL)api/v1/member/get/timeslots?date=\(selectedDate)") else { return }
+        guard let url = URL(string: "\(API_URL)api/v1/member/get/timeslots?date=\(selectedDate)&serviceRequestMasterId=\(UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int)") else { return }
         Alamofire.request(url,method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": AUTH_KEY]).responseJSON(completionHandler: {
             response in
             guard response.result.isSuccess else {
@@ -355,7 +360,7 @@ extension SelectDateTimeViewController {
                     
                     for eachTimeSlot in timeSlotResponse.data.timeSlots {
                        
-                        let container = TimeSlotNSObject(timeSlot: eachTimeSlot.timeRange)
+                        let container = TimeSlotNSObject(timeSlot: eachTimeSlot.timeRange, agentId: eachTimeSlot.agentId)
                         self.timeSlots.append(container)
                     }
                     self.activityIndicator.stopAnimating()
@@ -372,9 +377,10 @@ extension SelectDateTimeViewController {
     private func updateDateTime() {
         guard let selectedDate = self.selectedDate else { return }
         guard let selectedTime = self.selectedTime else { return }
+        guard let selectedAgentId = self.selectedAgentId else { return }
         
         self.activityIndicator.startAnimating()
-        let params = ["ServiceRequestMasterId" : UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int, "StartDate" : selectedDate, "TimeRange" : selectedTime] as [String : Any]
+        let params = ["ServiceRequestMasterId" : UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int, "StartDate" :          selectedDate, "TimeRange" : selectedTime, "AgentId" : selectedAgentId] as [String : Any]
         guard let url = URL(string: "\(API_URL)api/v1/member/service/request/datetime/update") else { return }
         Alamofire.request(url,method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["Authorization": AUTH_KEY]).responseJSON(completionHandler: {
             response in

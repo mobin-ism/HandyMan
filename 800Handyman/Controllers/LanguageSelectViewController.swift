@@ -180,7 +180,7 @@ class LanguageSelectViewController: UIViewController {
     }
     func registerFirebaseTokenAndDeviceToken(){
         self.activityIndicator.startAnimating()
-        guard let url = URL(string: "\(API_URL)api/v1/member/firebase/registration") else { return }
+        guard let url = URL(string: "\(API_URL)api/v1/member/device/register") else { return }
         let params = ["DeviceId": UserDefaults.standard.value(forKey: DEVICE_ID) as! String,
                       "FirebaseToken" : UserDefaults.standard.value(forKey: FIREBASE_TOKEN) as! String] as [String : Any]
         Alamofire.request(url,method: .post, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type": "application/x-www-form-urlencoded", "Authorization" : AUTH_KEY]).responseJSON(completionHandler: {
@@ -190,7 +190,6 @@ class LanguageSelectViewController: UIViewController {
                 self.activityIndicator.stopAnimating()
                 return
             }
-            
             print(response)
             if let json = response.data {
                 

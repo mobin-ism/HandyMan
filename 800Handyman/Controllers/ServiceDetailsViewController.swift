@@ -727,13 +727,46 @@ extension ServiceDetailsViewController {
     }
     
     @objc private func addNewImageButtonTapped(_ sender: UIButton){
+        let alert = UIAlertController(title: "Choose Image".localized(), message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera".localized(), style: .default, handler: { _ in
+            self.openCamera()
+        }))
         
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+        alert.addAction(UIAlertAction(title: "Gallery".localized(), style: .default, handler: { _ in
+            self.openGallary()
+        }))
+        alert.addAction(UIAlertAction.init(title: "Cancel".localized(), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
             
-            imagePicker.sourceType = .savedPhotosAlbum;
+            imagePicker.sourceType = .camera
             imagePicker.allowsEditing = false
             
             self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    private func openGallary() {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.allowsEditing = false
+            
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 }

@@ -291,7 +291,6 @@ extension HomeViewController {
                 self.activityIndicator.stopAnimating()
                 return
             }
-            print(response)
             
             if let json = response.data {
                 
