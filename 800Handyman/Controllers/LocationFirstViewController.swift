@@ -447,7 +447,6 @@ class LocationFirstViewController: UIViewController{
         self.addAddressOfServiceRequest()
         let timeSlotObj = SelectDateTimeViewController()
         self.navigationController?.pushViewController(timeSlotObj, animated: true)
-        
     }
     
     var secondLocationVC = LocationSecondViewController()
@@ -591,8 +590,7 @@ extension LocationFirstViewController {
             self.showEmptyAlert()
             return
         }
-        guard let markedLatitude  = self.markedLatitude else { return }
-        guard let markedLongitude = self.markedLongitude else { return }
+        
         guard let areaName        = self.areaNameLabel.text else { return }
         guard let addressName     = self.addressNameTextField.text else { return }
         guard let addressType     = self.addressTypeTextField.text else { return }
@@ -622,8 +620,8 @@ extension LocationFirstViewController {
                       "ApartmentNo" : apartmentNo,
                       "Location" : areaName,
                       "AreaId" : selectedAreaID,
-                      "Latitude" : markedLatitude,
-                      "Longitude" : markedLongitude
+                      "Latitude" : markedLatitude ?? 0.0,
+                      "Longitude" : markedLongitude ?? 0.0
                       ] as [String : Any]
         Alamofire.request(url,method: .post, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type": "application/x-www-form-urlencoded", "Authorization" : AUTH_KEY]).responseJSON(completionHandler: {
             response in

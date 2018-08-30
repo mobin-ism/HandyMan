@@ -250,8 +250,8 @@ class LoginViewController : UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.activityIndicator.stopAnimating()
         self.isLoggedIn()
-        print("Hello")
         if (UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as! String == "ar") {
             self.namelabel.text = "الإسم"
             self.phoneNumberForLoginLabel.text = "رقم الهاتف."
@@ -304,7 +304,8 @@ class LoginViewController : UIViewController{
     @objc private func menuIconTapped() {
         self.menu.show(fromVC: self)
     }
-
+    
+    let otpVC = OTPViewController()
     private func layout() {
         setScrollView()
         setupPageTitleLable()
@@ -525,8 +526,11 @@ class LoginViewController : UIViewController{
         let alert = UIAlertController(title: "Congratulations!!!".localized(), message: "Registration Successfully Done".localized(), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Close".localized(), style: .default, handler: { action in
             //run your function here
-            self.doLoginWithToken(tokenID: tokenID, phoneNumber: phoneNumber)
+            //self.doLoginWithToken(tokenID: tokenID, phoneNumber: phoneNumber)
+            self.otpVC.phoneNumber = phoneNumber
+            self.otpVC.tokenID = tokenID
             self.makeFormEmpty()
+            self.navigationController?.pushViewController(self.otpVC, animated: true)
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -579,7 +583,7 @@ extension LoginViewController {
             return
         }
         if phoneNumber == "" {
-            
+            print("THerer")
             self.loginFieldEmptyAlert()
             return
         }
@@ -594,7 +598,7 @@ extension LoginViewController {
                 self.activityIndicator.stopAnimating()
                 return
             }
-            //print(response)
+            print(response)
             if let json = response.data {
                 
                 let decoder = JSONDecoder()
@@ -604,9 +608,13 @@ extension LoginViewController {
                     
                     if tokenValidity.isSuccess {
                         let tokenResponse = try decoder.decode(TokenReponse.self, from: json)
-                        self.doLoginWithToken(tokenID: tokenResponse.data.token, phoneNumber: phoneNumber)
+                        self.otpVC.phoneNumber = phoneNumber
+                        self.otpVC.tokenID = tokenResponse.data.token
+                        self.navigationController?.pushViewController(self.otpVC, animated: true)
+                        //self.doLoginWithToken(tokenID: tokenResponse.data.token, phoneNumber: phoneNumber)
                     }
                     else {
+                        print("Herer")
                         self.loginFailed()
                         self.activityIndicator.stopAnimating()
                     }
@@ -623,57 +631,7 @@ extension LoginViewController {
         })
     }
     
-    private func doLoginWithToken(tokenID : String, phoneNumber: String) {
-        self.activityIndicator.startAnimating()
-        guard let url = URL(string: "\(API_URL)api/v1/member/token/submit") else { return }
-        let params = ["PhoneNumber" : phoneNumber,
-                      "SecurityKey" : tokenID] as [String : Any]
-        Alamofire.request(url,method: .post, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
-            response in
-            guard response.result.isSuccess else {
-                print(response)
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            print(response)
-            
-            if let json = response.data {
-                
-                let decoder = JSONDecoder()
-                
-                do {
-                    
-                    let loginResponse = try decoder.decode(LoginResponse.self, from: json)
-                    
-                        if  loginResponse.isSuccess {
-                            
-                            UserDefaults.standard.set(true, forKey: IS_LOGGED_IN)
-                            UserDefaults.standard.set(loginResponse.data.member.memberId, forKey: MEMBER_ID)
-                            if UserDefaults.standard.value(forKey: SHOW_THANK_YOU_MESSAGE) as! Bool {
-                                let thankYouOBJ = ThankYouViewController()
-                                thankYouOBJ.serviceRequestMasterID = UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as? Int
-                                self.navigationController?.pushViewController(thankYouOBJ, animated: true)
-                            }
-                            else {
-                                self.navigationController?.pushViewController(JobListViewController(), animated: true)
-                            }
-                        }
-                        else{
-                            self.loginFailed()
-                        }
-                    
-                } catch let err{
-                    
-                    print(err)
-                }
-            }
-            // code after a successfull reponse
-            self.activityIndicator.stopAnimating()
-            
-            self.makeFormEmpty()
-        })
-    }
+    
     
     
     // Register user

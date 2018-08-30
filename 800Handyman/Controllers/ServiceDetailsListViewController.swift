@@ -367,6 +367,7 @@ class ServiceDetailsListViewController : UIViewController {
         self.collectionView.register(ServiceDetailsListViewCell.self, forCellWithReuseIdentifier: cellID)
         print("Master Service Request ID is: \(UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as! Int)")
         
+        self.layout()
         // get services list
         self.getServicesList()
     }
@@ -828,12 +829,15 @@ extension ServiceDetailsListViewController {
                     self.streetLabel.text = "Street Name:".localized() + "\(serviceList.data.serviceRequest.location.street)"
                     self.apartmentLabel.text = "Apartment No.:".localized() + "\(serviceList.data.serviceRequest.location.apartmentNo)"
                     self.dateAndTimeLabel.text = self.selectedDateAndTime
+                    print(serviceList.data.serviceRequest.location.areaName)
+                    print(serviceList.data.serviceRequest.location.addressName)
+                    print(serviceList.data.serviceRequest.location.street)
+                    print(serviceList.data.serviceRequest.location.apartmentNo)
                 } catch let err {
                     print(err)
                 }
             }
             
-            self.layout()
             if  self.listOfServices.count > 2 {
                 self.gifArrow.alpha = 1
             }

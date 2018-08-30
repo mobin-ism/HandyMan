@@ -18,6 +18,17 @@ class CompletedServiceDetailsListViewController : UIViewController {
     var selectedItem : Int?
     var serviceRequestMasterID : Int?
     
+    let gifArrow : UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .clear
+        imageView.loadGif(name: "scroll-down")
+        imageView.alpha = 0
+        return imageView
+    }()
+    
     let titleLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -295,6 +306,7 @@ class CompletedServiceDetailsListViewController : UIViewController {
         setupOrderStatusLabel()
         setupOrderStatusTitleLabel()
         setupCollecetionView()
+        setBottomIndicatorArrow()
         setupTotalPriceTitleLabel()
         setupTotalPriceLabel()
         setupLocationTitleLabel()
@@ -348,12 +360,21 @@ class CompletedServiceDetailsListViewController : UIViewController {
     }
     
     private func setupCollecetionView() {
-        let collectionViewHeight : CGFloat = CGFloat((self.listOfServices.count * 90) + (self.listOfServices.count * 8))
+        let _ : CGFloat = CGFloat((self.listOfServices.count * 90) + (self.listOfServices.count * 8))
         scrollView.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: orderStatusTitleLabel.bottomAnchor, constant: 16).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight).isActive = true
+        //collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: 195).isActive = true
+    }
+    
+    private func setBottomIndicatorArrow() {
+        scrollView.addSubview(gifArrow)
+        gifArrow.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor, constant: -10).isActive = true
+        gifArrow.leadingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -20).isActive = true
+        gifArrow.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        gifArrow.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     private func setupTotalPriceTitleLabel() {
@@ -583,10 +604,9 @@ extension CompletedServiceDetailsListViewController {
             self.activityIndicator.stopAnimating()
             
             if !self.listOfServices.isEmpty {
-                
                 self.listOfServices.removeAll()
             }
-            
+            self.serviceRate = 0
             if let json = response.data {
                 
                 let decoder = JSONDecoder()
@@ -614,6 +634,9 @@ extension CompletedServiceDetailsListViewController {
                 }
             }
             
+            if  self.listOfServices.count > 2 {
+                self.gifArrow.alpha = 1
+            }
             self.layout()
             self.collectionView.reloadData()
             self.collectionView.collectionViewLayout.invalidateLayout()

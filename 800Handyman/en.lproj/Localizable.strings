@@ -126,6 +126,10 @@
 "Choose Image" = "Choose Image";
 "Camera" = "Camera";
 "Gallery" = "Gallery";
+"Please enter your security number" = "Please enter your security number";
+"Invalid security number" = "Invalid security number";
+"Please provide a security number" = "Please provide a security number";
+
 
 
 

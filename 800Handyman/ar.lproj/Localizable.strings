@@ -126,3 +126,6 @@
 "Choose Image" = "اختر صورة";
 "Camera" = "الة تصوير";
 "Gallery" = "صالة عرض";
+"Please enter your security number" = "يرجى إدخال رقم التأمين الخاص بك";
+"Invalid security number" = "رقم التأمين غير صحيح";
+"Please provide a security number" = "يرجى تقديم رقم الضمان";

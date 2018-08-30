@@ -246,15 +246,19 @@ class SelectDateTimeViewController: UIViewController {
     
     @objc private func handleNextButton() {
         
-        self.updateDateTime()
-        serviceDetailsListVC.selectedDateAndTime = self.selectedTimeAndDate
-        self.navigationController?.pushViewController(serviceDetailsListVC, animated: true)
+        if let _ = self.selectedTime, let _ = self.selectedAgentId {
+            self.updateDateTime()
+            serviceDetailsListVC.selectedDateAndTime = self.selectedTimeAndDate
+            self.navigationController?.pushViewController(serviceDetailsListVC, animated: true)
+        }else {
+            let alert = UIAlertController(title: "Warning".localized(), message: "Please select a time slot".localized(), preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay".localized(), style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @objc private func showDatePicker() {
         calendarSelector.show()
-        print("Date picker")
-        
     }
     
     func changeFromDateButtonTitle(withString title: String) {
@@ -289,9 +293,6 @@ extension SelectDateTimeViewController: UICollectionViewDelegate, UICollectionVi
         }
 
         if let data = timeSlots as? [TimeSlotNSObject] {
-            if  indexPath.row == 0 {
-                cell.isSelected = true
-            }
             cell.mainText = "\(data[indexPath.row].timeSlot)"
         }
         
@@ -307,7 +308,6 @@ extension SelectDateTimeViewController: UICollectionViewDelegate, UICollectionVi
             self.selectedAgentId = data[indexPath.row].agentId
             guard let selectedDate = self.selectedDate else { return }
             self.selectedTimeAndDate = "\(selectedDate) | \(data[indexPath.row].timeSlot)"
-            print(self.selectedAgentId!)
         }
     }
     

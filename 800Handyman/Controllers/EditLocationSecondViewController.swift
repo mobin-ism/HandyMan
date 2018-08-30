@@ -14,6 +14,12 @@ import Localize_Swift
 class EditLocationSecondViewController: UIViewController {
     
     var selectedDateAndTime : String?
+    var selectedAreaID : Int?
+    var selectedAreaName : String?
+    var addressName : String?
+    var addressType : String?
+    var streetBuilding : String?
+    var apartmentNo : String?
     var markedLatitude : Double?
     var markedLongitude : Double?
     
@@ -133,7 +139,7 @@ class EditLocationSecondViewController: UIViewController {
     private func setMapPinImageView() {
         mapView.addSubview(mapPinImageView)
         mapPinImageView.centerXAnchor.constraint(equalTo: mapView.centerXAnchor).isActive = true
-        mapPinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor).isActive = true
+        mapPinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: -25).isActive = true
         mapPinImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         mapPinImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
@@ -197,6 +203,14 @@ class EditLocationSecondViewController: UIViewController {
         editFirstLocationViewController.markedLatitude = self.markedLatitude
         editFirstLocationViewController.markedLongitude = self.markedLongitude
         editFirstLocationViewController.selectedDateAndTime = self.selectedDateAndTime
+        editFirstLocationViewController.streetTextField.text = self.addressLineOne.text
+        if let selectedAreaID = self.selectedAreaID, let selectedAreaName = self.selectedAreaName, let addressName = self.addressName, let addressType = self.addressType, let apartmentNo = self.apartmentNo {
+            editFirstLocationViewController.selectedAreaID = selectedAreaID
+            editFirstLocationViewController.areaNameLabel.text = selectedAreaName
+            editFirstLocationViewController.addressNameTextField.text = addressName
+            editFirstLocationViewController.addressTypeTextField.text = addressType
+            editFirstLocationViewController.villaTextField.text = apartmentNo
+        }
         self.navigationController?.pushViewController(editFirstLocationViewController, animated: true)
     }
     

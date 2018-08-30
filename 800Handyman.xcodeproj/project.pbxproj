@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		08027A962119BBB100775DBD /* PhoneCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08027A952119BBB100775DBD /* PhoneCallViewController.swift */; };
 		08076A9B208E06AF001A9082 /* ReceiverMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */; };
+		080DC88621380597008418AF /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080DC88521380597008418AF /* OTPViewController.swift */; };
 		0816E7DA21108AE6009F8674 /* EditLocationFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E7D921108AE6009F8674 /* EditLocationFirstViewController.swift */; };
 		08236FE3211AF25D00EA41D6 /* GifHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08236FE2211AF25D00EA41D6 /* GifHandler.swift */; };
 		08236FEB211AFEA000EA41D6 /* bottom-arrow.gif in Resources */ = {isa = PBXBuildFile; fileRef = 08236FEA211AFEA000EA41D6 /* bottom-arrow.gif */; };
@@ -93,6 +94,7 @@
 /* Begin PBXFileReference section */
 		08027A952119BBB100775DBD /* PhoneCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCallViewController.swift; sourceTree = "<group>"; };
 		08076A9A208E06AF001A9082 /* ReceiverMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCell.swift; sourceTree = "<group>"; };
+		080DC88521380597008418AF /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		0816E7D921108AE6009F8674 /* EditLocationFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationFirstViewController.swift; sourceTree = "<group>"; };
 		08236FE2211AF25D00EA41D6 /* GifHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifHandler.swift; sourceTree = "<group>"; };
 		08236FEA211AFEA000EA41D6 /* bottom-arrow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "bottom-arrow.gif"; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				E9D6D5982115DA880060E8CB /* EditServiceDetailsViewController.swift */,
 				E9D6D59A211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift */,
 				08027A952119BBB100775DBD /* PhoneCallViewController.swift */,
+				080DC88521380597008418AF /* OTPViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				083F1AC420A2D243009954AC /* ServiceDetailsListViewCell.swift in Sources */,
 				0840BD67208F338F000FC497 /* ChatModel.swift in Sources */,
 				775F079E20761D67006E563F /* SliderImages.swift in Sources */,
+				080DC88621380597008418AF /* OTPViewController.swift in Sources */,
 				0851166A208C830400E81C61 /* JobListModel.swift in Sources */,
 				775F07B220795459006E563F /* ProfileViewController.swift in Sources */,
 				1D762D1420ACB7F500EA6B29 /* ServiceRequestImageCell.swift in Sources */,

@@ -498,10 +498,16 @@ extension EditLocationFirstViewController : GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         
         let editSecondLocationVC = EditLocationSecondViewController()
+        if let selectedAreaID = self.selectedAreaID, let selectedAreaName = self.areaNameLabel.text, let addressName = self.addressNameTextField.text, let addressType = self.addressTypeTextField.text, let streetBuilding = self.streetTextField.text, let apartmentNo = self.villaTextField.text {
+            editSecondLocationVC.selectedAreaID = selectedAreaID
+            editSecondLocationVC.selectedAreaName = selectedAreaName
+            editSecondLocationVC.addressName = addressName
+            editSecondLocationVC.addressType = addressType
+            editSecondLocationVC.streetBuilding = streetBuilding
+            editSecondLocationVC.apartmentNo = apartmentNo
+        }
         editSecondLocationVC.selectedDateAndTime = self.selectedDateAndTime
         self.navigationController?.pushViewController(editSecondLocationVC, animated: true)
-        
-        //self.present(LocationSecondViewController(), animated: true, completion: nil)
     }
     
 }
@@ -580,13 +586,13 @@ extension EditLocationFirstViewController {
         guard let street         = self.streetTextField.text else { return }
         guard let apartmentNo    = self.villaTextField.text else { return }
         
-        guard let markedLatitude = self.markedLatitude, let markedLongitude = self.markedLongitude else {
+        /*guard let markedLatitude = self.markedLatitude, let markedLongitude = self.markedLongitude else {
             
             self.showAlertForEmptyCoordinate()
             return
-        }
+        }*/
         
-        if selectedAreaID == 0 || areaName == "" || addressName == "" || addressType == "" || street == "" || apartmentNo == "" {
+        if selectedAreaID == 0 || addressType == "" || street == "" || apartmentNo == "" {
             
             self.showEmptyAlert()
             return
@@ -603,8 +609,8 @@ extension EditLocationFirstViewController {
                       "ApartmentNo" : apartmentNo,
                       "Location" : areaName,
                       "AreaId" : selectedAreaID,
-                      "Latitude" : markedLatitude,
-                      "Longitude" : markedLongitude
+                      "Latitude" : markedLatitude ?? 0.0,
+                      "Longitude" : markedLongitude ?? 0.0
             ] as [String : Any]
         Alamofire.request(url,method: .post, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type": "application/x-www-form-urlencoded", "Authorization" : AUTH_KEY]).responseJSON(completionHandler: {
             response in

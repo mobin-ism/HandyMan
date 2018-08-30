@@ -87,10 +87,9 @@ class JobListViewController: UIViewController {
     }
     
     private func setNavigationBar() {
-        navigationController?.navigationBar.setGradientBackground(colors: [NAV_GRADIENT_TOP, NAV_GRADIENT_BOTTOM])
         let imageView = UIImageView(image: #imageLiteral(resourceName: "navLogo"))
         imageView.contentMode = .scaleAspectFit
-        navigationController?.navigationBar.topItem?.titleView = imageView
+        navigationItem.titleView = imageView
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(menuIconTapped))
     }
     
@@ -241,7 +240,6 @@ extension JobListViewController {
                 return
             }
             
-            print(response)
             if !self.listOfJobs.isEmpty {
                 self.listOfJobs.removeAll()
             }
