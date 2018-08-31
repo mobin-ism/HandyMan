@@ -17,6 +17,7 @@ struct DataResponse : Decodable {
 
 struct ServiceData: Decodable {
     let services: [Services]
+    let banners : [String]
 }
 
 struct Services : Decodable {

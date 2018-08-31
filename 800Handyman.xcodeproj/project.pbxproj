@@ -81,6 +81,7 @@
 		7768ADDF207AC607000AC837 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7768ADDE207AC607000AC837 /* PaddedTextField.swift */; };
 		9CC0F23C3D95EECA35831461 /* Pods_800Handyman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F163B31311BB0F944D8E23 /* Pods_800Handyman.framework */; };
 		E92F9BB92113B97B00079C04 /* EditLocationSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F9BB82113B97B00079C04 /* EditLocationSecondViewController.swift */; };
+		E9CCCE2F2139802A0028A42E /* ReasonOfCancellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CCCE2E2139802A0028A42E /* ReasonOfCancellation.swift */; };
 		E9D6D5992115DA880060E8CB /* EditServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6D5982115DA880060E8CB /* EditServiceDetailsViewController.swift */; };
 		E9D6D59B211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6D59A211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift */; };
 		E9D6D59D21166A300060E8CB /* HorizontalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6D59C21166A300060E8CB /* HorizontalCollectionViewCell.swift */; };
@@ -174,6 +175,7 @@
 		7768ADDC207ABA7F000AC837 /* LocationFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFirstViewController.swift; sourceTree = "<group>"; };
 		7768ADDE207AC607000AC837 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		E92F9BB82113B97B00079C04 /* EditLocationSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationSecondViewController.swift; sourceTree = "<group>"; };
+		E9CCCE2E2139802A0028A42E /* ReasonOfCancellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonOfCancellation.swift; sourceTree = "<group>"; };
 		E9D6D5982115DA880060E8CB /* EditServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditServiceDetailsViewController.swift; sourceTree = "<group>"; };
 		E9D6D59A211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditServiceDetailsViewControllerTwo.swift; sourceTree = "<group>"; };
 		E9D6D59C21166A300060E8CB /* HorizontalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				E9D6D59A211603300060E8CB /* EditServiceDetailsViewControllerTwo.swift */,
 				08027A952119BBB100775DBD /* PhoneCallViewController.swift */,
 				080DC88521380597008418AF /* OTPViewController.swift */,
+				E9CCCE2E2139802A0028A42E /* ReasonOfCancellation.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
+				"${BUILT_PRODUCTS_DIR}/LIHImageSlider/LIHImageSlider.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -494,6 +498,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LIHImageSlider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -580,6 +585,7 @@
 				77658900207393B800876E3E /* Extensions.swift in Sources */,
 				083F1AC220A2CB76009954AC /* ServiceDetailsListViewController.swift in Sources */,
 				776588FE2073926C00876E3E /* ChatViewController.swift in Sources */,
+				E9CCCE2F2139802A0028A42E /* ReasonOfCancellation.swift in Sources */,
 				776589062073984300876E3E /* LanguageSelectViewController.swift in Sources */,
 				776588FC2073924300876E3E /* PhoneViewController.swift in Sources */,
 				771E6791207BF13900800C0B /* JobDetailsImageCell.swift in Sources */,

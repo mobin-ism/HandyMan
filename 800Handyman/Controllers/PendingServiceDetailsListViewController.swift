@@ -463,7 +463,24 @@ class PendingServiceDetailsListViewController : UIViewController {
     
     @objc private func handleCancelButton() {
         
-       self.cancelServiceProviderOrder()
+        self.confirmationAlert()
+    }
+    
+    func confirmationAlert() {
+        let refreshAlert = UIAlertController(title: "Are You Sure?".localized(), message: "It will remove the Service Request Detail.".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .destructive, handler: { (action: UIAlertAction!) in
+            let reasonOfCancellationVC = ReasonOfCancellation()
+            guard let serviceRequestMasterID = self.serviceRequestMasterID else { return }
+            reasonOfCancellationVC.serviceRequestMasterID = serviceRequestMasterID
+            self.navigationController?.pushViewController(reasonOfCancellationVC, animated: true)
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .default, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
     }
     
     var reschedulePendingOrdersVC = ReschedulePendingOrdersViewController()
@@ -650,27 +667,6 @@ extension PendingServiceDetailsListViewController {
             self.activityIndicator.stopAnimating()
             
             print("From API: \(self.listOfServices.count)")
-        })
-    }
-    
-    func cancelServiceProviderOrder() {
-        self.activityIndicator.startAnimating()
-        guard let serviceRequestMasterID = self.serviceRequestMasterID else { return }
-        guard let url = URL(string: "\(API_URL)api/v1/agent/service/request/status/change") else { return }
-        let params = ["ServiceRequestMasterId" : serviceRequestMasterID,
-                      "Status" : "CANCELED",
-                      "Note" : "",
-                      "CancelReason" : ""] as [String : Any]
-        Alamofire.request(url,method: .post, parameters: params, encoding: URLEncoding.default, headers: ["Content-Type" : "application/x-www-form-urlencoded", "Authorization": AUTH_KEY]).responseJSON(completionHandler: {
-            response in
-            guard response.result.isSuccess else {
-                print(response)
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            self.activityIndicator.stopAnimating()
-            print(response)
-            self.alert(title: "Service Cancelled".localized(), message: "Congratulations, The Services has been cancelled successfully!".localized())
         })
     }
 }

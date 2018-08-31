@@ -81,7 +81,6 @@ class LanguageSelectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        
         layout()
     }
     
@@ -149,6 +148,9 @@ class LanguageSelectViewController: UIViewController {
         UIView.appearance().semanticContentAttribute = .forceLeftToRight
         self.registerFirebaseTokenAndDeviceToken()
         Localize.setCurrentLanguage("en")
+        
+        sleep(1)
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -158,6 +160,9 @@ class LanguageSelectViewController: UIViewController {
         UIView.appearance().semanticContentAttribute = .forceRightToLeft
         self.registerFirebaseTokenAndDeviceToken()
         Localize.setCurrentLanguage("ar")
+        
+        sleep(1)
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -191,6 +196,7 @@ class LanguageSelectViewController: UIViewController {
                 return
             }
             print(response)
+            print(params)
             if let json = response.data {
                 
                 let decoder = JSONDecoder()

@@ -660,9 +660,14 @@ class ServiceDetailsListViewController : UIViewController {
     @objc private func handleRequestService() {
         UserDefaults.standard.set(true, forKey: SHOW_THANK_YOU_MESSAGE)
         
-        if (UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool) {
-            thankYouOBJ.serviceRequestMasterID = UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as? Int
-            self.navigationController?.pushViewController(thankYouOBJ, animated: true)
+        if Helper.Exists(key: IS_LOGGED_IN){
+            if (UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool) {
+                thankYouOBJ.serviceRequestMasterID = UserDefaults.standard.value(forKey: SERVICE_REQUEST_MASTER_ID) as? Int
+                self.navigationController?.pushViewController(thankYouOBJ, animated: true)
+            }
+            else {
+                self.navigationController?.pushViewController(LoginViewController(), animated: true)
+            }
         }
         else {
             self.navigationController?.pushViewController(LoginViewController(), animated: true)

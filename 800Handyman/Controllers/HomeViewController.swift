@@ -10,13 +10,13 @@ import UIKit
 import Alamofire
 import SDWebImage
 import Localize_Swift
-
+import LIHImageSlider
 class HomeViewController: UIViewController {
     
     var serviceId    = [Int]()
     var servicesName = [String]()
     var servicesIcon = [String]()
-    
+    var images: [UIImage] = [#imageLiteral(resourceName: "dummy2")]
     lazy var slider: Slider = {
         let slider = Slider()
         return slider
@@ -65,7 +65,8 @@ class HomeViewController: UIViewController {
     
     let serviceCellId = "ServiceCell"
     var sliderImages = [SliderImages]()
-
+    var sliderVc1 : UIViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BACKGROUND_COLOR
@@ -84,7 +85,7 @@ class HomeViewController: UIViewController {
         slider.dataSource = sliderImages
         
         self.clearCachedImages()
-        layout()
+        
     }
     
     func clearCachedImages(){
@@ -95,6 +96,8 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.checkNetworkConnection()
+        
+        self.activityIndicator.startAnimating()
         
         if Helper.Exists(key: IS_LOGGED_IN){
             print(UserDefaults.standard.value(forKey: IS_LOGGED_IN) as! Bool)
@@ -151,8 +154,9 @@ class HomeViewController: UIViewController {
     }
     
     private func layout() {
-        setSlider()
+        //setSlider()
         //setSearchBar()
+        setLHIImageSlider(sliderImages: self.images)
         setCollectionView()
         setupActivityIndicator()
     }
@@ -169,6 +173,25 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func setLHIImageSlider(sliderImages: [UIImage]) {
+        let y : CGFloat = 0
+        let sliderHeight : CGFloat!
+        
+        if Helper.isIphoneX {
+            sliderHeight = self.view.frame.height * 0.35
+        } else {
+            sliderHeight = self.view.frame.height * 0.35
+        }
+        
+        let slider1: LIHSlider = LIHSlider(images: sliderImages)
+        slider1.customImageView?.contentMode = .scaleAspectFit
+        self.sliderVc1  = LIHSliderViewController(slider: slider1)
+        self.addChildViewController(self.sliderVc1)
+        self.view.addSubview(self.sliderVc1.view)
+        self.sliderVc1.didMove(toParentViewController: self)
+        self.sliderVc1.view.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: sliderHeight)
+    }
+    
     private func setSearchBar() {
         view.addSubview(searchBar)
         searchBar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -179,7 +202,7 @@ class HomeViewController: UIViewController {
     
     private func setCollectionView() {
         view.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 16).isActive = true
+        collectionView.topAnchor.constraint(equalTo: sliderVc1.view.bottomAnchor, constant: 16).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -310,12 +333,35 @@ extension HomeViewController {
                         self.servicesIcon.removeAll()
                     }
                     
+                    if !self.images.isEmpty {
+                        self.images.removeAll()
+                    }
                     for eachService in serviceList.data.services {
                         
                         self.serviceId.append(eachService.serviceId)
                         self.servicesName.append(eachService.title)
                         self.servicesIcon.append(eachService.smallIconOne)
                     }
+                    
+                    if serviceList.data.banners.count > 0 {
+                        for imageurl in serviceList.data.banners {
+                            let imageview : UIImageView = {
+                                let imageview = UIImageView()
+                                return imageview
+                            }()
+
+                            imageview.sd_setImage(with: URL(string: imageurl), placeholderImage: #imageLiteral(resourceName: "dummy2"), options: [.continueInBackground, .progressiveDownload], completed: nil)
+                            self.images.append(imageview.image!)
+                            print(imageurl)
+                        }
+                        print(serviceList.data.banners.count)
+                    }
+                    else {
+                        self.images.append(#imageLiteral(resourceName: "dummy2"))
+                        self.images.append(#imageLiteral(resourceName: "dummy2"))
+                    }
+                    
+                    self.layout()
                     self.collectionView.reloadData()
                     self.activityIndicator.stopAnimating()
                 } catch let err {

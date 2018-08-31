@@ -249,6 +249,7 @@ class SelectDateTimeViewController: UIViewController {
         if let _ = self.selectedTime, let _ = self.selectedAgentId {
             self.updateDateTime()
             serviceDetailsListVC.selectedDateAndTime = self.selectedTimeAndDate
+            sleep(2)
             self.navigationController?.pushViewController(serviceDetailsListVC, animated: true)
         }else {
             let alert = UIAlertController(title: "Warning".localized(), message: "Please select a time slot".localized(), preferredStyle: UIAlertControllerStyle.alert)
@@ -348,6 +349,7 @@ extension SelectDateTimeViewController {
                 return
             }
             
+            print(response)
             if !self.timeSlots.isEmpty {
                 self.timeSlots.removeAll()
             }
@@ -360,7 +362,8 @@ extension SelectDateTimeViewController {
                     
                     for eachTimeSlot in timeSlotResponse.data.timeSlots {
                        
-                        let container = TimeSlotNSObject(timeSlot: eachTimeSlot.timeRange, agentId: eachTimeSlot.agentId)
+                        
+                        let container = TimeSlotNSObject(timeSlot: eachTimeSlot.timeRange, agentId: eachTimeSlot.agentId ?? 0)
                         self.timeSlots.append(container)
                     }
                     self.activityIndicator.stopAnimating()

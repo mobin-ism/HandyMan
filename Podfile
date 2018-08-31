@@ -9,4 +9,5 @@ target '800Handyman' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'Localize-Swift', '~> 2.0'
+  pod 'LIHImageSlider'
 end

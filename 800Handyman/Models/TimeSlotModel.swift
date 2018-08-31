@@ -21,7 +21,7 @@ struct TimeSlotData : Decodable {
 struct TimeSlots : Decodable {
     
     let timeRange : String
-    let agentId   : Int
+    let agentId   : Int?
 }
 
 class TimeSlotNSObject : NSObject {

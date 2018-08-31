@@ -436,6 +436,7 @@ class EditLocationFirstViewController: UIViewController{
         guard let selectedDateAndTime = self.selectedDateAndTime else { return }
         print("edit controller \(selectedDateAndTime)")
         serviceDetailsListVC.selectedDateAndTime = selectedDateAndTime
+        sleep(2)
         self.navigationController?.pushViewController(serviceDetailsListVC, animated: true)
     }
     

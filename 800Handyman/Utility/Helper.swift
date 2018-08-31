@@ -10,6 +10,10 @@ import UIKit
 import Localize_Swift
 class Helper {
     
+    public static var barHeight : CGFloat {
+        return UIApplication.shared.statusBarFrame.height
+    }
+    
     public static var isIphoneX: Bool {
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
