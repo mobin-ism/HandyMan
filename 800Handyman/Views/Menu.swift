@@ -11,6 +11,7 @@ import Localize_Swift
 
 class Menu: NSObject {
     
+    var windowWidth  : CGFloat = 0.0
     var selectedLanguage : String?
     var vc = UIViewController()
     var homeController = HomeViewController()
@@ -87,7 +88,44 @@ class Menu: NSObject {
         tableView.register(MenuCell.self, forCellReuseIdentifier: cellId)
     }
     
+    @objc func panningMenuBar(_ sender : UIPanGestureRecognizer) {
+        let point = sender.translation(in: containerView)
+        
+        guard let selectedLanguage = self.selectedLanguage else { return }
+        if selectedLanguage == "en" {
+            if point.x < 0 {
+                containerView.center = CGPoint(x: containerView.center.x + point.x, y: containerView.center.y)
+                if sender.state == UIGestureRecognizerState.ended {
+                    self.hide()
+                }
+            }else {
+                if sender.state == UIGestureRecognizerState.ended {
+                    UIView.animate(withDuration: 0.3) {
+                        self.containerView.frame = CGRect(x: 0, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+                    }
+                }
+            }
+        }else {
+            if point.x > 0 {
+                containerView.center = CGPoint(x: containerView.center.x + point.x, y: containerView.center.y)
+                if sender.state == UIGestureRecognizerState.ended {
+                    self.hide()
+                }
+            }else {
+                if sender.state == UIGestureRecognizerState.ended {
+                    UIView.animate(withDuration: 0.3) {
+                        self.containerView.frame = CGRect(x: (self.backgroundView.frame.width - self.containerView.frame.width), y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+                    }
+
+                }
+            }
+        }
+        
+    }
     func show(fromVC : UIViewController) {
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panningMenuBar(_ :)))
+        self.containerView.addGestureRecognizer(panGesture)
         
         self.selectedLanguage = UserDefaults.standard.value(forKey: SELECTED_LANGUAGE) as? String
         
@@ -147,7 +185,7 @@ class Menu: NSObject {
     func setupContainerView(window: UIWindow) {
         window.addSubview(containerView)
         let width = window.frame.width * 0.85
-        
+        self.windowWidth = width
         guard let selectedLanguage = self.selectedLanguage else { return }
         if selectedLanguage == "en" {
             containerView.frame = CGRect(x: -window.frame.width, y: 0, width: width, height: window.frame.height)

@@ -467,7 +467,7 @@ class PendingServiceDetailsListViewController : UIViewController {
     }
     
     func confirmationAlert() {
-        let refreshAlert = UIAlertController(title: "Are You Sure?".localized(), message: "It will remove the Service Request Detail.".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        let refreshAlert = UIAlertController(title: "Are You Sure?".localized(), message: "", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .destructive, handler: { (action: UIAlertAction!) in
             let reasonOfCancellationVC = ReasonOfCancellation()

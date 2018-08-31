@@ -136,7 +136,7 @@ class ServiceChildCell: MasterCollectionViewCell {
         rightHolder.topAnchor.constraint(equalTo: leftHolder.topAnchor).isActive = true
         rightHolder.leadingAnchor.constraint(equalTo: leftHolder.trailingAnchor, constant: 8).isActive = true
         rightHolder.bottomAnchor.constraint(equalTo: leftHolder.bottomAnchor).isActive = true
-        rightHolder.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2).isActive = true
+        rightHolder.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3).isActive = true
         
         setTitleLabel()
         setSubTitleLabel()

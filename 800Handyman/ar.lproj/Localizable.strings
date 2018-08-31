@@ -129,3 +129,6 @@
 "Please enter your security number" = "يرجى إدخال رقم التأمين الخاص بك";
 "Invalid security number" = "رقم التأمين غير صحيح";
 "Please provide a security number" = "يرجى تقديم رقم الضمان";
+"Customer not in home" = "العميل ليس في المنزل";
+"Customer want to change the date" = "العميل يريد تغيير التاريخ";
+"Reason oF Cancellation" = "سبب الإلغاء";

@@ -129,6 +129,9 @@
 "Please enter your security number" = "Please enter your security number";
 "Invalid security number" = "Invalid security number";
 "Please provide a security number" = "Please provide a security number";
+"Customer not in home" = "Customer not in home";
+"Customer want to change the date" = "Customer want to change the date";
+"Reason oF Cancellation" = "Reason oF Cancellation";
 
 
 

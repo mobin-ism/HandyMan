@@ -54,7 +54,7 @@ class ReasonOfCancellation: UIViewController {
         textview.backgroundColor = .white
         textview.layer.borderWidth = 1
         textview.layer.borderColor = UIColor.lightGray.cgColor
-        textview.layer.cornerRadius = 4
+        textview.layer.cornerRadius = 6
         return textview
     }()
     
