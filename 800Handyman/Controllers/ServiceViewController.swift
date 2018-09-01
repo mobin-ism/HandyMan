@@ -109,13 +109,14 @@ class ServiceViewController: UIViewController {
         setNavigationBar()
         collectionView.register(ServiceChildCell.self, forCellWithReuseIdentifier: serviceChildCellId)
         layout()
+        
+        // API Calls
+        self.getSubServices(selectedServiceId: self.selectedServiceId)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // API Calls
-        self.getSubServices(selectedServiceId: self.selectedServiceId)
     }
     
     override func viewDidLayoutSubviews() {
@@ -256,7 +257,7 @@ extension ServiceViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = collectionView.frame.width
-        let height: CGFloat = width * 0.2
+        let height: CGFloat = width * 0.22
         return CGSize(width: width, height: height)
     }
     

@@ -130,13 +130,13 @@ class ServiceChildCell: MasterCollectionViewCell {
         leftHolder.topAnchor.constraint(equalTo: topAnchor).isActive = true
         leftHolder.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         leftHolder.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        leftHolder.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
+        leftHolder.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6).isActive = true
         
         addSubview(rightHolder)
         rightHolder.topAnchor.constraint(equalTo: leftHolder.topAnchor).isActive = true
         rightHolder.leadingAnchor.constraint(equalTo: leftHolder.trailingAnchor, constant: 8).isActive = true
         rightHolder.bottomAnchor.constraint(equalTo: leftHolder.bottomAnchor).isActive = true
-        rightHolder.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3).isActive = true
+        rightHolder.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
         
         setTitleLabel()
         setSubTitleLabel()
