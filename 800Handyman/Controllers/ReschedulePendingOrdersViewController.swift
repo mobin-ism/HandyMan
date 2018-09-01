@@ -713,6 +713,7 @@ extension ReschedulePendingOrdersViewController : UICollectionViewDelegate, UICo
             
             cell.expandButton.tag = data[indexPath.row].serviceRequestDetailId
             cell.expandButton.addTarget(self, action: #selector(handleExpandButton(_:)), for: .touchUpInside)
+            cell.removeButton.alpha = 0
         }
         return cell
     }

@@ -321,7 +321,7 @@ extension JobListViewController {
                     if  orderStatus == "submitted" || orderStatus == "pending" {
                         self.pendingServiceListVC.selectedDateAndTime = self.selectedDateAndTime
                         self.pendingServiceListVC.serviceRequestMasterID = serviceRequestMasterID
-                            sleep(1)
+                        sleep(2)
                         self.navigationController?.pushViewController(self.pendingServiceListVC, animated: true)
                         
                         /*self.completedServiceListVC.selectedDateAndTime = self.selectedDateAndTime
@@ -331,7 +331,7 @@ extension JobListViewController {
                     else if orderStatus == "completed" {
                         self.completedServiceListVC.selectedDateAndTime = self.selectedDateAndTime
                         self.completedServiceListVC.serviceRequestMasterID = serviceRequestMasterID
-                            sleep(1)
+                        sleep(2)
                         self.navigationController?.pushViewController(self.completedServiceListVC, animated: true)
                     }
                     else if orderStatus == "canceled" {

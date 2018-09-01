@@ -132,3 +132,5 @@
 "Customer not in home" = "العميل ليس في المنزل";
 "Customer want to change the date" = "العميل يريد تغيير التاريخ";
 "Reason oF Cancellation" = "سبب الإلغاء";
+"Warning" = "تحذير";
+"Please select a time slot" = "يرجى تحديد فتحة زمنية";

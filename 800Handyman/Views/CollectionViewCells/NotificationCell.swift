@@ -140,7 +140,7 @@ class NotificationCell: MasterCollectionViewCell {
         addSubview(notificationLabel)
         notificationLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         notificationLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
-        notificationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        notificationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8).isActive = true
         notificationLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
     }
     

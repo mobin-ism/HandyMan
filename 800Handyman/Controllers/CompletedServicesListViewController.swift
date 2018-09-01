@@ -543,9 +543,9 @@ extension CompletedServiceDetailsListViewController : UICollectionViewDelegate, 
             cell.subService = "\(data[indexPath.row].serviceTitle)"
             cell.price = "\(data[indexPath.row].serviceRate)"
             cell.serviceImageView.sd_setImage(with: URL(string: data[indexPath.row].serviceParentIcon))
-            
             cell.expandButton.tag = data[indexPath.row].serviceRequestDetailId
             cell.expandButton.addTarget(self, action: #selector(handleExpandButton(_:)), for: .touchUpInside)
+            cell.removeButton.alpha = 0
         }
         return cell
     }
